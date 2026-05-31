@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>라이더 HUD Pro — 사용 매뉴얼</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#00ff88;--yellow:#ffd600;--red:#ff4444;--mint:#00e5cc;
+  --bg:#08080a;--bg2:#0d0d10;--card:#111;
+  --border:rgba(255,255,255,0.07);--glass:rgba(255,255,255,0.04);
+  --text:#fff;--sub:#aaa;--dim:#555;
+  --mono:'IBM Plex Mono',monospace;--sans:'Noto Sans KR',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--sub);font-family:var(--sans);line-height:1.6;}
+a{color:var(--green);text-decoration:none;}
+
+/* ── 헤더 ── */
+.hero{
+  padding:60px 24px 48px;text-align:center;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,255,136,0.08) 0%,transparent 65%);
+}
+.hero-grid{
+  position:absolute;inset:0;opacity:0.025;
+  background-image:linear-gradient(rgba(0,255,136,1) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(0,255,136,1) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.hero-badge{
+  display:inline-block;font-family:var(--mono);font-size:0.65rem;
+  color:var(--green);border:1px solid rgba(0,255,136,0.3);
+  padding:4px 14px;border-radius:20px;margin-bottom:16px;letter-spacing:2px;
+}
+.hero h1{
+  font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;color:var(--text);
+  line-height:1.2;margin-bottom:8px;position:relative;
+}
+.hero h1 em{color:var(--green);font-style:normal;}
+.hero-sub{font-size:0.85rem;color:var(--dim);position:relative;}
+
+/* ── 목차 ── */
+.toc{
+  margin:32px 16px;background:var(--card);border:1px solid var(--border);
+  border-radius:12px;overflow:hidden;
+}
+.toc-title{
+  font-family:var(--mono);font-size:0.65rem;color:var(--green);
+  letter-spacing:3px;padding:14px 20px;border-bottom:1px solid var(--border);
+  background:rgba(0,255,136,0.04);
+}
+.toc-list{
+  display:grid;grid-template-columns:1fr 1fr;
+  list-style:none;padding:8px;gap:2px;
+}
+.toc-list a{
+  display:block;padding:10px 14px;border-radius:6px;font-size:0.82rem;
+  color:var(--sub);transition:all 0.15s;
+}
+.toc-list a:hover{background:var(--glass);color:var(--green);}
+.toc-list a span{color:var(--dim);font-family:var(--mono);font-size:0.62rem;margin-right:6px;}
+
+/* ── 섹션 ── */
+.section{margin:0 16px 32px;}
+.section-header{
+  display:flex;align-items:center;gap:12px;
+  padding:20px 0 16px;border-top:2px solid var(--border);margin-bottom:20px;
+  position:sticky;top:0;background:var(--bg);z-index:10;
+}
+.section-icon{font-size:1.4rem;}
+.section-title-wrap{}
+.section-num{font-family:var(--mono);font-size:0.6rem;color:var(--dim);letter-spacing:2px;}
+.section-title{font-size:1.1rem;font-weight:900;color:var(--text);}
+.section-title em{color:var(--green);font-style:normal;}
+
+/* ── 카드 ── */
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:10px;padding:18px;margin-bottom:12px;
+  transition:border-color 0.2s;
+}
+.card:hover{border-color:rgba(0,255,136,0.2);}
+.card-title{
+  font-size:0.82rem;font-weight:700;color:var(--text);
+  margin-bottom:8px;display:flex;align-items:center;gap:6px;
+}
+.card-body{font-size:0.78rem;color:var(--dim);line-height:1.8;}
+.card-body b{color:var(--sub);}
+.card-body .hl{color:var(--green);}
+
+/* ── 테이블 ── */
+.tbl{width:100%;border-collapse:collapse;margin:8px 0;}
+.tbl th{
+  font-family:var(--mono);font-size:0.6rem;color:var(--green);
+  letter-spacing:2px;padding:8px 10px;text-align:left;
+  border-bottom:1px solid var(--border);background:rgba(0,255,136,0.04);
+}
+.tbl td{
+  font-size:0.78rem;color:var(--sub);padding:9px 10px;
+  border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:top;
+}
+.tbl td:first-child{color:var(--text);font-weight:700;white-space:nowrap;}
+.tbl tr:last-child td{border:none;}
+
+/* ── 스텝 ── */
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{
+  display:flex;gap:14px;padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+.step:last-child{border:none;}
+.step-num{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--green);color:#000;font-size:0.65rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;
+}
+.step-content{}
+.step-title{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:2px;}
+.step-desc{font-size:0.75rem;color:var(--dim);line-height:1.7;}
+
+/* ── 배지 ── */
+.badge{
+  display:inline-block;font-size:0.6rem;padding:2px 8px;
+  border-radius:4px;font-family:var(--mono);vertical-align:middle;margin-left:4px;
+}
+.badge-free{background:rgba(0,255,136,0.1);color:var(--green);border:1px solid rgba(0,255,136,0.2);}
+.badge-pro{background:rgba(255,214,0,0.1);color:var(--yellow);border:1px solid rgba(255,214,0,0.2);}
+.badge-warn{background:rgba(255,68,68,0.1);color:var(--red);border:1px solid rgba(255,68,68,0.2);}
+
+/* ── 팁 박스 ── */
+.tip{
+  background:rgba(0,255,136,0.04);border:1px solid rgba(0,255,136,0.15);
+  border-left:3px solid var(--green);border-radius:0 8px 8px 0;
+  padding:12px 14px;margin:10px 0;font-size:0.78rem;color:var(--sub);line-height:1.7;
+}
+.tip b{color:var(--green);}
+.warn{
+  background:rgba(255,214,0,0.04);border:1px solid rgba(255,214,0,0.15);
+  border-left:3px solid var(--yellow);border-radius:0 8px 8px 0;
+  padding:12px 14px;margin:10px 0;font-size:0.78rem;color:var(--sub);line-height:1.7;
+}
+.warn b{color:var(--yellow);}
+
+/* ── 코드 블록 ── */
+.code{
+  background:#0a0a0a;border:1px solid var(--border);border-radius:8px;
+  padding:14px;font-family:var(--mono);font-size:0.75rem;color:var(--green);
+  margin:8px 0;line-height:1.8;
+}
+
+/* ── 상태 카드 ── */
+.state-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0;}
+.state-card{border-radius:8px;padding:12px;border:1px solid;}
+.state-idle{background:#1a1a1a;border-color:#333;}
+.state-wait{background:#1a1200;border-color:#554400;}
+.state-ride{background:#001a0d;border-color:#004422;}
+.state-done{background:#001a18;border-color:#004440;}
+.state-label{font-size:0.6rem;font-family:var(--mono);letter-spacing:2px;margin-bottom:4px;}
+.state-idle .state-label{color:#555;}
+.state-wait .state-label{color:var(--yellow);}
+.state-ride .state-label{color:var(--green);}
+.state-done .state-label{color:var(--mint);}
+.state-main{font-size:0.85rem;font-weight:900;color:var(--text);}
+.state-sub{font-size:0.68rem;color:#666;margin-top:2px;}
+
+/* ── FAQ ── */
+.faq-item{border-bottom:1px solid var(--border);padding:16px 0;}
+.faq-item:last-child{border:none;}
+.faq-q{
+  font-size:0.85rem;font-weight:700;color:var(--text);
+  margin-bottom:8px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;
+}
+.faq-q::after{content:'▾';color:var(--green);font-size:0.7rem;}
+.faq-a{font-size:0.78rem;color:var(--dim);line-height:1.8;}
+
+/* ── 하단 ── */
+.footer{
+  margin:48px 16px 32px;padding:24px;
+  background:var(--card);border:1px solid var(--border);border-radius:12px;
+  text-align:center;
+}
+.footer-logo{font-family:var(--mono);font-size:1rem;color:var(--green);margin-bottom:8px;letter-spacing:2px;}
+.footer-links{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
+.footer-links a{
+  font-size:0.75rem;color:var(--dim);padding:6px 14px;
+  border:1px solid var(--border);border-radius:6px;transition:all 0.2s;
+}
+.footer-links a:hover{border-color:var(--green);color:var(--green);}
+
+/* ── 반응형 ── */
+@media(max-width:480px){
+  .toc-list{grid-template-columns:1fr;}
+  .state-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- 히어로 -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-badge">USER MANUAL v1.0</div>
+  <h1>라이더 HUD Pro<br><em>사용 매뉴얼</em></h1>
+  <p class="hero-sub">배달 라이더를 위한 데이터 기반 운영체제(OS)</p>
+</div>
+
+<!-- 목차 -->
+<div class="toc">
+  <div class="toc-title">CONTENTS</div>
+  <ul class="toc-list">
+    <li><a href="#start"><span>01</span>시작하기 · PIN</a></li>
+    <li><a href="#hud"><span>02</span>HUD 탭</a></li>
+    <li><a href="#manager"><span>03</span>매니저 탭</a></li>
+    <li><a href="#heatmap"><span>04</span>히트맵 탭</a></li>
+    <li><a href="#ledger"><span>05</span>장부 탭</a></li>
+    <li><a href="#goal"><span>06</span>목표 설정</a></li>
+    <li><a href="#excel"><span>07</span>엑셀 연계</a></li>
+    <li><a href="#backup"><span>08</span>백업 · 복원</a></li>
+    <li><a href="#settings"><span>09</span>설정</a></li>
+    <li><a href="#faq"><span>10</span>자주 묻는 질문</a></li>
+  </ul>
+</div>
+
+<!-- 01 시작하기 -->
+<div class="section" id="start">
+  <div class="section-header">
+    <div class="section-icon">🔐</div>
+    <div class="section-title-wrap">
+      <div class="section-num">01 · GETTING STARTED</div>
+      <div class="section-title">시작하기 · <em>PIN 설정</em></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📱 첫 실행 — PIN 6자리 설정</div>
+    <div class="card-body">앱 최초 실행 시 6자리 PIN을 설정합니다. PIN은 앱 데이터를 보호하는 유일한 보안 수단이에요.</div>
+  </div>
+
+  <div class="warn"><b>⚠️ 중요:</b> PIN 분실 시 복구 방법이 없습니다. 반드시 메모해두세요.</div>
+
+  <div class="card">
+    <div class="card-title">🔒 자동 잠금 조건</div>
+    <table class="tbl">
+      <tr><th>상황</th><th>동작</th></tr>
+      <tr><td>근무 중 1시간 터치 없음</td><td>자동 잠금 (분실·도난 대비)</td></tr>
+      <tr><td>STOP 후 60분 이내</td><td>잠금 없음 (휴식 배려)</td></tr>
+      <tr><td>STOP 후 60분 초과</td><td>자동 잠금</td></tr>
+    </table>
+  </div>
+
+  <div class="tip"><b>💡 팁:</b> 폰을 잃어버렸을 때 1시간 이내에 원격으로 잠금 설정을 이용해 데이터를 보호할 수 있어요.</div>
+</div>
+
+<!-- 02 HUD -->
+<div class="section" id="hud">
+  <div class="section-header">
+    <div class="section-icon">🖥️</div>
+    <div class="section-title-wrap">
+      <div class="section-num">02 · CORE SCREEN</div>
+      <div class="section-title">HUD 탭 <span class="badge badge-free">영구 무료</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⬆️ 상단 버튼</div>
+    <table class="tbl">
+      <tr><th>버튼</th><th>기능</th></tr>
+      <tr><td>🔄 리셋</td><td>오늘 데이터 초기화</td></tr>
+      <tr><td>☕ 휴식</td><td>휴식 시간 기록 시작/종료</td></tr>
+      <tr><td>⚡ 미션</td><td>미션 타이머 시작 (플랫폼 선택)</td></tr>
+      <tr><td>🆘 SOS</td><td>긴급 연락처로 즉시 연결</td></tr>
+      <tr><td>START/STOP</td><td>근무 시작·종료 · 정산 팝업 열기</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎴 히어로 카드 — 상태별 화면</div>
+    <div class="state-grid">
+      <div class="state-card state-idle">
+        <div class="state-label">대기 중</div>
+        <div class="state-main">PIN 메모 안내</div>
+        <div class="state-sub">회색</div>
+      </div>
+      <div class="state-card state-wait">
+        <div class="state-label">조리 대기</div>
+        <div class="state-main">경과 시간</div>
+        <div class="state-sub">노란색</div>
+      </div>
+      <div class="state-card state-ride">
+        <div class="state-label">배달 중</div>
+        <div class="state-main">N건 수행 중</div>
+        <div class="state-sub">초록색</div>
+      </div>
+      <div class="state-card state-done">
+        <div class="state-label">드롭 완료</div>
+        <div class="state-main">총 N건</div>
+        <div class="state-sub">민트 1.5초</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📍 도착 → 픽업 → 드롭</div>
+    <div class="card-body">
+      배달마다 순서대로 누르면 <span class="hl">히트맵 데이터가 자동으로 쌓입니다.</span><br><br>
+      누르지 않아도 정산은 가능하지만 히트맵은 작동하지 않아요.<br><br>
+      <b>데이터형 라이더</b> — 버튼 눌러서 히트맵 + 전체 통계<br>
+      <b>심플형 라이더</b> — 정산만 입력해서 장부 + 세금자료
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔊 공동현관 비밀번호 자동 안내</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">장소 저장</div>
+          <div class="step-desc">📍 현위치 저장 버튼 → 장소명 + 비밀번호 입력</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">30m 근접 감지</div>
+          <div class="step-desc">저장된 장소 30m 이내 접근 시 자동 감지</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">자동 음성 안내</div>
+          <div class="step-desc">"○○○ 입력하세요" 자동 TTS 재생</div>
+        </div>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:10px;"><b>💡 팁:</b> 엑셀로 장소 목록을 미리 작성해서 일괄 등록할 수 있어요. (설정 → 엑셀 연계)</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🚨 단속카메라 TTS</div>
+    <div class="card-body">
+      전국 단속카메라(전면·후면·이동식)를 자동으로 음성 안내합니다.<br><br>
+      <b>후면 카메라:</b> 300m 이내 진입 시 1회 안내 → 이탈 후 재진입 시 다시 1회 안내
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📸 드롭 증빙 스탬프</div>
+    <div class="card-body">
+      드롭 버튼 누를 때마다 <span class="hl">시간 + GPS 좌표가 자동 기록</span>됩니다.<br><br>
+      48시간 보관 → 분쟁 발생 시 배달앱 제출 시각과 교차 증빙 가능<br><br>
+      하단 "증빙" 버튼에서 목록 확인 + 카카오톡·문자 공유 가능
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚡ 미션 타이머</div>
+    <div class="card-body">
+      ⚡ 미션 버튼 → 플랫폼 선택(쿠팡이츠/배달의민족/기타) → 타이머 시작<br><br>
+      미션 완료 후 다시 ⚡ 버튼 → 종료<br>
+      미션 보너스 금액은 정산 팝업에서 입력합니다.
+    </div>
+  </div>
+</div>
+
+<!-- 03 매니저 -->
+<div class="section" id="manager">
+  <div class="section-header">
+    <div class="section-icon">📈</div>
+    <div class="section-title-wrap">
+      <div class="section-num">03 · ANALYTICS</div>
+      <div class="section-title">매니저 탭 <span class="badge badge-free">통계 무료</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💰 정산 팝업</div>
+    <div class="card-body">
+      STOP 버튼 → 정산 팝업 자동 열림 (또는 하단 "정산" 버튼)<br><br>
+      <b>자동으로 채워지는 항목</b>
+    </div>
+    <table class="tbl" style="margin-top:8px;">
+      <tr><th>항목</th><th>방식</th></tr>
+      <tr><td>실근무 시간</td><td>자동 계산 (수동 보정 가능)</td></tr>
+      <tr><td>배달 건수</td><td>자동 계산 (수동 보정 가능)</td></tr>
+      <tr><td>거리</td><td>직접 입력 (오도계 기준 권장)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🗂️ 플랫폼별 수입 입력</div>
+    <div class="card-body">
+      쿠팡이츠 · 배달의민족 · 기타 탭을 전환하며 각각 입력합니다.<br><br>
+      <b>배달 수입</b> — 기본 배달 수수료 합계<br>
+      <b>미션 보너스</b> — 미션 완료 보너스 금액
+    </div>
+    <div class="tip" style="margin-top:10px;"><b>💡 팁:</b> 미션 시작 시 플랫폼을 선택하면 정산 팝업에 자동으로 반영돼요.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 통계 화면</div>
+    <table class="tbl">
+      <tr><th>항목</th><th>설명</th></tr>
+      <tr><td>실질 시급</td><td>총수입 ÷ 실근무 시간</td></tr>
+      <tr><td>건당 수입</td><td>총수입 ÷ 건수</td></tr>
+      <tr><td>공차율</td><td>배달 없이 이동한 시간 비율</td></tr>
+      <tr><td>km당 수입</td><td>총수입 ÷ 이동 거리</td></tr>
+    </table>
+    <div class="card-body" style="margin-top:8px;">탭 전환: <b>오늘 · 주간 · 월간 · 전체</b></div>
+  </div>
+</div>
+
+<!-- 04 히트맵 -->
+<div class="section" id="heatmap">
+  <div class="section-header">
+    <div class="section-icon">🗺️</div>
+    <div class="section-title-wrap">
+      <div class="section-num">04 · STRATEGY MAP</div>
+      <div class="section-title">히트맵 탭 <span class="badge badge-free">연말까지 무료</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📌 히트맵이란?</div>
+    <div class="card-body">
+      내가 달린 모든 배달이 지도 위에 쌓입니다.<br>
+      데이터가 쌓일수록 <span class="hl">"어디로 이동해야 콜을 더 받을 수 있는지"</span> 지도가 알려줍니다.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔢 데이터 단계별 기능</div>
+    <table class="tbl">
+      <tr><th>건수</th><th>활성화 기능</th></tr>
+      <tr><td>0~99건</td><td>지도만 표시 (마커 없음)</td></tr>
+      <tr><td>100건+</td><td>마커 표시 시작</td></tr>
+      <tr><td>300건+</td><td>Hot Zone(빨강) · Ice Zone(파랑) 표시</td></tr>
+      <tr><td>500건+</td><td>시간대별 패턴 분석</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 Hot Zone · Ice Zone</div>
+    <div class="card-body">
+      <span class="hl">🔴 Hot Zone</span> — 콜이 집중되는 구간. 지금 당장 이동해야 할 곳<br>
+      🔵 Ice Zone — 콜이 드문 구간. 피해야 할 곳
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🗓️ 필터 사용법</div>
+    <div class="card-body">
+      <b>요일 필터 (상단)</b> — 월~일 버튼으로 특정 요일만 보기<br>
+      <b>시간대 필터 (하단)</b> — 오전 · 점피 · 오후 · 저피 · 야간 · 심야
+    </div>
+    <div class="tip" style="margin-top:10px;"><b>💡 활용 예시:</b> 금요일 + 저피 선택 → "금요일 저녁 피크에 어디로 가야 하나?" 확인</div>
+  </div>
+
+  <div class="tip"><b>⚠️ 주의:</b> 도착→픽업→드롭 버튼을 눌러야 히트맵 데이터가 쌓입니다. 정산만 입력하면 히트맵에는 반영되지 않아요.</div>
+</div>
+
+<!-- 05 장부 -->
+<div class="section" id="ledger">
+  <div class="section-header">
+    <div class="section-icon">📒</div>
+    <div class="section-title-wrap">
+      <div class="section-num">05 · LEDGER</div>
+      <div class="section-title">장부 탭 <span class="badge badge-free">영구 무료</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💸 지출 입력</div>
+    <table class="tbl">
+      <tr><th>항목</th><th>설명</th></tr>
+      <tr><td>보험료</td><td>월 보험료 일할 계산</td></tr>
+      <tr><td>주유비</td><td>오늘 주유 비용</td></tr>
+      <tr><td>프로그램비</td><td>배달 앱 수수료 등</td></tr>
+      <tr><td>장비비</td><td>헬멧·가방 등 장비</td></tr>
+      <tr><td>식비</td><td>오늘 식사 비용</td></tr>
+      <tr><td>수리비</td><td>오토바이 수리 등</td></tr>
+      <tr><td>기타</td><td>자유 입력</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏦 주간 정산 (자동 계산)</div>
+    <table class="tbl">
+      <tr><th>공제 항목</th><th>요율</th></tr>
+      <tr><td>원천징수</td><td>3.3%</td></tr>
+      <tr><td>산재보험</td><td>0.9%</td></tr>
+      <tr><td>고용보험</td><td>0.8%</td></tr>
+    </table>
+    <div class="tip" style="margin-top:10px;"><b>💡 활용:</b> 엑셀 내보내기로 세금 신고 시 세무사에게 바로 전달 가능</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧾 연간 세금 자료</div>
+    <div class="card-body">
+      월별 수입 · 공제 내역 자동 정리<br>
+      종합소득세 신고 시 참고 자료로 활용
+    </div>
+  </div>
+</div>
+
+<!-- 06 목표 -->
+<div class="section" id="goal">
+  <div class="section-header">
+    <div class="section-icon">🎯</div>
+    <div class="section-title-wrap">
+      <div class="section-num">06 · GOAL</div>
+      <div class="section-title">목표 설정 <span class="badge badge-free">영구 무료</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚙️ 설정 방법</div>
+    <div class="card-body">설정 탭 → 🎯 목표 설정</div>
+    <table class="tbl" style="margin-top:8px;">
+      <tr><th>항목</th><th>설명</th></tr>
+      <tr><td>주간 수입 목표</td><td>이번 주 목표 금액</td></tr>
+      <tr><td>일일 건수 목표</td><td>하루 목표 배달 건수</td></tr>
+      <tr><td>목표 시급</td><td>달성하고 싶은 시급</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 달성률 표시</div>
+    <div class="card-body">
+      HUD 타이머 아래 달성률 바가 실시간으로 표시됩니다.<br><br>
+      <span class="hl">잔여 금액</span>도 함께 표시 — "오늘 목표까지 ₩X 남았어요"
+    </div>
+  </div>
+</div>
+
+<!-- 07 엑셀 -->
+<div class="section" id="excel">
+  <div class="section-header">
+    <div class="section-icon">📊</div>
+    <div class="section-title-wrap">
+      <div class="section-num">07 · EXCEL</div>
+      <div class="section-title">엑셀 연계 <span class="badge badge-free">영구 무료</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📤 앱 → 엑셀 내보내기</div>
+    <div class="card-body">
+      설정 탭 → 📊 엑셀 연계 → 📤 엑셀로 내보내기<br><br>
+      <b>생성되는 시트 3개:</b>
+    </div>
+    <table class="tbl" style="margin-top:8px;">
+      <tr><th>시트</th><th>내용</th></tr>
+      <tr><td>정산장부</td><td>날짜·수입·지출·건수·시간·시급</td></tr>
+      <tr><td>세금자료</td><td>월별 수입·원천징수·산재·고용·실수령</td></tr>
+      <tr><td>장소목록</td><td>장소명·메모(비번)·위도·경도</td></tr>
+    </table>
+    <div class="tip" style="margin-top:10px;"><b>💡 세금 신고:</b> 엑셀 파일을 세무사에게 전달하면 종합소득세 신고가 훨씬 빠릅니다.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📥 엑셀 → 장소 일괄 가져오기</div>
+    <div class="card-body">
+      PC에서 엑셀로 장소 목록을 미리 작성한 후 앱에 한번에 등록합니다.<br><br>
+      <b>파일 형식:</b>
+    </div>
+    <div class="code">A열: 장소명 (예: 롯데캐슬 102동)
+B열: 메모/비번 (예: #1234*)</div>
+    <div class="steps" style="margin-top:8px;">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">엑셀 작성</div>
+          <div class="step-desc">PC에서 A열=장소명, B열=메모 작성 후 저장</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">파일 전송</div>
+          <div class="step-desc">카카오톡·구글드라이브로 폰에 전송</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">가져오기</div>
+          <div class="step-desc">설정 → 엑셀 연계 → 📥 장소 일괄 가져오기</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <div class="step-title">현장 GPS 보정</div>
+          <div class="step-desc">현장 방문 시 "현위치 저장"으로 GPS 좌표 보정</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 08 백업 -->
+<div class="section" id="backup">
+  <div class="section-header">
+    <div class="section-icon">💾</div>
+    <div class="section-title-wrap">
+      <div class="section-num">08 · BACKUP</div>
+      <div class="section-title">백업 · <em>복원</em></div>
+    </div>
+  </div>
+
+  <div class="warn"><b>⚠️ 중요:</b> 폰 교체 전 반드시 백업해두세요. 백업 없이 폰을 바꾸면 모든 데이터가 사라집니다.</div>
+
+  <div class="card">
+    <div class="card-title">📤 백업 방법</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">설정 → 🔒 보안·데이터 → 백업 파일 내보내기</div>
+          <div class="step-desc">암호화된 백업 파일이 다운로드됩니다</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">안전한 곳에 보관</div>
+          <div class="step-desc">구글드라이브·카카오톡 나에게 보내기 등으로 보관</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📥 복원 방법</div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">새 폰에서 앱 설치 후 PIN 설정</div>
+          <div class="step-desc">기존과 동일한 PIN으로 설정 권장</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">설정 → 🔒 보안·데이터 → 백업 파일 복원</div>
+          <div class="step-desc">저장해둔 백업 파일 선택</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 09 설정 -->
+<div class="section" id="settings">
+  <div class="section-header">
+    <div class="section-icon">⚙️</div>
+    <div class="section-title-wrap">
+      <div class="section-num">09 · SETTINGS</div>
+      <div class="section-title">설정 <em>가이드</em></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔊 음성 설정</div>
+    <table class="tbl">
+      <tr><th>항목</th><th>설명</th></tr>
+      <tr><td>속도</td><td>느리게 / 보통 / 빠르게 / 매우빠르게</td></tr>
+      <tr><td>볼륨</td><td>슬라이더로 TTS 볼륨 독립 조절</td></tr>
+      <tr><td>테스트</td><td>재생 버튼으로 미리 들어보기</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📍 근접 알림 거리</div>
+    <div class="card-body">
+      20m / 30m(기본) / 50m 중 선택<br>
+      건물이 큰 아파트 단지는 50m 권장
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🆘 SOS 긴급연락</div>
+    <div class="card-body">
+      설정 → SOS 긴급연락처 등록<br>
+      이름 · 전화번호 · 메모(관계) 저장 가능<br>
+      HUD 상단 🆘 버튼 누르면 즉시 전화 연결
+    </div>
+  </div>
+</div>
+
+<!-- 10 FAQ -->
+<div class="section" id="faq">
+  <div class="section-header">
+    <div class="section-icon">❓</div>
+    <div class="section-title-wrap">
+      <div class="section-num">10 · FAQ</div>
+      <div class="section-title">자주 묻는 <em>질문</em></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="faq-item">
+      <div class="faq-q">히트맵이 비어있어요</div>
+      <div class="faq-a">도착→픽업→드롭 버튼을 눌러야 데이터가 쌓입니다. 100건부터 마커가 표시돼요. 정산만 입력하면 히트맵에는 반영되지 않아요.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">날씨가 안 나와요</div>
+      <div class="faq-a">GPS가 수신되면 자동으로 표시됩니다. 실내에서는 느릴 수 있어요. 위치 권한이 허용됐는지 확인해주세요.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">폰 바꿨는데 데이터가 없어요</div>
+      <div class="faq-a">기존 폰에서 백업 파일 내보내기 → 새 폰에서 복원하면 됩니다. 백업 없이 폰을 바꾸면 복구가 불가능해요.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">PIN을 잊었어요</div>
+      <div class="faq-a">PIN 분실 시 복구 방법이 없습니다. 앱 삭제 후 재설치해야 하며 데이터는 복구되지 않아요. 백업 파일이 있다면 재설치 후 복원 가능합니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">비밀번호 음성 안내가 안 돼요</div>
+      <div class="faq-a">장소 저장 시 GPS 좌표가 필요합니다. 현장에서 "현위치 저장" 버튼을 눌러 좌표를 등록해야 근접 안내가 작동해요.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">데이터가 어디에 저장되나요?</div>
+      <div class="faq-a">모든 데이터는 내 폰 안에만 저장됩니다. 서버가 없어요. 개발자도 데이터를 볼 수 없습니다.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">연말 유료 전환 시 데이터는?</div>
+      <div class="faq-a">데이터는 그대로 유지됩니다. 유료 전환은 블러 기능 활성화만 변경되며 기존 데이터에는 전혀 영향이 없어요.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 푸터 -->
+<div class="footer">
+  <div class="footer-logo">RIDER HUD PRO</div>
+  <div style="font-size:0.75rem;color:var(--dim);margin-top:4px;">배달 라이더를 위한 데이터 기반 운영체제(OS)</div>
+  <div class="footer-links">
+    <a href="https://rider-hud-pro-v1.netlify.app" target="_blank">앱 설치하기</a>
+    <a href="https://open.kakao.com/o/gvZXDbmi" target="_blank">커뮤니티</a>
+    <a href="https://open.kakao.com/o/sOT0gGwi" target="_blank">1:1 문의</a>
+  </div>
+  <div style="font-size:0.65rem;color:var(--dim);margin-top:16px;">© 2026 Smart Tool Korea · riderhud.com</div>
+</div>
+
+</body>
+</html>
