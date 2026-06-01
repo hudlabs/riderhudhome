@@ -7,20 +7,6 @@
 <title>라이더 보험 파트너 — HUD for Riders</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
-
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4JGP9B1M98"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-4JGP9B1M98');
-
-  /* 보험 맞춤 이벤트 헬퍼 */
-  function gaEvent(name, params) {
-    try { gtag('event', name, params || {}); } catch(e) {}
-  }
-</script>
 <style>
 /* ============================================================
    insurance-v2.html  v2.4
@@ -950,13 +936,11 @@ const App = (() => {
   function openPopup() {
     const el = $('ddayPopup');
     if (el) el.classList.remove('hidden');
-    gaEvent('popup_open', { popup_name: 'dday_insurance' });
   }
   function closePopup() {
     const el = $('ddayPopup');
     if (el) el.classList.add('hidden');
     try { localStorage.setItem(LS_POP,'1'); } catch(e) {}
-    gaEvent('popup_close', { popup_name: 'dday_insurance' });
   }
 
   /* ══════════════
@@ -1132,7 +1116,7 @@ const App = (() => {
       feats:['라이더 전용','월단위 가능','무사고 즉시 할인','시중 대비 20%↓'],
       note:'10만 명 돌파. 시중 대비 평균 20% 이상 저렴. 무사고 시 다음달 즉시 할인 반영.',
       steps:['구글플레이·앱스토어에서 <span>"배달서비스공제"</span> 검색 설치','유상운송 월(30일) 공제보험 선택','차량번호 입력 → 실시간 견적 확인'],
-      url:'https://www.deliveryservice.or.kr/product/transport.do',
+      url:'https://mobile.deliveryservice.or.kr/online/html/mo/judgeCp/Judge1.html',
       urlLabel:'공제조합 이륜차보험',
       plats:['baemin','coupang','both'],
     },
@@ -1143,7 +1127,7 @@ const App = (() => {
       feats:['배민커넥트 연동','기존 이력 우대','만 19~69세'],
       note:'배민커넥트 라이더 사용 많음. 기존 이력자는 당일 승인 가능. 용도에서 유상운송 반드시 선택.',
       steps:['아래 링크 접속 → <span>이륜차보험</span> 선택','용도: <span>유상운송</span> 반드시 선택','차량번호 입력 → 보험료 계산'],
-      url:'https://www.directdb.co.kr/at/prd/mtcc/step1/formStepPreView.do',
+      url:'https://m.directdb.co.kr/at/prd/mtcc/step1/formStepPreView.do',
       urlLabel:'DB손보 이륜차보험',
       plats:['baemin','both'],
     },
@@ -1154,7 +1138,7 @@ const App = (() => {
       feats:['배민커넥트 연동','시간제 연동 사례 최다','전화 1833-4164'],
       note:'배민커넥트 라이더 연동 사례 가장 많은 보험사. 전화 견적이 빠름.',
       steps:['아래 링크 → <span>이륜차보험</span> 메뉴','용도: <span>유상운송</span> 반드시 선택','빠른 견적: 전화 <span>1833-4164</span>'],
-      url:'https://direct.kbinsure.co.kr',
+      url:'https://m.kbinsure.co.kr:8547/dctapp/main.html#/tw/gi/0004M?pid=1090036&code=0481&redirectYn=Y',
       urlLabel:'KB손보 이륜차보험',
       plats:['baemin','both'],
     },
@@ -1165,7 +1149,7 @@ const App = (() => {
       feats:['블랙박스 할인 1.1%','긴급출동 포함','만 19세 이상'],
       note:'가입 시 이륜차 사진 2매 필요(번호판·블랙박스). 보장 한도 높고 긴급출동 포함.',
       steps:['아래 링크 → <span>유상운송</span> 용도 선택','차량번호 입력 → 보험료 계산','사진 2매 준비: 번호판 + 블랙박스'],
-      url:'https://mdirect.hi.co.kr/service.do?m=5fc42abe3a',
+      url:'https://mdirect.hi.co.kr/service.do?m=3c8865986a',
       urlLabel:'현대해상 이륜차보험',
       plats:['baemin','both'],
     },
@@ -1176,7 +1160,7 @@ const App = (() => {
       feats:['쿠팡이츠 전용','대물 1억 (업계 최고)','자손 5천만','만 24~59세'],
       note:'쿠팡이츠 전용. 대물·자손 보장이 업계에서 가장 높음. 종합보험 견적은 전화 문의.',
       steps:['쿠팡이츠 배달파트너 앱에서 가입','또는 아래 링크에서 확인','종합보험 견적: <span>전화 문의</span>'],
-      url:'https://alice.lotteins.co.kr',
+      url:'https://alice.lotteins.co.kr/product/coup/step1?drvCupngPno=4617495',
       urlLabel:'롯데손보 이륜차보험',
       plats:['coupang','both'],
     },
@@ -1187,7 +1171,7 @@ const App = (() => {
       feats:['전국 서비스망','만 19세 이상','지역·차종 제한 있음'],
       note:'지역·연령·차종에 따라 인수 제한 있음. 가입 가능 여부 먼저 확인 필수.',
       steps:['아래 링크 → <span>이륜자동차보험</span>','용도: <span>유상운송</span> 선택','⚠ 인수 제한 많음 — 가능 여부 먼저 확인'],
-      url:'https://direct.samsungfire.com/bike',
+      url:'https://samsungfiredirect.net/ria/mobile/product/factory/?state=Front&product=bikeLong',
       urlLabel:'삼성화재 이륜차보험',
       plats:['baemin','coupang','both'],
     },
@@ -1277,8 +1261,8 @@ const App = (() => {
           </div>
         </div>
         <div class="ic-btns">
-          <a href="${ins.url}" target="_blank" class="ic-btn sec" onclick="gaEvent('insurance_click',{company:'${ins.name}',action:'detail',age:App&&App.getAge?App.getAge():0})">상세 보기</a>
-          <a href="${ins.url}" target="_blank" class="ic-btn pri" onclick="gaEvent('insurance_click',{company:'${ins.name}',action:'apply',age:App&&App.getAge?App.getAge():0})">${esc(ins.urlLabel)}</a>
+          <a href="${ins.url}" target="_blank" class="ic-btn sec">상세 보기</a>
+          <a href="${ins.url}" target="_blank" class="ic-btn pri">${esc(ins.urlLabel)}</a>
         </div>`;
       list.appendChild(div);
     });
@@ -1334,14 +1318,6 @@ const App = (() => {
       if (S.screen === 6) renderSummary();
       history.pushState({ screen: S.screen }, '', '#s' + S.screen);
       render();
-      gaEvent('screen_view', {
-        screen_name: ['','정보입력','보험상태','플랫폼정책','비용비교','보험비교','결론'][S.screen],
-        screen_number: S.screen,
-        age: S.age,
-        region: S.region,
-        vehicle: S.vehicle,
-        status: S.status
-      });
     }
   }
 
@@ -1404,7 +1380,7 @@ const App = (() => {
       sp.classList.add('out');
       setTimeout(() => { sp.style.display = 'none'; }, 400);
     }
-    gaEvent('insurance_start', { entry_point: document.referrer || 'direct' });
+    // 스플래시 닫힌 후 2초 뒤 팝업 (한 번도 안 봤으면)
     try {
       if (!localStorage.getItem(LS_POP)) setTimeout(openPopup, 1000);
     } catch(e) { setTimeout(openPopup, 1000); }
@@ -1419,12 +1395,6 @@ const App = (() => {
       if (e.target === overlay) closePopup();
     });
 
-    // 스플래시 버튼 이벤트 자동 연결
-    const splashBtn = document.querySelector('.splash-btn');
-    if (splashBtn && !splashBtn.onclick) {
-      splashBtn.addEventListener('click', startApp);
-    }
-
     loadLocal();
     updateCalc();
     render();
@@ -1433,6 +1403,8 @@ const App = (() => {
       if (e.state && e.state.screen) { S.screen = e.state.screen; render(); }
       else prev();
     });
+
+    // 팝업은 startApp()에서 실행
   }
 
   return {
