@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/insurance.html", "destination": "/", "permanent": false },
+    { "source": "/insurance", "destination": "/", "permanent": false }
+  ]
+}
