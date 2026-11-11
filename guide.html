@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>라이더HUD Auto 사용법</title>
+<meta name="description" content="라이더HUD Auto 사용법 — 처음 켜기, 콜 카드, 배달비서, 핀 메모, 수입과 정산 확인, 통계, 백업, 요금.">
+<meta name="theme-color" content="#0E1110">
+<link rel="canonical" href="https://riderhud.com/guide">
+<meta property="og:title" content="라이더HUD Auto 사용법">
+<meta property="og:description" content="처음 켜기부터 수입 · 통계 보는 법까지 한 장에">
+<meta property="og:image" content="https://riderhud.com/og-auto.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://riderhud.com/guide">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4JGP9B1M98"></script>
+<script>
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date()); gtag('config','G-4JGP9B1M98');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark}
+html{scroll-behavior:smooth}
+body{margin:0;background:#0E1110;color:#F2F5EF;font-family:'Noto Sans KR',system-ui,sans-serif;line-height:1.7;word-break:keep-all}
+.wrap{max-width:720px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right,0px)) 64px max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:36px}
+a{color:#A3E635}a:hover{color:#D9F99D}
+a:focus-visible,summary:focus-visible{outline:2px solid #A3E635;outline-offset:3px;border-radius:6px}
+h1,h2,h3{text-wrap:balance}
+h1{margin:0;font-size:30px;line-height:1.3;font-weight:900}
+h2{margin:0;font-size:22px;line-height:1.35;font-weight:900}
+h3{margin:0;font-size:17px;line-height:1.4;font-weight:700}
+p{margin:0}
+.lead{font-size:16px;color:#C8D0C9}
+.part{display:flex;flex-direction:column;gap:14px}
+.kicker{font-size:13px;font-weight:700;color:#A3E635}
+.card{background:#171B19;border:1px solid #26302A;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;scroll-margin-top:16px}
+.card:target{border-color:#A3E635;box-shadow:0 0 0 1px #A3E635}
+.card p,.card li{font-size:15px;color:#C8D0C9}
+.card strong{color:#F2F5EF}
+.card ul,.card ol{margin:0;padding:0 0 0 20px;display:flex;flex-direction:column;gap:4px}
+.note{font-size:14px;color:#A9B3AA}
+.toc{background:#121614;border:1px solid #26302A;border-radius:14px;padding:16px}
+.toc ol{margin:0;padding:0 0 0 20px;display:flex;flex-direction:column;gap:6px;font-size:15px}
+.toc ol ol{margin-top:4px;gap:2px;font-size:14px}
+.toc a{color:#E3E8DF;text-decoration:none}
+.toc a:hover{color:#A3E635}
+.lime{color:#A3E635}
+.back{font-size:14px;color:#A9B3AA;text-decoration:none}
+details{border:1px solid #26302A;border-radius:12px;padding:14px 16px}
+summary{font-weight:700;font-size:15px;cursor:pointer}
+details p{margin-top:8px;font-size:14px;color:#C8D0C9}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header style="padding-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px">
+<a href="/" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: #F2F5EF; font-weight: 900; font-size: 17px">
+<span style="width: 28px; height: 28px; border-radius: 7px; background: #A3E635; display: flex; align-items: center; justify-content: center">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E1110" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M5 12H3M21 12h-2M7 7l-1.5-1.5M17 7l1.5-1.5"></path><circle cx="12" cy="14" r="5"></circle><path d="M12 14l2-2"></path></svg>
+</span>
+라이더HUD <span class="lime">Auto</span></a>
+<span style="font-size: 13px; color: #A9B3AA">사용법</span>
+</header>
+
+<section class="part">
+<h1>라이더HUD Auto<br><span class="lime">사용법</span></h1>
+<p class="lead">앱 화면의 <strong style="color:#F2F5EF">ⓘ</strong>를 누르면 이 페이지의 그 부분으로 바로 옵니다. 설치는 <a href="auto-guide.html">설치 안내</a>를 먼저 보세요.</p>
+</section>
+
+<nav class="toc" aria-label="목차">
+<ol>
+<li><a href="#처음-켜기">처음 켜기 · 근무 시작</a></li>
+<li><a href="#콜카드">콜 카드 읽는 법</a></li>
+<li><a href="#배달비서">배달비서 카드</a></li>
+<li><a href="#핀">핀 메모 · 후면 단속카메라</a></li>
+<li><a href="#오배송">오배송 방지 · 대기배달 알림</a></li>
+<li><a href="#수입">수입과 정산 확인</a>
+<ol>
+<li><a href="#수입-수입">수입 카드</a></li>
+<li><a href="#수입-시간별">시간별 수입</a></li>
+<li><a href="#수입-입금">입금</a></li>
+<li><a href="#그날-상세">그날 상세 · 공유</a></li>
+</ol></li>
+<li><a href="#통계">통계 보는 법</a>
+<ol>
+<li><a href="#통계-시급">시급 · 시간당 건수</a></li>
+<li><a href="#통계-시간대">시간대 시급</a></li>
+<li><a href="#통계-거리별">거리별 시급</a></li>
+<li><a href="#통계-단건묶음">단건 vs 묶음</a></li>
+<li><a href="#통계-요일시간대">요일 · 시간대</a></li>
+<li><a href="#통계-콜대기">콜 대기 시간</a></li>
+<li><a href="#통계-포인트">포인트</a></li>
+<li><a href="#통계-정비">정비</a></li>
+<li><a href="#통계-보험">배달 보험</a></li>
+</ol></li>
+<li><a href="#백업">백업 · 폰 바꿀 때</a></li>
+<li><a href="#웹앱-핀">웹앱 핀 옮기기</a></li>
+<li><a href="#요금">요금 · 무료 기간 · 친구 소개</a></li>
+<li><a href="#자주-묻는-것">자주 묻는 것</a></li>
+</ol>
+</nav>
+
+<!-- ───────── 1. 처음 켜기 ───────── -->
+<section class="part">
+<span class="kicker">1</span>
+<h2>처음 켜기 · 근무 시작</h2>
+<div class="card" id="처음-켜기">
+<h3>처음 한 번 — 권한</h3>
+<p>앱을 처음 열면 필요한 권한을 하나씩 안내해요. 순서대로 허용하면 됩니다.</p>
+<ul>
+<li><strong>화면 읽기</strong> — 배민 · 쿠팡 앱 화면의 글자를 읽어요. 이게 꺼져 있으면 콜 시급 · 자동 기록이 안 돼요.</li>
+<li><strong>위치 「항상 허용」</strong> — 화면이 꺼져도 핀 · 카메라 음성이 나오게.</li>
+<li><strong>알림</strong> — 근무 중 표시 · 근무 시작 묻기.</li>
+<li><strong>배터리 「제한 없음」</strong> — 폰이 앱을 재우지 않게.</li>
+</ul>
+<p class="note">빠뜨린 게 있으면 설정 › <strong>폰 설정 점검</strong>에서 한 번에 확인할 수 있어요. 안내를 다시 보려면 설정 › <strong>처음 안내 다시 보기</strong>.</p>
+<!-- 사진: 첫 안내 권한 화면 -->
+</div>
+<div class="card" id="근무">
+<h3>근무 시작 · 휴식 · 마치기</h3>
+<ul>
+<li>배달 앱을 켜면 「<strong>오늘 근무를 시작할까요?</strong>」라고 물어요. [근무 시작] 한 번이면 끝.</li>
+<li>쉬는 동안은 <strong>휴식</strong>. 휴식 시간은 시급 계산에서 빠져요.</li>
+<li>끝나면 <strong>근무 마치기</strong>. 잘못 눌렀으면 「근무 종료 되돌리기」로 되돌려요.</li>
+<li>근무 중 앱이 꺼졌거나 GPS가 꺼진 시간은 근무시간에 넣지 않아요. 넣고 싶은 구간은 설정 › <strong>제외한 근무 구간</strong>에서 「근무에 넣기」.</li>
+</ul>
+<p class="note">하루는 새벽 6시에 바뀌어요. 새벽 2시에 끝난 근무는 전날 근무로 셉니다.</p>
+</div>
+</section>
+
+<!-- ───────── 2. 콜 카드 ───────── -->
+<section class="part">
+<span class="kicker">2</span>
+<h2>콜 카드 읽는 법</h2>
+<div class="card" id="콜카드">
+<p>배민 · 쿠팡이츠 콜이 뜨면 배달 앱 위에 작은 카드가 뜨고, 같은 내용을 소리로 알려 줘요.</p>
+<ul>
+<li><strong>시급</strong> — 이 콜 하나를 시간당 수입으로 바꾼 값이에요. 금액 ÷ 예상 시간.</li>
+<li><strong>계산 N분</strong> — 예상 시간. 거리에 따라 늘어나고, 묶음은 건마다 조금씩 더해요. 실제로 걸린 시간과 크게 다르지 않게 맞춰 두었어요.</li>
+<li><strong>거리</strong> — 배달 앱에 나온 거리 그대로.</li>
+<li>기록이 쌓이면 「<strong>이 시간대 평균</strong>」 같은 비교 줄이 함께 나와요. 좋다 · 나쁘다는 앱이 정하지 않아요. 받을지는 라이더가 정해요.</li>
+<li><strong>플러스 콜</strong>(쿠팡이츠 플러스 등) — 배달료가 콜에 안 나와서 시급 대신 거리 · 계산 분만 보여 줘요.</li>
+</ul>
+<p class="note">라이더HUD는 콜을 대신 받거나 거절하지 않아요. 화면 글자만 읽습니다.</p>
+<!-- 사진: 배민 콜 카드 1 · 쿠팡 콜 카드 1 -->
+</div>
+</section>
+
+<!-- ───────── 3. 배달비서 ───────── -->
+<section class="part">
+<span class="kicker">3</span>
+<h2>배달비서 카드</h2>
+<div class="card" id="배달비서">
+<p>지도 화면 아래의 카드예요. 접고 펼칠 수 있어요.</p>
+<ul>
+<li><strong>시간당 건수 · 지금까지 시급 · 달린 거리</strong> — 오늘 근무 기준.</li>
+<li><strong>콜 대기 N분</strong> — 마지막 배달을 마친 뒤 다음 콜까지 기다린 시간. 오래 걸리면 자리를 옮길지 판단하는 데 써요.</li>
+<li><strong>오늘 목표</strong> — 목표 금액을 정해 두면 지금 속도로 <strong>몇 시쯤 채우는지</strong> 막대로 보여 줘요. 목표 칸을 눌러 직접 넣어요.</li>
+<li><strong>최근 콜</strong> — 오늘 뜬 콜 목록. 받은 콜은 굵게 표시해요.</li>
+</ul>
+<!-- 사진: 홈 전체 (배달비서 펼침) -->
+</div>
+</section>
+
+<!-- ───────── 4. 핀 ───────── -->
+<section class="part">
+<span class="kicker">4</span>
+<h2>핀 메모 · 후면 단속카메라</h2>
+<div class="card" id="핀">
+<ul>
+<li>지도 왼쪽 아래 버튼 두 개 — 위는 <strong>현위치</strong>(공동현관 · 출입 메모), 아래는 <strong>후면카메라</strong>. 달리면서 왼손 엄지로 누를 수 있게 왼쪽에 두었어요.</li>
+<li>저장한 자리에 가까워지면 메모를 소리로 읽어 줘요. 「우리 집, 1234#」처럼 이름과 비밀번호 사이는 앱이 알아서 쉬어 읽어요.</li>
+<li>후면카메라는 지나간 방향까지 함께 저장돼서 더 정확하게 알려 줘요.</li>
+<li>오른쪽 아래 <strong>핀 목록</strong> — 저장한 핀을 모아 봐요. 목록에서 이름 고치기 · 지도에서 보기 · 지우기를 할 수 있어요.</li>
+<li>핀 목록을 열 때는 <strong>폰 잠금(지문 · 비밀번호)</strong>으로 한 번 확인해요. 남이 내 폰을 봐도 비밀번호 메모를 못 보게.</li>
+</ul>
+<!-- 사진: 핀 메모 카드 · 핀 목록 -->
+</div>
+</section>
+
+<!-- ───────── 5. 오배송 ───────── -->
+<section class="part">
+<span class="kicker">5</span>
+<h2>오배송 방지 · 대기배달 알림</h2>
+<div class="card" id="오배송">
+<ul>
+<li>배달 사진을 찍을 때 <strong>주문번호 끝 4자리</strong>를 한 자리씩 읽어 주고 「주소 확인」을 알려 줘요.</li>
+<li>배민에 수락할 <strong>대기배달</strong>이 생기면 「똑똑」 소리와 함께 건수를 알려 줘요.</li>
+<li>고객 주소 · 연락처 · 요청사항은 적지도, 밖으로 보내지도 않아요.</li>
+</ul>
+</div>
+</section>
+
+<!-- ───────── 6. 수입 ───────── -->
+<section class="part" id="수입">
+<span class="kicker">6</span>
+<h2>수입과 정산 확인</h2>
+<p class="lead">수입 탭은 돈만 보여 줘요. 위에서 <strong style="color:#F2F5EF">오늘 · 주간 · 월간</strong>을 고르고, 기간 줄로 앞뒤로 넘겨요.</p>
+<div class="card" id="수입-수입">
+<h3>수입 카드</h3>
+<ul>
+<li>큰 숫자는 그 기간의 <strong>배달 수입</strong>. 아래에 배민 · 쿠팡을 따로, 금액 · 건수 · 건당 평균으로.</li>
+<li><strong>미션 보너스</strong>는 배달 수입과 따로 한 줄로 보여 주고(입금됨 · 입금 전), 맨 아래 <strong>합계</strong>에 더해요.</li>
+<li><strong>「정산 확인 전」</strong> — 앱이 콜을 보고 센 금액이에요. 배민 <strong>정산</strong> 화면이나 쿠팡 <strong>내 수입</strong> 화면을 한 번 열면, 앱이 그 금액을 읽어 플랫폼 숫자로 바꿔요. 앱 기록과 정산이 다르면 <strong>언제나 정산 쪽</strong>을 따라요.</li>
+<li>쿠팡은 「<strong>N:NN 기준</strong>」이 붙어요. 쿠팡 내 수입 화면을 연 시각이고, 그 뒤에 탄 건은 아직 안 들어가 있다는 뜻이에요.</li>
+</ul>
+<!-- 사진: 수입 오늘 · 주간 · 월간 -->
+</div>
+<div class="card" id="수입-시간별">
+<h3>시간별 수입</h3>
+<p>[오늘]에서 시간마다 번 돈을 막대로 보여 줘요. 배민 · 쿠팡이 한 막대에 색으로 쌓여요.</p>
+</div>
+<div class="card" id="수입-입금">
+<h3>입금</h3>
+<ul>
+<li>쿠팡은 <strong>금요일에 한 주 몫</strong>(수~화)이, 배민은 <strong>3영업일 뒤</strong> 매일 들어와요. 공휴일이 끼면 밀려요.</li>
+<li>입금 예정일이 지나면 <strong>입금됨</strong>, 전이면 <strong>입금 전</strong>. 쿠팡 플러스는 따로 한 칸.</li>
+</ul>
+</div>
+<div class="card" id="그날-상세">
+<h3>그날 상세 · 공유 카드</h3>
+<ul>
+<li>요일 막대나 달력의 날짜를 누르면 그날 배달이 한 줄씩 나와요 — 시각 · 매장 · 거리 · 금액.</li>
+<li><strong>묶음</strong>은 「묶음 2건 ▾」으로 모아 보여 줘요. 플러스 콜에는 「플러스」 꼬리표.</li>
+<li>쿠팡 건을 누르면 「6,535원 = 기본 2,575 + 할증 3,960」처럼 할증 내역이 보여요(완료 화면을 읽은 건만).</li>
+<li><strong>공유 카드</strong> — 그날 수입 · 미션 · 달린 길을 그림 한 장으로. 고객 정보는 들어가지 않아요.</li>
+</ul>
+<!-- 사진: 그날 상세 (미션 있는 날) · 공유 카드 -->
+</div>
+</section>
+
+<!-- ───────── 7. 통계 ───────── -->
+<section class="part" id="통계">
+<span class="kicker">7</span>
+<h2>통계 보는 법</h2>
+<p class="lead">통계 탭은 「언제 · 어떤 거리에서 잘 벌었나」를 보여 줘요. 비교는 대부분 <strong style="color:#F2F5EF">지난 4주</strong> 기록으로 하고, 기록이 적으면 숫자 대신 안내만 나와요.</p>
+<div class="card" id="통계-시급">
+<h3>시급 · 시간당 건수</h3>
+<p>근무한 시간(휴식 제외)으로 나눈 실제 시급과, 한 시간에 몇 건 탔는지. <strong>▮ 표시는 평소</strong>(지난 기간 평균) 자리예요.</p>
+</div>
+<div class="card" id="통계-시간대">
+<h3>시간대 시급</h3>
+<p>아침 · 점심 · 오후 · 저녁 · 밤으로 나눠 언제 시급이 높았는지. 가장 높은 칸은 라임색이에요.</p>
+<p class="note">점심 · 오후 경계는 평일과 주말이 달라요(쿠팡 기준).</p>
+</div>
+<div class="card" id="통계-거리별">
+<h3>거리별 시급 비교</h3>
+<p><strong>1km 이하 · 1~3km · 3~5km · 5km 이상</strong>으로 나눠, 어느 거리 콜이 시간당 더 벌었는지.</p>
+</div>
+<div class="card" id="통계-단건묶음">
+<h3>단건 vs 묶음</h3>
+<p>한 건씩 탄 것과 묶음으로 탄 것의 시급을 나란히. 묶음이 정말 나은지 내 기록으로 봐요.</p>
+</div>
+<div class="card" id="통계-요일시간대">
+<h3>요일 · 시간대 시급 비교</h3>
+<p>요일 × 시간대 표. 언제 나가면 좋은지 고를 때 써요.</p>
+</div>
+<div class="card" id="통계-콜대기">
+<h3>콜 대기 시간</h3>
+<p>배달을 마치고 다음 콜까지 기다린 시간을 모아 보여 줘요. 근무를 마친 뒤 · 앱이 꺼진 구간은 빼요.</p>
+<p class="note">통계 탭 아래 「더 보기」에 콜 대기 · 기록 상태 · 포인트 · 정비 · 배달 보험이 있어요.</p>
+</div>
+<div class="card" id="통계-포인트">
+<h3>포인트 · 기간 누적</h3>
+<p>배민은 화면에 나온 기간(예: 11/2 ~ 11/15)의 누적, 쿠팡은 최근 2주. 플랫폼 화면 값을 못 읽은 날은 「(앱 기록)」으로 표시해요.</p>
+</div>
+<div class="card" id="통계-정비">
+<h3>정비</h3>
+<ul>
+<li>오일 · 타이어 같은 항목에 <strong>교환 주기(km)</strong>를 넣어 두면, 앱이 잰 달린 거리로 「교환까지 N km」를 세요.</li>
+<li>때가 되면 알림이 와요. 갈았으면 <strong>교환했어요</strong>를 눌러 다시 셉니다.</li>
+<li>항목은 「정비 항목 추가」로 늘려요. 항목을 누르면 주기 지우기 · 항목 삭제도 할 수 있어요.</li>
+</ul>
+</div>
+<div class="card" id="통계-보험">
+<h3>배달 보험</h3>
+<ul>
+<li><strong>배달한 시간</strong> = 콜 수락부터 배달 완료까지 합친 시간. 묶음으로 겹친 시간은 한 번만 세요. 콜 기다린 시간은 빠져요.</li>
+<li>시간제 보험이라면 얼마쯤 나올지 <strong>배달한 시간 × 시간당 요율</strong>로 보여 줘요. 월 보험료와 견줘 보는 데 써요.</li>
+<li>앱은 보험을 권하거나 팔지 않아요. 요율은 보험사마다 달라요.</li>
+</ul>
+</div>
+</section>
+
+<!-- ───────── 8. 백업 ───────── -->
+<section class="part">
+<span class="kicker">8</span>
+<h2>백업 · 폰 바꿀 때</h2>
+<div class="card" id="백업">
+<ul>
+<li>설정 › <strong>전체 백업 내보내기</strong> — 핀 · 수입 · 통계를 파일 하나로. 폰을 바꾸기 전에 꼭 해 두세요.</li>
+<li>새 폰에서 설정 › <strong>백업 가져오기 · 합치기</strong>. 두 폰 기록을 합칠 때도 같은 메뉴예요.</li>
+<li>백업 파일에는 핀 메모(비밀번호 포함)가 들어 있어요. <strong>남에게 보내지 마세요.</strong></li>
+</ul>
+</div>
+</section>
+
+<!-- ───────── 9. 웹앱 핀 ───────── -->
+<section class="part">
+<span class="kicker">9</span>
+<h2>웹앱 핀 옮기기</h2>
+<div class="card" id="웹앱-핀">
+<p>라이더HUD 웹앱에 저장한 장소 핀을 Auto로 옮기는 기능을 준비하고 있어요. 열리면 여기에 순서를 올려 드려요.</p>
+<ul>
+<li>그때까지 <strong>웹앱을 지우지 마세요.</strong> 핀이 웹앱 안에 있어요.</li>
+<li>옮길 때 웹앱 핀 비밀번호(PIN)가 필요해요. 기억해 두세요.</li>
+<li>후면카메라는 옮기지 않아요. Auto에서 지나가며 다시 저장해 주세요(방향까지 저장돼서 더 정확해요).</li>
+</ul>
+</div>
+</section>
+
+<!-- ───────── 10. 요금 ───────── -->
+<section class="part">
+<span class="kicker">10</span>
+<h2>요금 · 무료 기간 · 친구 소개</h2>
+<div class="card" id="요금">
+<ul>
+<li>탄 만큼 내는 <strong>건당</strong>과 <strong>월 정액</strong> 중에서 고르는 방식이에요. 금액은 정식 출시 때 공개해요.</li>
+<li>정식 출시 후 처음 쓰는 분은 <strong>한 달 무료</strong>. 단톡방에서 먼저 쓰신 분은 <strong class="lime">2개월 무료</strong>(정식 출시 후 한 달까지).</li>
+<li>무료 기간 중에는 돈이 나가지 않아요. 무료가 끝나는 날은 앱 <strong>내 계정</strong>에 나와요.</li>
+<li>건당 요금은 <strong>정산 화면에서 확인된 배달</strong>만 세요. 그래서 정산 화면을 일주일에 한 번은 열어 주세요.</li>
+</ul>
+</div>
+<div class="card" id="친구-소개">
+<h3>친구 소개</h3>
+<p>친구가 내 코드로 시작하면 <strong>한 달 무료</strong>가 더해져요. 1년에 5명까지. 선공개 기간 중에 열려요.</p>
+</div>
+</section>
+
+<!-- ───────── 11. 자주 묻는 것 ───────── -->
+<section class="part" id="자주-묻는-것">
+<span class="kicker">11</span>
+<h2>자주 묻는 것</h2>
+<details>
+<summary>콜 카드가 안 떠요 · 기록이 안 쌓여요</summary>
+<p>대부분 <strong>화면 읽기</strong>가 꺼졌거나 배터리 제한에 걸린 경우예요. 설정 › 폰 설정 점검에서 빨간 칸을 켜 주세요. 폰을 껐다 켜면 화면 읽기가 꺼지는 폰도 있어요.</p>
+</details>
+<details>
+<summary>「다른 앱 위에 표시」를 물어봐요</summary>
+<p>콜 카드를 배달 앱 위에 띄우려면 필요해요. 허용해 주세요.</p>
+</details>
+<details>
+<summary>소리가 안 나요</summary>
+<p>폰 미디어 음량을 확인해 주세요. 블루투스 이어폰이 연결돼 있으면 이어폰으로 나와요.</p>
+</details>
+<details>
+<summary>배터리를 많이 쓰나요?</summary>
+<p>위치를 계속 쓰기 때문에 조금 더 써요. 거치대에서 충전하면서 쓰시는 걸 권해요.</p>
+</details>
+<details>
+<summary>앱 수입과 정산 금액이 달라요</summary>
+<p>정산 화면을 한 번 열면 플랫폼 숫자로 바뀌어요. 그래도 다르면 단톡방에 알려 주세요.</p>
+</details>
+<details>
+<summary>배달 앱 계정에 문제가 생기지 않나요?</summary>
+<p>라이더HUD는 콜을 대신 받거나 거절하지 않고, 배달 앱 버튼을 대신 누르지 않아요. 화면 글자를 읽기만 하고 배민 · 쿠팡 아이디도 묻지 않아요.</p>
+</details>
+</section>
+
+<section style="background: #1F2A16; border: 1px solid #3A4D25; border-radius: 16px; padding: 24px 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+<strong style="font-size: 18px">막히면 물어보세요</strong>
+<p style="font-size: 14px; color: #C8D0C9">단톡방에 남겨 주시면 개발자가 직접 답해요. 앱 설정 › 문의로도 보낼 수 있어요.</p>
+<a href="https://open.kakao.com/o/gvZXDbmi" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 22px; border-radius: 12px; background: #A3E635; color: #0E1110; font-weight: 700; font-size: 16px; text-decoration: none">카톡으로 물어보기</a>
+<a href="/" class="back" style="padding: 8px">riderhud.com 홈으로</a>
+</section>
+
+<footer style="font-size: 13px; color: #A9B3AA; display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: center">
+<span>© HUD Labs · Smart Tool Korea</span>
+<a href="terms.html" style="color: #C8D0C9; text-decoration: none">이용약관</a>
+<a href="privacy.html" style="color: #C8D0C9; text-decoration: none">개인정보 처리방침</a>
+</footer>
+
+</div>
+<script>
+/* GA 클릭 이벤트 — 오픈채팅 · APK 받기 · 웹앱 열기 · 사용법 */
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a'); if(!a||typeof gtag!=='function')return;
+  var h=a.getAttribute('href')||'', ev=null;
+  if(h.indexOf('open.kakao.com')>=0) ev='kakao_open_click';
+  else if(/\.apk(\?|$)/i.test(h)||a.hasAttribute('data-apk')) ev='apk_download';
+  else if(h.indexOf('netlify.app')>=0) ev='webapp_open';
+  else if(/(^|\/)guide(\.html)?(#|$)/.test(h)) ev='guide_open';
+  if(ev) gtag('event',ev,{link_url:h,page_path:location.pathname,link_text:(a.textContent||'').trim().slice(0,40)});
+},true);
+</script>
+</body>
+</html>

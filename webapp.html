@@ -306,6 +306,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:32px 24p
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-wrap">
+<div class="auto-strip" style="position:relative;margin:0 0 24px;border-radius:12px;border:1px solid #3A4D25;z-index:5;background:#1F2A16;color:#E3E8DF;font:500 14px/1.5 'Noto Sans KR',system-ui,sans-serif;padding:10px 16px;text-align:center;word-break:keep-all;border-bottom:1px solid #3A4D25">라이더HUD 웹앱 · <strong>아이폰 · 브라우저용</strong> &nbsp;·&nbsp; 안드로이드는 <a href="/" style="color:#A3E635;font-weight:700;text-decoration:none">라이더HUD Auto ›</a></div>
     <div class="hero-inner">
       <div class="hero-hooks">
         <p class="hero-hook">"<b>오늘 몇 시에 나가야 하나?</b>"</p>
@@ -775,6 +776,18 @@ const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+<script>
+/* GA 클릭 이벤트 — 오픈채팅 · APK 받기 · 웹앱 열기 · 사용법 */
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a'); if(!a||typeof gtag!=='function')return;
+  var h=a.getAttribute('href')||'', ev=null;
+  if(h.indexOf('open.kakao.com')>=0) ev='kakao_open_click';
+  else if(/\.apk(\?|$)/i.test(h)||a.hasAttribute('data-apk')) ev='apk_download';
+  else if(h.indexOf('netlify.app')>=0) ev='webapp_open';
+  else if(/(^|\/)guide(\.html)?(#|$)/.test(h)) ev='guide_open';
+  if(ev) gtag('event',ev,{link_url:h,page_path:location.pathname,link_text:(a.textContent||'').trim().slice(0,40)});
+},true);
 </script>
 </body>
 </html>

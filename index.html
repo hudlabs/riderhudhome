@@ -48,6 +48,7 @@ img,video{max-width:100%}
 <a href="#features" style="color: #C8D0C9; text-decoration: none; padding: 10px 0">기능</a>
 <a href="#promise" style="color: #C8D0C9; text-decoration: none; padding: 10px 0">지키는 것</a>
 <a href="auto-guide.html" style="color: #C8D0C9; text-decoration: none; padding: 10px 0">설치 안내</a>
+<a href="guide.html" style="color: #C8D0C9; text-decoration: none; padding: 10px 0">사용법</a>
 <a href="#pinnote" style="color: #C8D0C9; text-decoration: none; padding: 10px 0">웹앱</a>
 <a href="https://open.kakao.com/o/gvZXDbmi" style="color: #C8D0C9; text-decoration: none; padding: 10px 0">커뮤니티</a>
 </nav>
@@ -159,8 +160,8 @@ img,video{max-width:100%}
 </div>
 </div>
 <div style="background: #171B19; border: 1px solid #26302A; border-radius: 16px; padding: 20px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px">
-<span style="font-size: 16px"><strong>탄 콜만큼만 내는 방식</strong> <span style="color: #C8D0C9">· 덜 타면 덜 냅니다</span></span>
-<span style="font-size: 15px; color: #A9B3AA">요금은 출시 때 공개</span>
+<span style="font-size: 16px"><strong>건당 또는 월 정액, 내가 고르는 방식</strong> <span style="color: #C8D0C9">· 덜 타면 건당, 많이 타면 정액</span></span>
+<span style="font-size: 15px; color: #A9B3AA">정식 출시 후 한 달 무료 · 단톡방 회원 2개월 무료</span>
 </div>
 </section>
 
@@ -206,9 +207,9 @@ img,video{max-width:100%}
 <section id="pinnote" style="max-width: 1120px; margin: 0 auto; padding: 0 20px 72px">
 <div style="border: 1px solid #26302A; border-radius: 20px; padding: 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px">
 <div style="flex: 999 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 6px">
-<span style="font-size: 14px; color: #A9B3AA">지금 쓰고 계신 분은 그대로</span>
+<span style="font-size: 14px; color: #A9B3AA">아이폰 · 브라우저용</span>
 <h2 style="margin: 0; font-size: 22px; font-weight: 700">라이더HUD 웹앱 · 무료</h2>
-<p style="margin: 0; font-size: 15px; color: #C8D0C9">핀 메모 음성 안내 · 장부 · 통계. 설치 없이 브라우저에서 씁니다.</p>
+<p style="margin: 0; font-size: 15px; color: #C8D0C9">핀 메모 음성 안내 · 장부 · 통계. 설치 없이 브라우저에서 씁니다. 안드로이드라면 Auto로 옮기시는 걸 권해요.</p>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <a href="https://rider-hud-pro-rpg.netlify.app" style="display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; border-radius: 12px; border: 1px solid #3A463E; color: #F2F5EF; text-decoration: none; font-weight: 500">웹앱 열기</a>
@@ -232,6 +233,7 @@ img,video{max-width:100%}
 <nav aria-label="바닥 메뉴" style="display: flex; flex-wrap: wrap; gap: 4px 20px">
 <a href="https://open.kakao.com/o/gvZXDbmi" style="color: #C8D0C9; text-decoration: none; padding: 8px 0">커뮤니티</a>
 <a href="mailto:smart.tool.kr@gmail.com" style="color: #C8D0C9; text-decoration: none; padding: 8px 0">문의</a>
+<a href="guide.html" style="color: #C8D0C9; text-decoration: none; padding: 8px 0">사용법</a>
 <a href="terms.html" style="color: #C8D0C9; text-decoration: none; padding: 8px 0">이용약관</a>
 <a href="privacy.html" style="color: #C8D0C9; text-decoration: none; padding: 8px 0">개인정보 처리방침</a>
 </nav>
@@ -239,5 +241,17 @@ img,video{max-width:100%}
 </footer>
 
 </div>
+<script>
+/* GA 클릭 이벤트 — 오픈채팅 · APK 받기 · 웹앱 열기 · 사용법 */
+document.addEventListener('click',function(e){
+  var a=e.target.closest&&e.target.closest('a'); if(!a||typeof gtag!=='function')return;
+  var h=a.getAttribute('href')||'', ev=null;
+  if(h.indexOf('open.kakao.com')>=0) ev='kakao_open_click';
+  else if(/\.apk(\?|$)/i.test(h)||a.hasAttribute('data-apk')) ev='apk_download';
+  else if(h.indexOf('netlify.app')>=0) ev='webapp_open';
+  else if(/(^|\/)guide(\.html)?(#|$)/.test(h)) ev='guide_open';
+  if(ev) gtag('event',ev,{link_url:h,page_path:location.pathname,link_text:(a.textContent||'').trim().slice(0,40)});
+},true);
+</script>
 </body>
 </html>

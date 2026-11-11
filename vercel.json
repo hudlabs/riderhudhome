@@ -1,6 +1,28 @@
 {
   "redirects": [
-    { "source": "/insurance.html", "destination": "/", "permanent": false },
-    { "source": "/insurance", "destination": "/", "permanent": false }
+    {
+      "source": "/insurance.html",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/insurance",
+      "destination": "/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/guide",
+      "destination": "/guide.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/terms.html"
+    }
   ]
 }
