@@ -96,7 +96,7 @@
 .memo-stack{position:relative;display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:340px}
 .memo-card{width:100%;max-width:320px;background:#181A1F;border:2px solid var(--lime);border-radius:20px;padding:16px;box-shadow:0 20px 40px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:4px}
 .memo-card .nm{font-size:17px;font-weight:700}
-.memo-card .no{font-size:34px;font-weight:800;color:var(--lime);letter-spacing:0.12em;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.25}
+.memo-card .no{font-size:34px;font-weight:800;color:var(--lime);letter-spacing:0.06em;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.25}
 .memo-card .mm{font-size:15px;color:var(--t2)}
 .tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--t2)}
 .secure-badge{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);white-space:nowrap;background:rgba(10,11,13,.86);border:1px solid #3B2A63;color:var(--purple-text);font-size:13px;font-weight:700;border-radius:var(--r-pill);padding:4px 12px}
@@ -108,10 +108,73 @@
 .mini p{margin:0;font-size:15px;line-height:1.6;color:var(--body)}
 .mini img{display:block;width:100%;height:auto;border-radius:var(--r-small);border:1px solid var(--edge)}
 .mini .pic{margin-top:auto}
+.mini .disc{margin-bottom:-4px}
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;align-items:start}
 .stats-grid figure{margin:0;display:flex;flex-direction:column;gap:8px}
 .stats-grid img{display:block;width:100%;height:auto;border-radius:var(--r-small);border:1px solid var(--edge)}
 .stats-grid figcaption{font-size:14px;color:var(--t2);line-height:1.5}
+
+
+/* 콜 화면 — 흐린 플랫폼 화면 + 또렷한 HUD 카드 (가게 이름 · 주소 안 보임) */
+.callshot{position:relative;container-type:inline-size;border-radius:30px;border:7px solid #1C1F25;overflow:hidden;background:#111;box-shadow:0 24px 48px rgba(0,0,0,.5)}
+.callshot img{display:block;width:100%;height:auto}
+.hudcard{position:absolute;left:50%;top:5.5%;transform:translateX(-50%);width:80%;background:#181A1F;border:1px solid #262A30;border-radius:9cqw;
+  padding:4cqw 5cqw 3.6cqw;box-shadow:0 2.5cqw 6cqw rgba(0,0,0,.45);text-align:center;white-space:nowrap}
+.hudcard .l1{font-size:7.6cqw;font-weight:800;color:#F5F6F7;letter-spacing:-0.02em;line-height:1.2}
+.hudcard .l1 small{font-size:4.2cqw;font-weight:600;color:#A3A9B3;margin-right:1.6cqw;letter-spacing:0}
+.hudcard .l2{margin-top:1.4cqw;font-size:4.2cqw;color:#A3A9B3;display:flex;align-items:center;justify-content:center;gap:2cqw}
+.hudcard .pt{font-size:3.8cqw;font-weight:700;color:#F5F6F7;border:1px solid #343942;border-radius:99px;padding:.4cqw 2.2cqw}
+.hero-call{width:100%;max-width:290px}
+
+.callposter{position:relative;overflow:hidden;border-radius:24px;border:1px solid #2A2340;padding:40px 20px 32px;display:flex;flex-direction:column;gap:28px;align-items:center;text-align:center;
+  background:radial-gradient(70% 45% at 50% 0%,rgba(109,40,217,.28),transparent 70%),radial-gradient(60% 40% at 50% 100%,rgba(163,230,53,.10),transparent 70%),#0B0A10}
+.callposter::before,.callposter::after{content:"";position:absolute;width:320px;height:120px;pointer-events:none;z-index:0;
+  background:linear-gradient(118deg,transparent 0 30%,rgba(109,40,217,.7) 30% 40%,transparent 40% 52%,rgba(163,230,53,.6) 52% 54%,transparent 54%)}
+.callposter::before{left:-150px;top:-30px;transform:rotate(-28deg)}
+.callposter::after{right:-150px;bottom:-30px;transform:rotate(-28deg)}
+.callposter>*{position:relative;z-index:1}
+.cp-head{display:flex;flex-direction:column;gap:12px;align-items:center}
+.cp-kick{font-size:13px;font-weight:800;letter-spacing:.32em;color:var(--lime);padding-left:.32em}
+.callposter h3{margin:0;font-size:clamp(30px,8.6vw,52px);font-weight:900;line-height:1.2;letter-spacing:-0.045em}
+.cp-sub{margin:0;font-size:16px;line-height:1.6;color:var(--body)}
+.cp-phones{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;width:100%;max-width:620px}
+.cp-phones figure{margin:0;display:flex;flex-direction:column;gap:12px;align-items:center;min-width:0}
+.cp-phones figure:last-child{margin-top:32px}
+.cp-phones .callshot{width:100%;max-width:280px}
+.cp-phones figcaption{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--t1);border:1px solid #3B2A63;background:rgba(109,40,217,.14);border-radius:99px;padding:6px 14px;white-space:nowrap}
+.cp-phones .dot{width:8px;height:8px;border-radius:50%}
+.cp-note{margin:-12px 0 0;font-size:13px;color:var(--t3)}
+.cp-feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;width:100%;max-width:820px}
+.cp-feats>div{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 12px}
+.cp-feats>div+div{border-left:1px solid #2A2D35}
+.cp-feats .ring{width:60px;height:60px;border-radius:50%;border:2px solid var(--lime);display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(163,230,53,.25)}
+.cp-feats strong{font-size:17px;line-height:1.35}
+.cp-feats>div>span:last-child{font-size:14px;line-height:1.55;color:var(--t2)}
+.cp-chips{margin:0;font-size:14px;color:var(--t2);line-height:1.6}.cp-chips b{color:var(--t1)}
+.cp-motto{margin:0;font-size:clamp(22px,5.6vw,30px);font-weight:900;letter-spacing:-0.03em}
+@media (max-width:880px){
+  .cp-feats{grid-template-columns:minmax(0,1fr);gap:20px;max-width:420px}
+  .cp-feats>div+div{border-left:0;border-top:1px solid #2A2D35;padding-top:20px}
+}
+@media (max-width:560px){
+  .callposter{padding:32px 16px 28px;gap:24px}
+  .cp-phones{gap:10px}.cp-phones figure:last-child{margin-top:24px}
+  .cp-phones .callshot{border-width:5px;border-radius:22px}
+  .cp-phones figcaption{font-size:12px;padding:4px 10px;gap:6px}
+  .cp-feats{grid-template-columns:minmax(0,1fr);gap:20px}
+  .cp-feats>div+div{border-left:0;border-top:1px solid #2A2D35;padding-top:20px}
+}
+
+/* 카드 안 사진 — 앱 카드 안쪽만 잘라 카드 가장자리까지 채움 */
+.mini{overflow:hidden}
+.mini img.bleed{width:calc(100% + 40px);max-width:none;margin:auto -20px -20px;border:0;border-radius:0;border-top:1px solid var(--edge)}
+.mini img.bleed.top{margin-bottom:0}
+.mini img.bleed.tight{margin-top:-12px}
+.minis.three{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.stats-grid figure.card{overflow:hidden;gap:0}
+.stats-grid figure.card img{border:0;border-radius:0}
+.stats-grid figure.card figcaption{padding:12px 16px 16px;border-top:1px solid var(--edge)}
+.memo-card .no{white-space:nowrap}
 
 /* 비교표 */
 .cmp{width:100%;max-width:760px;border-collapse:separate;border-spacing:0;border:1px solid var(--edge);border-radius:var(--r-card);overflow:hidden;font-size:16px;line-height:1.5}
@@ -185,14 +248,15 @@
 <div class="row" style="gap:8px"><span class="chip chip-lime">11월 18일 선공개</span><span class="chip">실시간 배달비서</span></div>
 <h1><span class="ln">플랫폼의 데이터가 아닌,</span><span class="ln"><span class="lime">나의 데이터</span>로 일하는 시대.</span></h1>
 <p class="motto">계산은 <b>HUD</b>가, 판단은 <b>라이더</b>가.</p>
-<p class="lead" style="margin:0;max-width:30em">콜이 뜨면 시급을 소리로 알려 주고, 수입&nbsp;· 근무시간&nbsp;· 달린 길은 누르지 않아도 쌓입니다. 배달을 대신하는 앱이 아니라, 내 일을 나에게 돌려주는 앱입니다.</p>
+<p class="lead" style="margin:0;max-width:30em">콜이 뜨면 시급을 소리로 알려 주고, 수입&nbsp;· 근무시간&nbsp;· 달린 길은 누르지 않아도 쌓입니다. 배달을 대신하는 앱이 아니라, 내가 한 일을 나에게 다시 볼 수 있도록 돌려주는 앱입니다.</p>
 <div class="row">
 <a class="btn btn-primary" href="https://open.kakao.com/o/gvZXDbmi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"></path></svg>커뮤니티에서 소식 받기</a>
 <a class="btn btn-line" href="#day">배달 하루 따라가 보기</a>
 </div>
 <p class="dim" style="margin:0;font-size:14px">안드로이드&nbsp;· 배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱과 함께 씁니다</p>
 </div>
-<div class="hero-shot"><div class="phone"><img src="g/g-call-coupang.webp" width="720" height="1552" alt="쿠팡이츠 콜 화면 위에 뜬 라이더HUD 카드 — 환산 시급 21,309원, 계산 18.8분"></div></div>
+<div class="hero-shot"><div class="callshot hero-call"><img src="g/h-callbg-coupang.webp" width="720" height="1552" alt="쿠팡이츠 콜 화면 위에 뜬 라이더HUD 카드 — 환산 시급 21,309원, 계산 18.8분 (배경은 흐리게 처리)">
+<div class="hudcard"><div class="l1"><small>환산</small>시급 21,309원</div><div class="l2">계산 18.8분<span class="pt">10P</span></div></div></div></div>
 </section>
 
 <section id="day" class="band"><div class="wrap sec">
@@ -200,7 +264,7 @@
 <p class="lead">라이더의 하루 순서대로 라이더HUD가 하는 일을 보여 드립니다. 사진은 모두 실제 앱 화면입니다.</p></div>
 <ol class="rail">
 <li><a href="#s1"><span class="n">01</span><span class="t">출근</span><span class="s">시작 한 번</span></a></li>
-<li><a href="#s2"><span class="n">02</span><span class="t">기다림</span><span class="s">어디서 기다릴까</span></a></li>
+<li><a href="#s2"><span class="n">02</span><span class="t">콜 대기</span><span class="s">어디서 기다릴까</span></a></li>
 <li><a href="#s3"><span class="n">03</span><span class="t">콜</span><span class="s">잡을까 말까</span></a></li>
 <li><a href="#s4"><span class="n">04</span><span class="t">도착</span><span class="s">공동현관 앞</span></a></li>
 <li><a href="#s5"><span class="n">05</span><span class="t">완료</span><span class="s">다음 콜로</span></a></li>
@@ -214,19 +278,19 @@
 <!-- 01 출근 -->
 <section id="s1" class="step">
 <div class="step-head"><span class="step-no"><b>01</b>출근</span>
-<h3>[시작] 한 번이면 끝입니다</h3>
+<h3>[시작]을 누르기만 하면 끝입니다</h3>
 <p>근무를 켜면 배민&nbsp;· 쿠팡 화면을 함께 읽기 시작해요. 근무시간도 이때부터 저절로 셉니다. 따로 적을 것이 없어요.</p></div>
 <div class="minis">
 <article class="card mini"><h4>근무 꺼짐 → 켜짐</h4><p>맨 위 줄 하나에 지금 근무시간&nbsp;· 연결된 앱이 보여요. 쉬는 시간은 [휴식]으로 빼 둡니다.</p>
 <img class="pic" src="g/g-header-on.webp" width="720" height="213" alt="근무 중 머리줄 — 근무시간, 배민 · 쿠팡 연결 표시, 휴식 · 종료 단추" loading="lazy"></article>
 <article class="card mini"><h4>배달비서를 켜 두면</h4><p>지금 수입&nbsp;· 시급&nbsp;· 달린 거리와 배민&nbsp;· 쿠팡 포인트가 한 장에 모여요. 「몇 시까지 얼마」를 정하면 지금 속도로 몇 시에 닿는지 알려 줘요.</p>
-<img class="pic" src="g/g-assist.webp" width="720" height="970" alt="배달비서 카드 — 현재 수입 31,711원, 6건, 누적 시급 17,496원, 주행 22.8km, 배민 · 쿠팡 오늘 포인트, 오늘 목표" loading="lazy"></article>
+<img class="pic bleed" src="g/h-assist.webp" width="714" height="964" alt="배달비서 카드 — 현재 수입 31,711원, 6건, 누적 시급 17,496원, 주행 22.8km, 배민 · 쿠팡 오늘 포인트, 오늘 목표" loading="lazy"></article>
 </div>
 </section>
 
-<!-- 02 기다림 · 포스터 -->
+<!-- 02 콜 대기 · 포스터 -->
 <section id="s2" class="step">
-<div class="step-head"><span class="step-no"><b>02</b>기다림</span></div>
+<div class="step-head"><span class="step-no"><b>02</b>콜 대기</span></div>
 <div class="poster mint">
 <div class="poster-text">
 <h3><span class="ln">어디서 기다릴까?</span><span class="ln"><span class="ac">내 기록</span>이 답합니다.</span></h3>
@@ -240,26 +304,42 @@
 <div class="poster-art"><div class="phone"><img src="g/g-pickup.webp" width="720" height="1560" alt="픽업 지도 — 지난 6주 454건, 요일 · 시간대 고르기, 매장 49곳 · 픽업 97건" loading="lazy">
 <span class="mk" style="left:4.5%;top:27.2%">1</span><span class="mk" style="left:4.5%;top:32%">2</span><span class="mk" style="left:67%;top:40.5%">3</span></div></div>
 </div>
+<div class="minis three">
+<article class="card mini"><span class="disc disc-mint"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3DD6C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg></span><h4>배민 대기배달 알림</h4><p>배민 화면에 대기배달이 뜨면 「똑똑」 소리와 함께 「배민 대기배달이 있습니다」라고 알려 줘요. 콜 음성을 꺼 둬도 따로 켤 수 있어요.</p></article>
+<article class="card mini"><span class="disc disc-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg></span><h4>콜이 안 올 때</h4><p>마지막 배달 뒤 콜 없이 기다린 시간을 「평소 이 시간」과 나란히 보여 줘요. 오래 비면 이 시간 픽업 지도로 바로 넘어갑니다.</p></article>
+<article class="card mini"><span class="disc disc-purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B69CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"></path><path d="M3 3l18 18"></path></svg></span><h4>데이터가 끊기면</h4><p>근무 중 데이터 연결이 30초 넘게 끊기면 음성으로 한 번 알려 줘요. 콜 가뭄인 줄 알고 기다리는 일을 막습니다.</p></article>
+</div>
 </section>
 
-<!-- 03 콜 · 포스터 -->
+<!-- 03 콜 · 포스터 (콜 판단) -->
 <section id="s3" class="step">
 <div class="step-head"><span class="step-no"><b>03</b>콜</span></div>
-<div class="poster flip">
-<div class="poster-text">
-<h3><span class="ln">콜이 뜨면,</span><span class="ln"><span class="ac">시급</span>이 보인다.</span></h3>
-<p class="say">배달료만 보지 않아요. 거리&nbsp;· 묶음&nbsp;· 걸릴 시간을 함께 계산해서 「이 콜은 시간당 얼마인가」를 배달 앱 위에 띄우고 소리로도 알려 줍니다. 화면을 오래 볼 필요가 없어요.</p>
-<ol class="legend">
-<li><span class="mk">1</span><span><strong>환산 시급</strong>&nbsp;· 이 콜 하나를 시간당으로 바꾼 값</span></li>
-<li><span class="mk">2</span><span><strong>계산 시간</strong>&nbsp;· 픽업부터 전달까지 걸릴 분과 포인트</span></li>
-</ol>
-<p class="dim" style="margin:0;font-size:14px">받을지 말지는 라이더가 정합니다. 대신 누르지 않아요.</p>
+<div class="callposter">
+<div class="cp-head">
+<span class="cp-kick">RIDER HUD AUTO</span>
+<h3><span class="ln">콜이 뜨면,</span><span class="ln"><span class="lime">시급</span>이 보인다.</span></h3>
+<p class="cp-sub">배달 앱 위에 실시간으로 환산 시급이 뜹니다.<br>쿠팡이츠&nbsp;· 배달의민족 모두 됩니다.</p>
 </div>
-<div class="poster-art two">
-<div class="phone"><img src="g/g-call-coupang.webp" width="720" height="1552" alt="쿠팡이츠 콜 위 카드 — 환산 시급 21,309원 · 계산 18.8분 · 10P" loading="lazy">
-<span class="mk" style="left:80%;top:9%">1</span><span class="mk" style="left:26%;top:12.4%">2</span></div>
-<div class="phone"><img src="g/g-call-baemin.webp" width="720" height="1555" alt="배민 콜 위 카드 — 환산 시급 11,330원 · 계산 11.7분 · 거리 범위 · 9P" loading="lazy"></div>
+<div class="cp-phones">
+<figure>
+<div class="callshot"><img src="g/h-callbg-baemin.webp" width="720" height="1555" alt="" loading="lazy">
+<div class="hudcard"><div class="l1"><small>환산</small>시급 11,330원</div><div class="l2">계산 11.7분&nbsp;· 거리 범위<span class="pt">9P</span></div></div></div>
+<figcaption><span class="dot" style="background:var(--baemin)"></span>배달의민족 콜 화면</figcaption>
+</figure>
+<figure>
+<div class="callshot"><img src="g/h-callbg-coupang.webp" width="720" height="1552" alt="" loading="lazy">
+<div class="hudcard"><div class="l1"><small>환산</small>시급 21,309원</div><div class="l2">계산 18.8분<span class="pt">10P</span></div></div></div>
+<figcaption><span class="dot" style="background:var(--coupang)"></span>쿠팡이츠 콜 화면</figcaption>
+</figure>
 </div>
+<p class="cp-note">배경의 플랫폼 화면은 가게 이름과 주소가 보이지 않도록 흐리게 처리했어요.</p>
+<div class="cp-feats">
+<div><span class="ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18h2M12 18h2"></path></svg></span><strong>콜 값 계산</strong><span>배달료&nbsp;· 거리&nbsp;· 묶음&nbsp;· 걸릴 시간으로 계산</span></div>
+<div><span class="ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg></span><strong>소리로도 알려 줌</strong><span>보지 않아도 시급과 걸릴 분을 들려줘요</span></div>
+<div><span class="ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span><strong>판단은 라이더가</strong><span>받을지 말지는 내가 정합니다</span></div>
+</div>
+<p class="cp-chips">카드에 함께 뜨는 것&nbsp;· <b>조리완료</b>&nbsp;· <b>묶음 N건</b>&nbsp;· <b>포인트</b>&nbsp;· 거리를 모르면 <b>거리 범위</b></p>
+<p class="cp-motto">계산은 HUD가, <span class="lime">판단은 라이더가.</span></p>
 </div>
 </section>
 
@@ -269,7 +349,7 @@
 <div id="memo" class="poster purple" style="scroll-margin-top:76px">
 <div class="poster-text">
 <h3><span class="ln"><span class="ac">내가 직접 쓰는</span> 메모장.</span><span class="ln">가까이 가면 읽어 줄 뿐.</span></h3>
-<p class="say">공동현관 번호는 배달 앱에서 읽어 오지 않습니다. 라이더가 직접 적어 둔 메모를, 그 건물 가까이 갔을 때 소리와 카드로 꺼내 줄 뿐이에요. 내 메모는 내 폰 밖으로 나가지 않습니다.</p>
+<p class="say">공동현관 번호는 배달 앱에서 읽어 오지 않습니다. 라이더가 직접 적어 둔 메모를, 그 건물 가까이 갔을 때 음성으로 안내하고 텍스트 카드로 보여 드립니다. 내 메모는 내 폰 밖으로 나가지 않습니다.</p>
 <div class="locks">
 <span class="lock"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B69CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>암호화 저장</span>
 <span class="lock"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B69CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"></path><path d="M5 19L19 5"></path></svg>캡처 불가</span>
@@ -285,13 +365,13 @@
 </div>
 <div class="poster-art"><div class="memo-stack">
 <div class="phone" style="max-width:280px"><img src="g/g-pin-list.webp" width="720" height="1170" alt="핀 목록 — 연습용 글씨로 바꾼 장소 이름과 메모, 가까운 순" loading="lazy"><span class="secure-badge">배포판에서는 캡처되지 않는 화면</span></div>
-<div class="memo-card" aria-label="가까이 가면 배달 앱 위에 뜨는 메모 카드 예시"><span class="nm">연습 아파트</span><span class="no">* 1 2 3 4 #</span><span class="mm">정문 오른쪽&nbsp;· 연습용 예시</span></div>
+<div class="memo-card" aria-label="가까이 가면 배달 앱 위에 뜨는 메모 카드 예시"><span class="nm">OO 아파트</span><span class="no">##1234</span><span class="mm">정문 오른쪽&nbsp;· 예시</span></div>
 <span class="tag">가까이 가면 배달 앱 위에 뜨는 메모 카드</span>
 </div></div>
 </div>
 <div class="minis">
 <article class="card mini"><h4>사진 찍을 때 주문번호 확인</h4><p>배달 완료 사진을 찍을 때 주문번호 끝 4자리를 읽어 줘요. 다른 집 앞에 두는 실수를 막습니다.</p></article>
-<article class="card mini"><h4>내가 저장한 후면 카메라 자리</h4><p>직접 저장한 후면 단속카메라 자리를 지나면 「안내. 후면 카메라」라고만 알려 줍니다.</p></article>
+<article class="card mini"><h4>내가 저장한 후면 카메라 자리</h4><p>직접 저장한 후면 단속카메라 자리를 지나면 「안내. 후면 카메라」라고 음성으로 안내합니다.</p></article>
 </div>
 </section>
 
@@ -299,12 +379,12 @@
 <section id="s5" class="step">
 <div class="step-head"><span class="step-no"><b>05</b>완료</span>
 <h3>누르지 않아도 기록됩니다</h3>
-<p>배달을 마치면 건마다 금액&nbsp;· 거리&nbsp;· 실제 걸린 시간이 쌓여요. 미션과 포인트도 함께 모아 둡니다. 정산 화면을 한 번 열면 그날 금액을 맞춰 봐요.</p></div>
+<p>배달을 마치면 건마다 금액&nbsp;· 거리&nbsp;· 실제 걸린 시간이 쌓여요. 미션과 포인트도 함께 모아 둡니다.</p></div>
 <div class="minis">
-<article class="card mini"><h4>포인트&nbsp;· 미션</h4><p>배민 포인트가 2주 동안 얼마나 쌓였는지 한 줄로 봐요.</p>
-<img class="pic" src="g/g-stats-points.webp" width="720" height="254" alt="배민 포인트 누적" loading="lazy"></article>
+<article class="card mini"><h4>포인트&nbsp;· 미션</h4><p>배민 포인트가 2주 동안 얼마나 쌓였는지 한 줄로 봐요. 배달비서에는 다음 등급까지 남은 포인트도 나와요.</p>
+<img class="pic bleed" src="g/h-stats-points.webp" width="652" height="248" alt="배민 · 쿠팡 포인트 기간 누적" loading="lazy"></article>
 <article class="card mini"><h4>콜 기다린 시간</h4><p>배달을 마치고 다음 콜까지 기다린 시간도 따로 셉니다.</p>
-<img class="pic" src="g/g-stats-wait.webp" width="720" height="333" alt="콜 대기 시간 통계" loading="lazy"></article>
+<img class="pic bleed" src="g/h-stats-wait.webp" width="652" height="327" alt="콜 대기 시간 — 시간대별 평균" loading="lazy"></article>
 </div>
 </section>
 
@@ -313,37 +393,41 @@
 <div class="step-head"><span class="step-no"><b>06</b>퇴근</span></div>
 <div class="poster blue">
 <div class="poster-text">
-<h3><span class="ln">오늘 얼마 벌었나,</span><span class="ln"><span class="ac">시급</span>까지 한눈에.</span></h3>
-<p class="say">배민과 쿠팡을 합친 오늘 수입, 근무시간, 시급, 달린 거리가 한 장에 모여요. 건마다 실제로 걸린 시간까지 남으니 어떤 콜이 좋았는지 다시 볼 수 있습니다.</p>
+<h3><span class="ln">오늘 얼마 벌었나,</span><span class="ln"><span class="ac">계산은 앱이</span> 끝내 둡니다.</span></h3>
+<p class="say">쿠팡이츠&nbsp;· 배민커넥트 수입과 미션 보너스를 따로 더하고 나눌 필요가 없어요. 정산 화면을 한 번 열면 앱이 읽어서 플랫폼별로 나누고, 배달료와 미션 보너스를 구분해 저장합니다.</p>
 <ol class="legend">
-<li><span class="mk">1</span><span><strong>정산 확인</strong>&nbsp;· 배달 앱 정산 화면과 맞춘 금액</span></li>
-<li><span class="mk">2</span><span><strong>건수&nbsp;· 근무&nbsp;· 시급&nbsp;· 거리</strong>&nbsp;· 오늘 하루 한 줄</span></li>
-<li><span class="mk">3</span><span><strong>실제 걸린 시간</strong>&nbsp;· 콜마다 몇 분 걸렸는지</span></li>
+<li><span class="mk">1</span><span><strong>정산 확인</strong>&nbsp;· 배민 정산&nbsp;· 쿠팡 내 수입 화면과 맞춘 금액</span></li>
+<li><span class="mk">2</span><span><strong>오늘 한 줄</strong>&nbsp;· 건수&nbsp;· 근무&nbsp;· 시급&nbsp;· 달린 거리</span></li>
+<li><span class="mk">3</span><span><strong>플랫폼별로 따로</strong>&nbsp;· 배민&nbsp;· 쿠팡 건수와 금액</span></li>
+<li><span class="mk">4</span><span><strong>실제 걸린 시간</strong>&nbsp;· 콜마다 몇 분 걸렸는지</span></li>
 </ol>
 </div>
 <div class="poster-art"><div class="phone"><img src="g/g-day-top.webp" width="720" height="1462" alt="그날 상세 — 107,400원 정산 확인, 20건 · 근무 7시간 9분 · 시급 14,993원 · 101km, 배민 건별 표" loading="lazy">
-<span class="mk" style="left:72%;top:12.3%">1</span><span class="mk" style="left:91%;top:17.6%">2</span><span class="mk" style="left:92%;top:49.5%">3</span></div></div>
+<span class="mk" style="left:72%;top:12.3%">1</span><span class="mk" style="left:91%;top:17.6%">2</span><span class="mk" style="left:66%;top:42.6%">3</span><span class="mk" style="left:92%;top:49.5%">4</span></div></div>
 </div>
-<div class="minis">
-<article class="card mini"><h4>지출을 빼면 실수입</h4><p>기름값&nbsp;· 밥값을 적으면 실수입이 바로 나오고, 시간별 수입 막대로 언제 잘 벌었는지 봐요.</p>
-<img class="pic" src="g/g-money-day.webp" width="720" height="1093" alt="지출 14,349원, 실수입 93,051원, 시간별 수입 막대" loading="lazy"></article>
-<article class="card mini"><h4>오늘을 남기기</h4><p>오늘 수입 카드를 사진으로 저장하거나 보낼 수 있어요. 하루 운행은 리플레이로 다시 봅니다.</p>
-<img class="pic" src="g/g-share.webp" width="720" height="1347" style="aspect-ratio:720/860;object-fit:cover;object-position:top" alt="공유 카드 — 수입, 근무, 시급, 건수, 주행" loading="lazy"></article>
+<div class="minis three">
+<article class="card mini"><h4>미션 보너스는 따로</h4><p>배달료와 미션 보너스를 나눠 보여 주고, 입금됐는지도 표시해요.</p>
+<img class="pic bleed" src="g/h-share.webp" width="656" height="656" alt="하루 카드 — 수입 166,800원, 미션 보너스 +68,000원 입금됨, 근무 · 시급 · 건수 · 주행" loading="lazy"></article>
+<article class="card mini"><h4>지출을 빼면 실수입</h4><p>기름값&nbsp;· 밥값을 적으면 실수입이 바로 나오고, 시간별 수입으로 언제 잘 벌었는지 봐요.</p>
+<img class="pic bleed top" src="g/h-money-exp.webp" width="650" height="397" alt="지출 14,349원, 실수입 93,051원" loading="lazy">
+<img class="pic bleed tight" src="g/h-money-hour.webp" width="650" height="575" alt="시간별 수입 막대 — 배민 · 쿠팡" loading="lazy"></article>
+<article class="card mini"><h4>평소와 견주기</h4><p>오늘 시급과 시간당 건수를 평소와 나란히 보여 줘요.</p>
+<img class="pic bleed" src="g/h-stats-rate.webp" width="650" height="711" alt="시급 1.5만 원 · 평소 1.3만, 시간당 2.8건 · 평소 2.9건, 근무 7시간 9분 · 101km" loading="lazy"></article>
 </div>
 </section>
 
 <!-- 07 돌아보기 -->
 <section id="s7" class="step">
 <div class="step-head"><span class="step-no"><b>07</b>돌아보기</span>
-<h3>한 주, 한 달의 내 일이 보입니다</h3>
+<h3>내가 한 일이 보입니다</h3>
 <p>요일별&nbsp;· 시간대별&nbsp;· 거리별로 언제 잘 벌었는지, 묶음 배달이 정말 이득이었는지 내 기록으로 답해요. 정비&nbsp;· 보험도 함께 챙기고, 내 기록은 파일로 내보낼 수 있습니다.</p></div>
 <div class="stats-grid">
-<figure><img src="g/g-stats-dist.webp" width="720" height="890" alt="거리별 시급 비교 — 1km 안 콜이 가장 높았어요" loading="lazy"><figcaption>거리별&nbsp;· 몇 km 콜이 좋았나</figcaption></figure>
-<figure><img src="g/g-stats-dow.webp" width="720" height="780" alt="요일 · 시간대 시급 비교" loading="lazy"><figcaption>요일 × 시간대&nbsp;· 언제 잘 벌었나</figcaption></figure>
-<figure><img src="g/g-stats-bundle.webp" width="720" height="485" alt="단건과 묶음 시급 비교" loading="lazy"><figcaption>단건 vs 묶음&nbsp;· 정말 이득이었나</figcaption></figure>
-<figure><img src="g/g-stats-maint.webp" width="720" height="625" alt="정비 알림" loading="lazy"><figcaption>정비&nbsp;· 엔진오일&nbsp;· 타이어 주기</figcaption></figure>
-<figure><img src="g/g-stats-insure.webp" width="720" height="580" alt="배달 보험 가입 확인과 시간제 환산" loading="lazy"><figcaption>보험&nbsp;· 배달한 시간을 시간제로 환산</figcaption></figure>
-<figure><img src="g/g-settings-backup.webp" width="720" height="810" alt="전체 백업 내보내기, 근무 기록 내보내기" loading="lazy"><figcaption>백업&nbsp;· 근무 기록 내보내기</figcaption></figure>
+<figure class="card"><img src="g/h-stats-dist.webp" width="714" height="884" alt="거리별 시급 비교 — 1km 안 콜이 가장 높았어요" loading="lazy"><figcaption>거리별&nbsp;· 몇 km 콜이 좋았나</figcaption></figure>
+<figure class="card"><img src="g/h-stats-dow.webp" width="651" height="753" alt="요일 · 시간대 시급 비교" loading="lazy"><figcaption>요일 × 시간대&nbsp;· 언제 잘 벌었나</figcaption></figure>
+<figure class="card"><img src="g/h-stats-bundle.webp" width="652" height="479" alt="단건과 묶음 시급 비교" loading="lazy"><figcaption>단건 vs 묶음&nbsp;· 정말 이득이었나</figcaption></figure>
+<figure class="card"><img src="g/h-stats-maint.webp" width="652" height="565" alt="정비 — 엔진오일, 타이어, 브레이크 패드" loading="lazy"><figcaption>정비&nbsp;· 엔진오일&nbsp;· 타이어 주기</figcaption></figure>
+<figure class="card"><img src="g/h-stats-insure.webp" width="650" height="574" alt="배달 보험 가입 확인과 시간제 환산" loading="lazy"><figcaption>보험&nbsp;· 배달한 시간을 시간제로 환산</figcaption></figure>
+<figure class="card"><img src="g/h-backup.webp" width="651" height="357" alt="전체 백업 내보내기, 백업 가져오기, 근무 기록 내보내기" loading="lazy"><figcaption>백업&nbsp;· 근무 기록 내보내기</figcaption></figure>
 </div>
 </section>
 
@@ -423,7 +507,7 @@
 </div></section>
 
 <section class="cta"><div class="wrap">
-<h2><span class="ln">다음 운행부터,</span><span class="ln">내 일이 남습니다</span></h2>
+<h2><span class="ln">다음 운행부터,</span><span class="ln">내가 한 일이 데이터로 남습니다</span></h2>
 <p class="muted" style="margin:0">선공개 소식과 설치 안내는 커뮤니티 오픈채팅에서 먼저 드립니다.</p>
 <a class="btn btn-primary" href="https://open.kakao.com/o/gvZXDbmi">커뮤니티 참여하기</a>
 </div></section>
