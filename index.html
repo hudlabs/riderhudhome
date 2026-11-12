@@ -35,12 +35,15 @@
 
 /* 첫 화면 */
 .hero{padding-top:48px;padding-bottom:64px;display:flex;flex-wrap:wrap;align-items:center;gap:48px}
-.hero-text{flex:999 1 460px;min-width:0;display:flex;flex-direction:column;gap:24px}
-.hero h1{margin:0;font-size:clamp(26px,7.2vw,54px);font-weight:800;line-height:1.25;letter-spacing:-0.035em}
+.hero-text{flex:1.2 1 460px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.hero h1{margin:0;font-size:clamp(26px,7.2vw,46px);font-weight:800;line-height:1.25;letter-spacing:-0.035em}
 .hero .motto{margin:0;font-size:clamp(19px,4.6vw,24px);font-weight:700;line-height:1.4;color:var(--t2);letter-spacing:-0.02em}
 .hero .motto b{color:var(--t1)}
-.hero-shot{flex:1 1 280px;display:flex;justify-content:center}
+.hero-shot{flex:1 1 400px;display:flex;justify-content:center}
 .hero-shot .phone{max-width:280px}
+.ridecard{margin:0;width:100%;max-width:520px;display:flex;flex-direction:column;gap:12px;align-items:center}
+.ridecard img{display:block;width:100%;height:auto;border-radius:24px;border:1px solid var(--edge);box-shadow:0 24px 48px rgba(0,0,0,.5)}
+.ridecard figcaption{font-size:14px;color:var(--t2)}
 .daycard{margin:0;width:100%;max-width:340px;display:flex;flex-direction:column;gap:12px;align-items:center}
 .daycard img{display:block;width:100%;height:auto;border-radius:24px;border:1px solid var(--lime-edge);box-shadow:0 0 0 6px rgba(163,230,53,.06),0 24px 48px rgba(0,0,0,.5)}
 .daycard figcaption{font-size:14px;color:var(--t2)}
@@ -272,8 +275,7 @@
 </div>
 <p class="dim" style="margin:0;font-size:14px">안드로이드&nbsp;· 배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱과 함께 씁니다</p>
 </div>
-<div class="hero-shot"><figure class="daycard"><img src="g/h-day-card.webp" width="720" height="720" alt="하루 기록 카드 — 수입 107,400원, 근무 7시간 9분, 시급 14,993원, 20건, 주행 100.7km, 배민 97,260 · 쿠팡 10,140">
-<figcaption>앱이 저절로 남긴 하루&nbsp;· 실제 화면</figcaption></figure></div>
+<div class="hero-shot"><figure class="ridecard"><img src="g/h-hero-ride.webp" width="882" height="904" alt="오토바이 거치대에 꽂은 폰으로 라이더HUD를 보며 달리는 라이더 — 화면에 오늘 수입 107,400원 · 20건"><figcaption>달리면서 보는 라이더HUD</figcaption></figure></div>
 </section>
 
 <section id="day" class="band"><div class="wrap sec">
