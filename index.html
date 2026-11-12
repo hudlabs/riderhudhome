@@ -49,6 +49,11 @@
 .daycard figcaption{font-size:14px;color:var(--t2)}
 .row{display:flex;flex-wrap:wrap;gap:12px}
 
+.why{padding-top:24px;padding-bottom:64px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center}
+.why-text{margin:0;font-size:clamp(17px,4.4vw,21px);line-height:1.75;color:var(--t2);letter-spacing:-0.01em}
+.why-end{margin:0;font-size:clamp(19px,5vw,25px);line-height:1.6;font-weight:800;color:var(--t1);letter-spacing:-0.02em}
+.why-link{font-size:15px;font-weight:700;text-decoration:none}
+
 /* 일곱 장면 길잡이 */
 .rail{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
 .rail a{display:flex;flex-direction:column;gap:4px;padding:12px;border:1px solid var(--edge);border-radius:var(--r-small);background:var(--card);text-decoration:none;color:var(--t1);height:100%}
@@ -276,6 +281,13 @@
 <p class="dim" style="margin:0;font-size:14px">안드로이드&nbsp;· 배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱과 함께 씁니다</p>
 </div>
 <div class="hero-shot"><figure class="ridecard"><img src="g/h-hero-ride.webp" width="882" height="904" alt="오토바이 거치대에 꽂은 폰으로 라이더HUD를 보며 달리는 라이더 — 화면에 오늘 수입 107,400원 · 20건"><figcaption>달리면서 보는 라이더HUD</figcaption></figure></div>
+</section>
+
+<section id="why" class="wrap why">
+<span class="kicker">왜 만들었나</span>
+<p class="why-text"><span class="ln">알고리즘은 보이지 않고,</span><span class="ln">정보는 플랫폼만 쥐고 있습니다.</span><span class="ln">내가 한 일인데,</span><span class="ln">그 기록을 나는 <span class="nw">볼 수 없었습니다.</span></span></p>
+<p class="why-end"><span class="ln">플랫폼이 주지 않으니</span><span class="ln lime">스스로 만들어야 했습니다.</span><span class="ln">라이더HUD는 그렇게 시작됐습니다.</span></p>
+<a href="philosophy.html" class="why-link">개발 배경과 철학 읽기 ›</a>
 </section>
 
 <section id="day" class="band"><div class="wrap sec">
