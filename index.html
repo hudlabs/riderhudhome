@@ -41,6 +41,9 @@
 .hero .motto b{color:var(--t1)}
 .hero-shot{flex:1 1 280px;display:flex;justify-content:center}
 .hero-shot .phone{max-width:280px}
+.daycard{margin:0;width:100%;max-width:340px;display:flex;flex-direction:column;gap:12px;align-items:center}
+.daycard img{display:block;width:100%;height:auto;border-radius:24px;border:1px solid var(--lime-edge);box-shadow:0 0 0 6px rgba(163,230,53,.06),0 24px 48px rgba(0,0,0,.5)}
+.daycard figcaption{font-size:14px;color:var(--t2)}
 .row{display:flex;flex-wrap:wrap;gap:12px}
 
 /* 일곱 장면 길잡이 */
@@ -180,6 +183,8 @@
 .mini img.bleed.tight{margin-top:-12px}
 .minis.three{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
 .stats-grid figure.card{overflow:hidden;gap:0}
+.stats-grid.four{grid-template-columns:repeat(2,minmax(0,1fr));max-width:880px}
+@media (max-width:640px){.stats-grid.four{grid-template-columns:minmax(0,1fr)}}
 .stats-grid figure.card img{border:0;border-radius:0}
 .stats-grid figure.card figcaption{padding:12px 16px 16px;border-top:1px solid var(--edge)}
 .memo-card .no{white-space:nowrap}
@@ -264,11 +269,11 @@
 <p class="lead" style="margin:0;max-width:30em">콜이 뜨면 시급을 소리로 알려 주고, 수입&nbsp;· 근무시간&nbsp;· 달린 길은 누르지 않아도 쌓입니다. 배달을 대신하는 앱이 아니라, 내가 한 일을 나에게 다시 볼 수 있도록 돌려주는 앱입니다.</p>
 <div class="btn-pair">
 <a class="btn btn-kakao" href="https://open.kakao.com/o/gvZXDbmi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"></path></svg>커뮤니티에서 소식 받기</a>
-<a class="btn btn-line" href="#day">배달 하루 따라가 보기</a>
 </div>
 <p class="dim" style="margin:0;font-size:14px">안드로이드&nbsp;· 배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱과 함께 씁니다</p>
 </div>
-<div class="hero-shot"><img class="phoneimg" src="g/h-call-coupang.webp" width="615" height="1222" alt="쿠팡이츠 콜 화면 위에 뜬 라이더HUD 카드 — 환산 시급 21,309원, 계산 18.8분 · 10P"></div>
+<div class="hero-shot"><figure class="daycard"><img src="g/h-day-card.webp" width="720" height="720" alt="하루 기록 카드 — 수입 107,400원, 근무 7시간 9분, 시급 14,993원, 20건, 주행 100.7km, 배민 97,260 · 쿠팡 10,140">
+<figcaption>앱이 저절로 남긴 하루&nbsp;· 실제 화면</figcaption></figure></div>
 </section>
 
 <section id="day" class="band"><div class="wrap sec">
@@ -378,7 +383,9 @@
 </div>
 <div class="minis">
 <article class="card mini"><h4>사진 찍을 때 주문번호 확인</h4><p>배달 완료 사진을 찍을 때 주문번호 끝 4자리를 읽어 줘요. 다른 집 앞에 두는 실수를 막습니다.</p></article>
-<article class="card mini"><h4>내가 저장한 후면 카메라 자리</h4><p>직접 저장한 후면 단속카메라 자리를 지나면 「안내. 후면 카메라」라고 음성으로 안내합니다.</p></article>
+<article class="card mini"><h4>내가 저장한 후면 카메라 자리</h4><p>직접 저장한 후면 단속카메라 자리를 지나면 「안내. 후면 카메라」라고 음성으로 안내합니다.</p>
+<div class="waitpic pic"><img src="g/h-rear-scene.webp" width="720" height="309" alt="도로 위 후면 단속 카메라와 「후면단속중」 표지" loading="lazy">
+<span class="voice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg>「안내. 후면 카메라」</span></div></article>
 </div>
 </section>
 
@@ -390,7 +397,7 @@
 <div class="minis">
 <article class="card mini"><h4>포인트&nbsp;· 미션</h4><p>배민 포인트가 2주 동안 얼마나 쌓였는지 한 줄로 봐요. 배달비서에는 다음 등급까지 남은 포인트도 나와요.</p>
 <img class="pic bleed" src="g/h-stats-points.webp" width="652" height="248" alt="배민 · 쿠팡 포인트 기간 누적" loading="lazy"></article>
-<article class="card mini"><h4>콜 기다린 시간</h4><p>배달을 마치고 다음 콜까지 기다린 시간도 따로 셉니다.</p>
+<article class="card mini"><h4>콜 기다린 시간</h4><p>배달을 마치고 다음 콜까지 기다린 시간을 시간대별로 세고, 가장 오래 기다린 때도 알려 줘요.</p>
 <img class="pic bleed" src="g/h-stats-wait.webp" width="652" height="327" alt="콜 대기 시간 — 시간대별 평균" loading="lazy"></article>
 </div>
 </section>
@@ -427,14 +434,18 @@
 <section id="s7" class="step">
 <div class="step-head"><span class="step-no"><b>07</b>돌아보기</span>
 <h3>내가 한 일이 보입니다</h3>
-<p>요일별&nbsp;· 시간대별&nbsp;· 거리별로 언제 잘 벌었는지, 묶음 배달이 정말 이득이었는지 내 기록으로 답해요. 정비&nbsp;· 보험도 함께 챙기고, 내 기록은 파일로 내보낼 수 있습니다.</p></div>
-<div class="stats-grid">
+<p>요일별&nbsp;· 시간대별&nbsp;· 거리별로 언제 잘 벌었는지, 묶음 배달이 정말 이득이었는지 내 기록으로 답해요. 오토바이 정비와 배달 보험도 함께 챙기고, 내 기록은 파일로 내보낼 수 있습니다.</p></div>
+<div class="stats-grid four">
 <figure class="card"><img src="g/h-stats-dist.webp" width="714" height="884" alt="거리별 시급 비교 — 1km 안 콜이 가장 높았어요" loading="lazy"><figcaption>거리별&nbsp;· 몇 km 콜이 좋았나</figcaption></figure>
 <figure class="card"><img src="g/h-stats-dow.webp" width="651" height="753" alt="요일 · 시간대 시급 비교" loading="lazy"><figcaption>요일 × 시간대&nbsp;· 언제 잘 벌었나</figcaption></figure>
 <figure class="card"><img src="g/h-stats-bundle.webp" width="652" height="479" alt="단건과 묶음 시급 비교" loading="lazy"><figcaption>단건 vs 묶음&nbsp;· 정말 이득이었나</figcaption></figure>
-<figure class="card"><img src="g/h-stats-maint.webp" width="652" height="565" alt="정비 — 엔진오일, 타이어, 브레이크 패드" loading="lazy"><figcaption>정비&nbsp;· 엔진오일&nbsp;· 타이어 주기</figcaption></figure>
-<figure class="card"><img src="g/h-stats-insure.webp" width="650" height="574" alt="배달 보험 가입 확인과 시간제 환산" loading="lazy"><figcaption>보험&nbsp;· 배달한 시간을 시간제로 환산</figcaption></figure>
 <figure class="card"><img src="g/h-backup.webp" width="651" height="357" alt="전체 백업 내보내기, 백업 가져오기, 근무 기록 내보내기" loading="lazy"><figcaption>백업&nbsp;· 근무 기록 내보내기</figcaption></figure>
+</div>
+<div class="minis">
+<article class="card mini"><h4>교체 주기를 km로</h4><p>엔진오일&nbsp;· 타이어&nbsp;· 브레이크 패드 교체 주기를 넣어 두면, 앱으로 달린 거리로 남은 km를 세어 줘요.</p>
+<img class="pic bleed" src="g/h-stats-maint.webp" width="714" height="814" alt="정비 — 엔진오일 13 / 2,000km 남은 1,987km, 타이어 · 브레이크 패드 · 구동 벨트 · 체인 주기 넣기, 항목 추가" loading="lazy"></article>
+<article class="card mini"><h4>배달 보험, 맞게 들었나</h4><p>내 보험이 대인 I·II, 대물을 갖췄는지 확인하고, 실제로 배달한 시간을 시간제 보험료로 바꿔 계산해 줘요. 지금 보험이 맞는지 견줄 수 있어요.</p>
+<img class="pic bleed" src="g/h-stats-insure.webp" width="714" height="628" alt="배달 보험 가입 확인 — 대인I 법정 한도, 대인II 무한, 대물 2천만 원 이상, 배달한 시간 50시간, 시간제 환산 34,298원" loading="lazy"></article>
 </div>
 </section>
 
