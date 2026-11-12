@@ -2,485 +2,179 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="robots" content="noindex, follow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>철학 — Rider HUD</title>
-<meta name="description" content="라이더의 데이터 주권을 되찾는 개인형 라이더 운영체제의 철학">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;700&family=Noto+Sans+KR:wght@300;400;700;900&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --green: #00ff88;
-    --bg: #000;
-    --bg2: #060606;
-    --text: #fff;
-    --sub: #aaa;
-    --dim: #777;
-    --off: #444;
-    --border: #111;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { background:var(--bg); color:var(--text); font-family:'Noto Sans KR',sans-serif; overflow-x:hidden; }
-
-  /* NAV */
-  nav {
-    position:sticky; top:0; left:0; right:0; z-index:100;
-    padding:0 48px; height:64px;
-    display:flex; justify-content:space-between; align-items:center;
-    background:#000;
-    border-bottom:2px solid var(--green);
-  }
-  .nav-logo {
-    font-family:'IBM Plex Mono',monospace;
-    font-size:1.1rem; font-weight:700;
-    letter-spacing:4px; color:var(--green);
-    text-decoration:none;
-  }
-  .nav-logo span { color:#aaa; font-weight:300; }
-  .nav-menu { display:flex; gap:36px; list-style:none; align-items:center; }
-  .nav-menu a {
-    font-family:'IBM Plex Mono',monospace; font-size:0.85rem; letter-spacing:2px;
-    color:#ccc; text-decoration:none; transition:color 0.2s;
-  }
-  .nav-menu a:hover { color:var(--green); }
-  .nav-menu a.active { color:var(--green); }
-  .nav-cta { background:var(--green)!important; color:#000!important; padding:10px 24px; font-weight:700!important; }
-
-  /* HERO */
-  .hero {
-    min-height:calc(100vh - 64px);
-    display:grid; grid-template-columns:1fr 1fr;
-    align-items:center; gap:48px;
-    padding:80px 48px;
-    position:relative; overflow:hidden;
-    border-bottom:1px solid var(--border);
-  }
-  .hero-image {
-    position:relative;
-    opacity:0; animation:up 0.7s 0.4s forwards;
-  }
-  .hero-image img {
-    width:100%; border-radius:8px; object-fit:cover;
-  }
-  .hero-grid {
-    position:absolute; inset:0;
-    background-image:
-      linear-gradient(rgba(0,255,136,0.02) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(0,255,136,0.02) 1px,transparent 1px);
-    background-size:64px 64px; pointer-events:none;
-  }
-  .hero-glow {
-    position:absolute; top:20%; right:10%;
-    width:50vw; height:60vh;
-    background:radial-gradient(ellipse,rgba(0,255,136,0.04) 0%,transparent 65%);
-    pointer-events:none;
-  }
-  .hero-content { position:relative; max-width:800px; }
-  .hero-eyebrow {
-    font-family:'IBM Plex Mono',monospace; font-size:0.65rem; letter-spacing:5px;
-    color:var(--green); margin-bottom:24px;
-    opacity:0; animation:up 0.7s 0.2s forwards;
-  }
-  .hero-h1 {
-    font-size:clamp(2.2rem,5vw,4rem); font-weight:900; line-height:1.15;
-    margin-bottom:32px; opacity:0; animation:up 0.7s 0.35s forwards;
-  }
-  .hero-h1 em { color:var(--green); font-style:normal; }
-  .hero-desc {
-    font-size:1rem; color:var(--sub); line-height:1.9; font-weight:300;
-    max-width:600px; opacity:0; animation:up 0.7s 0.5s forwards;
-  }
-
-  /* SECTION 공통 */
-  .section { padding:100px 48px; border-bottom:1px solid var(--border); }
-  .section:nth-child(even) { background:var(--bg2); }
-  .section-inner { max-width:900px; margin:0 auto; }
-  .section-num {
-    font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:4px;
-    color:var(--off); margin-bottom:16px;
-  }
-  .section-title {
-    font-size:clamp(1.5rem,3vw,2.2rem); font-weight:900; line-height:1.3;
-    margin-bottom:32px;
-  }
-  .section-title em { color:var(--green); font-style:normal; }
-  .section-body {
-    font-size:0.95rem; color:var(--sub); line-height:2; font-weight:300;
-    max-width:720px;
-  }
-  .section-body b { color:var(--text); font-weight:700; }
-  .section-body p { margin-bottom:20px; }
-  .section-body p:last-child { margin-bottom:0; }
-
-  /* 강조 블록 */
-  .highlight-block {
-    border-left:2px solid var(--green);
-    padding:24px 32px;
-    margin:40px 0;
-    background:#050505;
-  }
-  .highlight-block p {
-    font-size:1.05rem; font-weight:700; color:var(--text);
-    line-height:1.7; margin:0;
-  }
-
-  /* 리스트 */
-  .phil-list { margin:32px 0; display:flex; flex-direction:column; gap:12px; }
-  .phil-item {
-    display:flex; align-items:flex-start; gap:16px;
-    font-size:0.9rem; color:var(--sub); line-height:1.7; font-weight:300;
-    padding:16px 20px; background:var(--bg2); border:1px solid var(--border);
-  }
-  .section:nth-child(even) .phil-item { background:#0a0a0a; }
-  .phil-item::before {
-    content:'—'; color:var(--green);
-    font-family:'IBM Plex Mono',monospace; font-size:0.7rem;
-    flex-shrink:0; margin-top:2px;
-  }
-
-  /* 비교 그리드 */
-  .compare-grid {
-    display:grid; grid-template-columns:1fr 1fr;
-    gap:1px; background:var(--border);
-    border:1px solid var(--border); margin:40px 0;
-  }
-  .compare-col { padding:36px 32px; }
-  .compare-col.bad { background:var(--bg2); }
-  .compare-col.good { background:#040a04; }
-  .compare-label {
-    font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:3px;
-    margin-bottom:24px;
-  }
-  .compare-col.bad .compare-label { color:var(--off); }
-  .compare-col.good .compare-label { color:var(--green); }
-  .compare-row {
-    padding:12px 0; border-bottom:1px solid var(--border);
-    font-size:0.88rem; line-height:1.6; font-weight:300;
-  }
-  .compare-col.bad .compare-row { color:var(--off); }
-  .compare-col.good .compare-row { color:var(--sub); }
-  .compare-row:last-child { border-bottom:none; }
-
-  /* 최종 선언 */
-  .declaration {
-    padding:160px 48px; text-align:center;
-    position:relative; overflow:hidden;
-    border-bottom:1px solid var(--border);
-  }
-  .declaration::before {
-    content:''; position:absolute; inset:0;
-    background:radial-gradient(ellipse at 50% 50%,rgba(0,255,136,0.04) 0%,transparent 60%);
-    pointer-events:none;
-  }
-  .declaration-inner { position:relative; max-width:700px; margin:0 auto; }
-  .declaration-label {
-    font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:5px;
-    color:var(--off); margin-bottom:48px;
-  }
-  .declaration-text {
-    font-size:clamp(1.4rem,3vw,2.2rem); font-weight:900; line-height:1.7;
-    margin-bottom:48px;
-  }
-  .declaration-text em { color:var(--green); font-style:normal; }
-  .declaration-sub { font-size:0.9rem; color:var(--dim); line-height:1.9; font-weight:300; }
-
-  /* CTA */
-  .cta { padding:100px 48px; text-align:center; }
-  .cta-inner { max-width:600px; margin:0 auto; }
-  .btn {
-    font-family:'IBM Plex Mono',monospace; font-size:0.8rem; letter-spacing:2px;
-    text-decoration:none; display:inline-block; padding:16px 44px; transition:all 0.2s;
-  }
-  .btn-green { background:var(--green); color:#000; font-weight:700; }
-  .btn-green:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,255,136,0.25); }
-  .btn-ghost { border:1px solid #333; color:var(--dim); margin-left:16px; }
-  .btn-ghost:hover { border-color:#666; color:var(--text); }
-
-  /* FOOTER */
-  footer { padding:36px 48px; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
-  .foot-logo { font-family:'IBM Plex Mono',monospace; font-size:0.75rem; letter-spacing:4px; color:var(--off); }
-  .foot-nav { display:flex; gap:28px; }
-  .foot-nav a { font-family:'IBM Plex Mono',monospace; font-size:0.6rem; letter-spacing:1px; color:#222; text-decoration:none; transition:color 0.2s; }
-  .foot-nav a:hover { color:var(--dim); }
-  .foot-copy { font-family:'IBM Plex Mono',monospace; font-size:0.6rem; color:#222; }
-
-
-  /* 햄버거 메뉴 */
-  .nav-hamburger {
-    display:none;
-    flex-direction:column; gap:5px;
-    cursor:pointer; padding:8px;
-  }
-  .nav-hamburger span {
-    width:24px; height:2px;
-    background:var(--green); display:block;
-    transition:all 0.3s;
-  }
-  .nav-mobile {
-    display:none;
-    position:fixed; top:64px; left:0; right:0;
-    background:#000; border-bottom:1px solid var(--border);
-    padding:20px 24px; flex-direction:column; gap:16px;
-    z-index:99;
-  }
-  .nav-mobile.open { display:flex; }
-  .nav-mobile a {
-    font-family:'IBM Plex Mono',monospace; font-size:0.9rem; letter-spacing:2px;
-    color:#ccc; text-decoration:none; padding:8px 0;
-    border-bottom:1px solid var(--border);
-  }
-  .nav-mobile a:hover { color:var(--green); }
-  .nav-mobile .nav-cta {
-    background:var(--green)!important; color:#000!important;
-    padding:12px 24px; font-weight:700!important; text-align:center;
-    border:none;
-  }
-  @keyframes up { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-  .reveal { opacity:0; transform:translateY(28px); transition:opacity 0.7s,transform 0.7s; }
-  .reveal.on { opacity:1; transform:translateY(0); }
-
-  @media(max-width:900px){
-    nav{padding:0 20px;} .nav-menu{display:none;} .nav-hamburger{display:flex;}
-    .hero{grid-template-columns:1fr; padding:40px 20px; gap:24px;}
-    .hero-h1{font-size:clamp(1.6rem,6vw,2.4rem);}
-    .hero-image{display:block;}
-    .section{padding:60px 20px;}
-    .declaration{padding:100px 20px;}
-    .cta{padding:60px 20px;}
-    footer{padding:28px 20px;flex-direction:column;align-items:flex-start;}
-    .compare-grid{grid-template-columns:1fr;}
-    .btn-ghost{margin-left:0;margin-top:12px;}
-  }
-</style>
-<!-- Google Analytics -->
+<title>개발 배경과 철학 — 라이더HUD Auto</title>
+<meta name="description" content="플랫폼은 모든 것을 기록하지만, 라이더에게는 무엇이 남는가. 라이더HUD Auto를 만든 이유와 지키는 원칙 — 계산은 HUD가, 판단은 라이더가.">
+<meta name="theme-color" content="#0A0B0D">
+<link rel="canonical" href="https://riderhud.com/philosophy.html">
+<meta property="og:title" content="개발 배경과 철학 — 라이더HUD Auto">
+<meta property="og:description" content="플랫폼의 데이터가 아닌, 나의 데이터로 일하는 시대. 계산은 HUD가, 판단은 라이더가.">
+<meta property="og:image" content="https://riderhud.com/og-auto.jpg">
+<meta property="og:url" content="https://riderhud.com/philosophy.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<link rel="stylesheet" href="site.css">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JGP9B1M98"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
+  window.dataLayer=window.dataLayer||[];
   function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-4JGP9B1M98');
+  gtag('js',new Date()); gtag('config','G-4JGP9B1M98');
 </script>
+<style>
+.ln{display:block}.nw{white-space:nowrap}
+.doc{max-width:720px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.top{padding-top:56px;padding-bottom:48px;display:flex;flex-direction:column;gap:20px}
+.top h1{margin:0;font-size:clamp(28px,7.4vw,46px);font-weight:800;line-height:1.25;letter-spacing:-0.04em}
+.top .motto{margin:0;font-size:clamp(18px,4.6vw,22px);font-weight:700;color:var(--t2);line-height:1.45}
+.top .motto b{color:var(--t1)}
+.ch{padding-top:48px;padding-bottom:48px;border-top:1px solid var(--edge);display:flex;flex-direction:column;gap:20px}
+.ch-no{font-size:13px;font-weight:700;color:var(--lime);letter-spacing:0.02em}
+.ch h2{margin:0;font-size:clamp(23px,5.8vw,32px);font-weight:800;line-height:1.35;letter-spacing:-0.03em}
+.ch p{margin:0;font-size:17px;line-height:1.75;color:var(--body)}
+.ch p strong{color:var(--t1)}
+.qs{margin:0;padding:20px;list-style:none;display:flex;flex-direction:column;gap:12px}
+.qs li{display:flex;gap:12px;font-size:16px;line-height:1.55;color:var(--t1)}
+.qs li::before{content:"?";flex:none;width:24px;height:24px;border-radius:50%;background:var(--inner);color:var(--lime);font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.rules{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.rule{padding:20px;display:flex;flex-direction:column;gap:8px}
+.rule .n{font-size:13px;font-weight:700;color:var(--lime)}
+.rule h3{margin:0;font-size:18px;font-weight:700;line-height:1.45}
+.rule p{font-size:15px;line-height:1.65}
+.figrow{display:flex;gap:12px;justify-content:center;align-items:flex-start}
+.figrow figure{margin:0;flex:0 1 220px;display:flex;flex-direction:column;gap:8px;align-items:center}
+.figrow img{display:block;width:100%;height:auto;border-radius:16px;border:1px solid var(--edge)}
+.figrow figcaption{font-size:14px;color:var(--t2);text-align:center;line-height:1.5}
+.lines{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.lines li{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.55}
+.lines svg{flex:none;margin-top:2px}
+.quote{margin:0;padding:24px;border-left:3px solid var(--lime);background:var(--lime-tint);border-radius:0 var(--r-small) var(--r-small) 0;font-size:18px;font-weight:700;line-height:1.6;color:var(--t1)}
+.cmp{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--edge);border-radius:var(--r-card);overflow:hidden;font-size:16px;line-height:1.5}
+.cmp th,.cmp td{padding:14px 16px;text-align:left;vertical-align:top;border-top:1px solid var(--edge)}
+.cmp thead th{border-top:0;font-size:14px;font-weight:700;color:var(--t2);background:var(--card)}
+.cmp thead th:last-child{color:var(--lime)}
+.cmp td:first-child{color:var(--t2);width:50%}
+.cmp td:last-child{font-weight:700;background:rgba(163,230,53,.05)}
+.end{padding-top:48px;padding-bottom:64px;border-top:1px solid var(--edge);display:flex;flex-direction:column;gap:20px}
+.end h2{margin:0;font-size:clamp(26px,6.6vw,38px);font-weight:800;line-height:1.3;letter-spacing:-0.035em}
+.end ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:16px;line-height:1.6;color:var(--body)}
+.end li{display:flex;gap:8px}.end li::before{content:"—";flex:none;color:var(--t3)}
+@media (max-width:420px){.ch p{font-size:16px}.cmp{font-size:15px}.cmp th,.cmp td{padding:12px}.quote{font-size:17px;padding:20px}}
+</style>
 </head>
 <body>
-<div style="position:relative;z-index:9999;background:#18200F;border-bottom:1px solid #3A4D25;color:#F5F6F7;font:500 14px/1.6 'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;letter-spacing:-0.01em;word-break:keep-all;padding:10px 16px;text-align:center">라이더HUD 웹앱은 <strong>Auto 정식 출시 3개월 뒤 종료</strong>돼요. 안드로이드라면 <a href="/" style="color:#A3E635;font-weight:700">라이더HUD Auto 보기 ›</a> · <a href="/guide#웹앱-핀" style="color:#A3E635">핀 옮기는 법 ›</a></div>
 
-<div class="auto-strip" style="position:relative;z-index:5;background:#1F2A16;color:#E3E8DF;font:500 14px/1.5 'Noto Sans KR',system-ui,sans-serif;padding:10px 16px;text-align:center;word-break:keep-all;border-bottom:1px solid #3A4D25">라이더HUD 웹앱 · <strong>아이폰 · 브라우저용</strong> &nbsp;·&nbsp; 안드로이드는 <a href="/" style="color:#A3E635;font-weight:700;text-decoration:none">라이더HUD Auto ›</a></div>
-
-<nav>
-  <a class="nav-logo" href="webapp.html">HUD<span> for Riders</span></a>
-  <ul class="nav-menu">
-    <li><a href="philosophy.html" class="active">철학</a></li>
-    <li><a href="webapp.html#features">기능</a></li>
-    <li><a href="roadmap.html">로드맵</a></li>
-    <li><a href="install.html">설치</a></li>
-    <li><a href="install.html" class="nav-cta">앱 열기</a></li>
-  </ul>
-  <div class="nav-hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </div>
+<header class="site-head"><div class="wrap">
+<a href="index.html" class="brand"><span class="brand-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"></path><circle cx="12" cy="11" r="2.2"></circle></svg></span>라이더HUD <span class="lime">Auto</span></a>
+<nav class="site-nav" aria-label="주요 메뉴">
+<a href="index.html#day">배달 하루</a><a href="index.html#price" class="wide-only">요금</a><a href="guide.html">사용법</a>
 </nav>
+</div></header>
 
-<!-- 모바일 메뉴 -->
-<div class="nav-mobile" id="mobileMenu">
-  <a href="philosophy.html">철학</a>
-  <a href="webapp.html#features">기능</a>
-  <a href="roadmap.html">로드맵</a>
-  <a href="install.html">설치</a>
-  <a href="install.html" class="nav-cta">앱 열기</a>
+<main>
+<article>
+<header class="doc top">
+<span class="kicker">개발 배경과 철학</span>
+<h1><span class="ln">플랫폼의 데이터가 아닌,</span><span class="ln"><span class="lime">나의 데이터</span>로 일하는 시대.</span></h1>
+<p class="motto">계산은 <b>HUD</b>가, 판단은 <b>라이더</b>가.</p>
+<p class="lead" style="margin:0">라이더HUD Auto는 플랫폼의 배차를 대신하는 앱이 아닙니다. 플랫폼으로 일하는 라이더가 자기 노동을 이해하고 스스로 판단하도록 돕는 배달 비서입니다. 출발점은 기술이 아니라, 배달 현장에서 직접 겪은 질문이었습니다.</p>
+</header>
+
+<section class="doc ch">
+<span class="ch-no">01&nbsp;· 개발 배경</span>
+<h2><span class="ln">플랫폼은 모든 것을 기록합니다.</span><span class="ln">라이더에게는 무엇이 남나요?</span></h2>
+<p>플랫폼은 배차, 이동 거리, 걸린 시간, 배달료, 운행 패턴을 모아 분석하고, 그 데이터로 배차와 운영을 다듬습니다. 그런데 정작 라이더는 이런 질문에 답할 데이터가 없습니다.</p>
+<ul class="card qs">
+<li>오늘 몇 시간을 일했나?</li>
+<li>실제로 얼마나 달렸나?</li>
+<li>한 건에 시간이 얼마나 들었나?</li>
+<li>받은 배달료는 일한 시간에 비해 괜찮았나?</li>
+<li>배달 뒤 어디서 기다리는 게 나았나?</li>
+</ul>
+<p>라이더는 플랫폼이 보여 주는 만큼의 정보로 일합니다. 라이더HUD는 이 <strong>데이터의 기울기</strong>를 조금이라도 바로잡고, 라이더도 자기 일을 데이터로 이해할 수 있어야 한다는 생각에서 시작했습니다.</p>
+</section>
+
+<section class="doc ch">
+<span class="ch-no">02&nbsp;· 네 가지 원칙</span>
+<h2>나의 데이터를 위한 네 가지</h2>
+<div class="rules">
+<div class="card rule"><span class="n">①</span><h3>보여 주되, 판단을 강요하지 않는다</h3><p>어떤 콜을 받으라거나 거르라고 말하지 않습니다. 배달료, 거리, 걸릴 시간, 시급처럼 판단에 필요한 것을 보여 주고, 결정은 라이더에게 맡깁니다.</p></div>
+<div class="card rule"><span class="n">②</span><h3>플랫폼이 주지 않는 기록을 쌓는다</h3><p>위치 기록으로 실제 달린 거리와 시간, 콜을 기다린 시간, 내가 픽업한 곳을 모읍니다. 배달할수록 쌓이고, 그 기록은 내 폰과 내 손에 남습니다.</p></div>
+<div class="card rule"><span class="n">③</span><h3>복잡한 분석보다 현장에서 바로</h3><p>달리는 중에는 화면을 들여다볼 틈이 없습니다. 최소한의 조작으로, 필요하면 소리로 알려 주는 쪽을 고릅니다. 기술 자랑보다 길 위에서 흔들림 없이 도는 것이 먼저입니다.</p></div>
+<div class="card rule"><span class="n">④</span><h3>라이더의 노동을 광고 상품으로 만들지 않는다</h3><p>배달하는 화면에 광고를 띄우지 않습니다. 대신 서비스 값에 맞는 이용료를 받습니다. 무료만이 라이더를 위한 길은 아닙니다. 오래 고치고 지킬 수 있는 구조도 중요합니다.</p></div>
 </div>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-content" style="position:relative;">
-    <div class="hero-eyebrow">PHILOSOPHY · IDENTITY</div>
-    <h1 class="hero-h1">
-      라이더 HUD는<br>
-      <em>배달 앱이 아닙니다</em>
-    </h1>
-    <p class="hero-desc">
-      배달 플랫폼도, 주문 중개 서비스도, 라이더 통제 시스템도 아닙니다.<br>
-      라이더 자신의 경험과 운행 데이터를 스스로 기록·분석·보존·활용할 수 있게 만드는<br>
-      <strong style="color:#fff">개인형 라이더 운영체제(Personal Rider OS)</strong>입니다.
-    </p>
-  </div>
-  <div class="hero-image">
-    <img src="hero2.webp" alt="라이더 HUD - 라이더 운영체제">
-  </div>
 </section>
 
-<!-- 01 데이터 주권 -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-num reveal">01</div>
-    <h2 class="section-title reveal">라이더의 경험은<br><em>플랫폼의 자산이 아닙니다</em></h2>
-    <div class="section-body reveal">
-      <p>플랫폼은 라이더의 이동 경로, 처리 시간, 수락률, 배차 패턴을 대규모로 축적합니다. 그 데이터로 알고리즘을 고도화하고 배차 전략을 최적화합니다.</p>
-      <p>그러나 그 데이터는 모두 <b>라이더의 노동에서 나온 것</b>입니다. 정작 라이더는 자신의 노동에서 발생한 데이터를 소유하거나 분석하지 못합니다.</p>
-    </div>
-    <div class="highlight-block reveal">
-      <p>라이더의 경험은 플랫폼의 자산이 아닙니다.<br>라이더 자신의 자산입니다.<br>HUD는 <em style="color:var(--green);font-style:normal">데이터 주권</em>을 라이더에게 되돌립니다.</p>
-    </div>
-    <div class="compare-grid reveal">
-      <div class="compare-col bad">
-        <div class="compare-label">플랫폼이 독점하는 것</div>
-        <div class="compare-row">라이더 이동 경로 · 패턴</div>
-        <div class="compare-row">수락률 · 처리 시간</div>
-        <div class="compare-row">지역별 수요 데이터</div>
-        <div class="compare-row">라이더 행동 분석</div>
-        <div class="compare-row">배차 알고리즘</div>
-      </div>
-      <div class="compare-col good">
-        <div class="compare-label">HUD가 라이더에게 돌려주는 것</div>
-        <div class="compare-row">내 동선 · 운행 이력</div>
-        <div class="compare-row">실질 시급 · 공차율</div>
-        <div class="compare-row">내 지역 수익 밀도</div>
-        <div class="compare-row">플랫폼별 실제 효율</div>
-        <div class="compare-row">내 전략 지도</div>
-      </div>
-    </div>
-  </div>
+<section class="doc ch">
+<span class="ch-no">03&nbsp;· 왜 새 앱인가</span>
+<h2><span class="ln">웹앱에서 Auto로,</span><span class="ln">화면을 계속 보지 않아도 되게</span></h2>
+<p>예전 라이더HUD 웹앱은 브라우저 안에서 돌았습니다. 배달 앱으로 넘어가거나 화면을 끄면 음성 안내가 멈추고 기록이 빠졌습니다. 현장에서 쓰는 도구라면 풀어야 할 한계였습니다.</p>
+<p>그래서 안드로이드 앱으로 다시 만든 것이 <strong>라이더HUD Auto</strong>입니다. 앱을 계속 들여다보거나 만지지 않아도, 배달 앱 위에서 계산하고 알려 주고 기록합니다.</p>
+<div class="figrow">
+<figure><img src="g/g-call-coupang.webp" width="720" height="1552" alt="콜 화면 위 환산 시급 카드" loading="lazy"><figcaption>콜이 뜨면, 시급이 보인다</figcaption></figure>
+<figure><img src="g/g-pickup.webp" width="720" height="1560" alt="요일 · 시간대별 픽업 지도" loading="lazy"><figcaption>배달할수록 내 지도가 쌓인다</figcaption></figure>
+</div>
 </section>
 
-<!-- 02 로컬 저장 철학 -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-num reveal">02</div>
-    <h2 class="section-title reveal"><em>개발자조차</em><br>접근하지 못합니다</h2>
-    <div class="section-body reveal">
-      <p>대부분의 서비스는 사용자 데이터를 서버에 축적하고, 그것을 플랫폼 자산으로 만듭니다. HUD는 반대 방향입니다.</p>
-    </div>
-    <div class="phil-list reveal">
-      <div class="phil-item">모든 데이터는 사용자 기기에만 저장됩니다</div>
-      <div class="phil-item">클라우드 강제 업로드 없음 · 중앙 서버 없음</div>
-      <div class="phil-item">사용자 추적 없음 · 데이터 판매 없음</div>
-      <div class="phil-item">AES-256 로컬 암호화 · 오프라인 완전 작동</div>
-    </div>
-    <div class="highlight-block reveal">
-      <p>이것은 단순한 보안 정책이 아닙니다.<br><em style="color:var(--green);font-style:normal">데이터 소유권은 사용자에게 있다</em>는 선언입니다.</p>
-    </div>
-  </div>
+<section class="doc ch">
+<span class="ch-no">04&nbsp;· 넘지 않는 선</span>
+<h2><span class="ln">라이더의 판단권과</span><span class="ln">개인정보를 지킵니다</span></h2>
+<p>라이더HUD는 배달 앱을 대신 조작하는 프로그램이 아닙니다.</p>
+<ul class="lines">
+<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg><span>자동 수락&nbsp;· 자동 거절을 하지 않습니다.</span></li>
+<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg><span>배달 앱의 단추를 대신 누르지 않습니다.</span></li>
+<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg><span>플랫폼 계정과 로그인 정보를 묻지 않습니다.</span></li>
+<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg><span>고객 주소&nbsp;· 연락처&nbsp;· 요청사항을 읽지도 보내지도 않습니다.</span></li>
+<li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg><span>공동현관 메모는 라이더가 직접 쓰고, <span class="nw">내 폰 안에만</span> 암호화해 둡니다. 캡처&nbsp;· 공유가 막혀 있고 서버로 가지 않습니다.</span></li>
+</ul>
+<p class="quote">라이더의 판단을 대신하는 순간, 돕는 도구는 부리는 도구가 됩니다. 라이더HUD는 그 선을 넘지 않습니다.</p>
 </section>
 
-<!-- 03 오버레이 시스템 -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-num reveal">03</div>
-    <h2 class="section-title reveal">배달앱과<br><em>경쟁하지 않습니다</em></h2>
-    <div class="section-body reveal">
-      <p>HUD는 배민, 쿠팡이츠, 바로고, 부릉 같은 플랫폼을 대체하려 하지 않습니다.</p>
-      <p>HUD는 <b>모든 배달 플랫폼 위에서 작동하는 라이더 운영 레이어</b>입니다. 어떤 플랫폼을 사용하든 HUD는 그 위에서 작동합니다.</p>
-    </div>
-    <div class="phil-list reveal">
-      <div class="phil-item">배민을 탈 때도 HUD는 PIN을 안내합니다</div>
-      <div class="phil-item">쿠팡이츠를 탈 때도 HUD는 시급을 계산합니다</div>
-      <div class="phil-item">일반대행을 탈 때도 HUD는 동선을 기록합니다</div>
-      <div class="phil-item">플랫폼이 바뀌어도 데이터는 내 것입니다</div>
-    </div>
-  </div>
+<section class="doc ch">
+<span class="ch-no">05&nbsp;· 광고 대신 이용료</span>
+<h2><span class="ln">라이더가 일하지 않으면</span><span class="ln">부담도 줄어드는 구조</span></h2>
+<p>배달 중에 광고로 화면을 가리거나, 광고 수익을 위해 쓰는 경험을 해치고 싶지 않습니다. 그렇다고 무조건 무료로 하겠다는 뜻은 아닙니다. 계속 고치고 서버를 돌리려면 정당한 수익이 필요합니다.</p>
+<p>그래서 <strong>정산 확인된 건마다 <span class="nw">20원</span></strong>을 받습니다. 많이 타는 달에는 월 정액을 고를 수 있습니다. 이용료는 라이더의 노동에서 생긴 값을 나누는 것이지, 라이더의 데이터를 팔아 얻는 광고 수익이 아닙니다. <a href="index.html#price" class="nw">요금 보기 ›</a></p>
 </section>
 
-<!-- 04 자동화 철학 -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-num reveal">04</div>
-    <h2 class="section-title reveal">자동화의 목적은<br><em>통제가 아닙니다</em></h2>
-    <div class="section-body reveal">
-      <p>하루 10시간 운행하고 만신창이로 귀가한 라이더에게 매일 입력하고 계산하고 분석하라고 요구하는 건 불가능한 일입니다.</p>
-      <p>HUD의 자동화는 <b>라이더의 인지부하를 제거</b>하기 위한 것입니다.</p>
-    </div>
-    <div class="phil-list reveal">
-      <div class="phil-item">버튼 반복 입력을 줄입니다</div>
-      <div class="phil-item">기억에 의존하지 않아도 됩니다</div>
-      <div class="phil-item">수동 정산 없이 자동 계산됩니다</div>
-      <div class="phil-item">기록 누락 없이 자동 저장됩니다</div>
-    </div>
-    <div class="highlight-block reveal">
-      <p>라이더가 <em style="color:var(--green);font-style:normal">운행 자체에 집중</em>할 수 있도록.<br>그것이 HUD 자동화의 유일한 목적입니다.</p>
-    </div>
-  </div>
+<section class="doc ch">
+<span class="ch-no">06&nbsp;· 만들고 싶은 것</span>
+<h2><span class="ln">배달 기록이</span><span class="ln">나의 노동 이력이 되도록</span></h2>
+<table class="cmp">
+<thead><tr><th scope="col">지금까지의 배달</th><th scope="col">라이더HUD와 함께</th></tr></thead>
+<tbody>
+<tr><td>주는 콜을 받는다</td><td>콜 값을 따져 본다</td></tr>
+<tr><td>오늘 수입만 본다</td><td>시급까지 본다</td></tr>
+<tr><td>감으로 기다린다</td><td>기록으로 고른다</td></tr>
+<tr><td>지난 배달은 잊는다</td><td>건마다 쌓인다</td></tr>
+<tr><td>플랫폼의 데이터</td><td>나의 데이터</td></tr>
+</tbody>
+</table>
+<p>많이 타는 것만으로는 더 나은 라이더가 되지 않습니다. 내가 어떻게 일하고 있는지 알고, 무엇이 남고 무엇이 새는지 판단할 수 있어야 합니다. 라이더HUD는 그 판단에 쓰는 도구가 되려 합니다.</p>
 </section>
 
-<!-- 05 기억 확장 장치 -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-num reveal">05</div>
-    <h2 class="section-title reveal">라이더의<br><em>외부 두뇌</em></h2>
-    <div class="section-body reveal">
-      <p>라이더는 매일 수많은 현장 경험을 축적합니다. PIN 위치, 출입 방식, 위험 구간, 단속 위치, 가게 대기 특성, 시간대별 수익 흐름.</p>
-      <p>그러나 대부분은 <b>몸으로만 기억되고 사라집니다.</b> 1년이 지나야 비로소 감이 생깁니다. 그 1년의 시행착오가 너무 큽니다.</p>
-      <p>HUD는 그것을 <b>라이더 자신의 데이터 자산</b>으로 구조화합니다.</p>
-    </div>
-  </div>
+<section class="doc end">
+<span class="kicker">HUD Labs</span>
+<h2><span class="ln">기억하지 말고</span><span class="ln">기록하세요.</span></h2>
+<p class="lead" style="margin:0">HUD Labs는 현장에서 직접 일하며 문제를 찾고, 기술로 답을 만드는 팀입니다. 라이더HUD Auto도 책상에서 상상한 서비스가 아니라 직접 배달하며 느낀 불편에서 나왔습니다. 우리가 만들고 싶은 것은 라이더를 더 많이 일하게 하는 앱이 아니라, 자기 일을 더 잘 이해하고 일하는 방식을 스스로 고르게 돕는 앱입니다.</p>
+<ul>
+<li>플랫폼이 주는 정보에만 기대지 않고 나의 기록을 쌓는다</li>
+<li>감과 경험을 기록과 분석으로 키운다</li>
+<li>기술은 라이더의 판단을 돕되 대신하지 않는다</li>
+<li>광고가 아닌 서비스의 값으로 오래 간다</li>
+</ul>
+<div class="row" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:8px">
+<a class="btn btn-primary" href="https://open.kakao.com/o/gvZXDbmi">커뮤니티 참여하기</a>
+<a class="btn btn-line" href="index.html#day">배달 하루 따라가 보기</a>
+</div>
 </section>
+</article>
+</main>
 
-<!-- 최종 선언 -->
-<section class="declaration">
-  <div class="declaration-inner">
-    <div class="declaration-label reveal">FINAL DECLARATION</div>
-    <div class="declaration-text reveal">
-      라이더의 하루를<br>
-      플랫폼의 데이터가 아닌<br>
-      <em>라이더 자신의 자산으로</em><br>
-      되돌리는 것.
-    </div>
-    <p class="declaration-sub reveal">
-      그것이 Rider HUD의 존재 이유입니다.
-    </p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta">
-  <div class="cta-inner reveal">
-    <a href="install.html" class="btn btn-green">지금 설치하기 →</a>
-    <a href="webapp.html" class="btn btn-ghost">홈으로</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="foot-logo">HUD for Riders</div>
-  <nav class="foot-nav">
-    <a href="philosophy.html">철학</a>
-    <a href="hud.html">HUD</a>
-    <a href="manager.html">Manager</a>
-    <a href="heatmap.html">Heatmap</a>
-    <a href="roadmap.html">Roadmap</a>
-    <a href="install.html">설치</a>
-  </nav>
-  <div class="foot-legal" style="display:flex;gap:20px;align-items:center;flex-wrap:wrap;">
-    <a href="terms.html" style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:#555;text-decoration:none;">이용약관</a>
-    <a href="privacy.html" style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:#555;text-decoration:none;">개인정보처리방침</a>
-    <a href="mailto:smart.tool.kr@gmail.com" style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;color:#555;text-decoration:none;">문의하기</a>
-  </div>
-  <div class="foot-copy">© 2026 Smart Tool Korea · riderhud.kr</div>
-</footer>
-
-<script>
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
-  }, {threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-  // 햄버거 메뉴
-  function toggleMenu() {
-    document.getElementById('mobileMenu').classList.toggle('open');
-  }
-</script>
-<script>
-/* GA 클릭 이벤트 — 오픈채팅 · APK 받기 · 웹앱 열기 · 사용법 */
-document.addEventListener('click',function(e){
-  var a=e.target.closest&&e.target.closest('a'); if(!a||typeof gtag!=='function')return;
-  var h=a.getAttribute('href')||'', ev=null;
-  if(h.indexOf('open.kakao.com')>=0) ev='kakao_open_click';
-  else if(/\.apk(\?|$)/i.test(h)||a.hasAttribute('data-apk')) ev='apk_download';
-  else if(h.indexOf('netlify.app')>=0) ev='webapp_open';
-  else if(/(^|\/)guide(\.html)?(#|$)/.test(h)) ev='guide_open';
-  if(ev) gtag('event',ev,{link_url:h,page_path:location.pathname,link_text:(a.textContent||'').trim().slice(0,40)});
-},true);
-</script>
+<footer class="site-foot"><div class="wrap">
+<div style="display:flex;flex-direction:column;gap:4px"><span>© HUD Labs&nbsp;· Smart Tool Korea</span><a class="old" href="webapp.html">예전 웹앱 (종료 예정) ›</a></div>
+<nav aria-label="바닥 메뉴">
+<a href="https://open.kakao.com/o/gvZXDbmi">커뮤니티</a><a href="mailto:smart.tool.kr@gmail.com">문의</a><a href="guide.html">사용법</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보 처리방침</a>
+</nav>
+</div></footer>
 </body>
 </html>

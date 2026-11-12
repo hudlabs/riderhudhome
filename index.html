@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>라이더HUD Auto — 켜 두기만 하세요. 기록과 정리는 알아서 합니다</title>
-<meta name="description" content="배민 · 쿠팡이츠 콜이 뜨면 시급을 소리로 알려 주고, 수입 · 근무시간 · 달린 길을 자동으로 기록하는 라이더용 실시간 배달비서. 11월 18일 선공개.">
+<title>라이더HUD Auto — 플랫폼의 데이터가 아닌, 나의 데이터로 일하는 시대</title>
+<meta name="description" content="배민 · 쿠팡이츠 콜이 뜨면 시급을 소리로 알려 주고, 수입 · 근무시간 · 달린 길을 자동으로 기록하는 라이더용 실시간 배달비서. 계산은 HUD가, 판단은 라이더가. 11월 18일 선공개.">
 <meta name="theme-color" content="#0A0B0D">
 <link rel="canonical" href="https://riderhud.com/">
-<meta property="og:title" content="라이더HUD Auto — 켜 두기만 하세요">
-<meta property="og:description" content="기록과 정리는 라이더HUD가 알아서 합니다. 배민 · 쿠팡이츠 라이더용 실시간 배달비서 · 출시 준비 중">
+<meta property="og:title" content="라이더HUD Auto — 나의 데이터로 일하는 시대">
+<meta property="og:description" content="계산은 HUD가, 판단은 라이더가. 배민 · 쿠팡이츠 라이더용 실시간 배달비서 · 11월 18일 선공개">
 <meta property="og:image" content="https://riderhud.com/og-auto.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -24,25 +24,115 @@
   gtag('js',new Date()); gtag('config','G-4JGP9B1M98');
 </script>
 <style>
-.hero{padding-top:48px;padding-bottom:72px;display:flex;flex-wrap:wrap;align-items:center;gap:48px}
-.hero-text{flex:999 1 440px;min-width:0;display:flex;flex-direction:column;gap:24px}
-.hero h1{margin:0;font-size:clamp(36px,6vw,58px);font-weight:800;line-height:1.2;letter-spacing:-0.035em}
-.hero h1 .sub{display:block;margin-top:12px;font-size:0.62em;line-height:1.35;color:var(--lime);letter-spacing:-0.03em}
-.hero-shots{flex:1 1 420px;display:flex;justify-content:center;align-items:flex-start;gap:16px}
-.hero-shots figure{margin:0;flex:0 1 210px;display:flex;flex-direction:column;gap:12px;align-items:center}
-.hero-shots figcaption{font-size:14px;color:var(--t2);text-align:center}
+/* 글자 — 제목 줄은 의미 단위로 직접 끊는다(.ln). 숫자 · 단위는 .nw 로 묶는다 */
+.ln{display:block}
+.nw{white-space:nowrap}
 .band{background:var(--bg2);border-top:1px solid var(--edge);border-bottom:1px solid var(--edge)}
-.sec{padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:32px}
-.sec-head{display:flex;flex-direction:column;gap:8px}
-.sec h2{margin:0;font-size:clamp(26px,4vw,36px);font-weight:800}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.feat{padding:24px;display:flex;flex-direction:column;gap:12px}
-.feat h3{margin:0;font-size:19px;font-weight:700}
-.feat p{margin:0;font-size:15px;line-height:1.65;color:var(--body)}
-.loss{padding:24px;display:flex;flex-direction:column;gap:4px}
-.loss .q{font-size:15px;color:var(--body)}
-.loss .v{font-size:28px;font-weight:800;letter-spacing:-0.03em;line-height:1.35}
-.loss .n{font-size:13px;color:var(--t3)}
+.sec{padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;gap:32px}
+.sec-head{display:flex;flex-direction:column;gap:12px;max-width:640px}
+.sec h2{margin:0;font-size:clamp(26px,6.4vw,38px);font-weight:800;line-height:1.3;letter-spacing:-0.03em}
+.sec-head p{margin:0}
+
+/* 첫 화면 */
+.hero{padding-top:48px;padding-bottom:64px;display:flex;flex-wrap:wrap;align-items:center;gap:48px}
+.hero-text{flex:999 1 460px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.hero h1{margin:0;font-size:clamp(26px,7.2vw,54px);font-weight:800;line-height:1.25;letter-spacing:-0.035em}
+.hero .motto{margin:0;font-size:clamp(19px,4.6vw,24px);font-weight:700;line-height:1.4;color:var(--t2);letter-spacing:-0.02em}
+.hero .motto b{color:var(--t1)}
+.hero-shot{flex:1 1 280px;display:flex;justify-content:center}
+.hero-shot .phone{max-width:280px}
+.row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* 일곱 장면 길잡이 */
+.rail{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.rail a{display:flex;flex-direction:column;gap:4px;padding:12px;border:1px solid var(--edge);border-radius:var(--r-small);background:var(--card);text-decoration:none;color:var(--t1);height:100%}
+.rail a:hover{border-color:var(--edge2);color:var(--t1)}
+.rail .n{font-size:13px;font-weight:700;color:var(--lime);font-feature-settings:"tnum" 1}
+.rail .t{font-size:15px;font-weight:700;line-height:1.35}
+.rail .s{font-size:13px;color:var(--t3);line-height:1.4}
+@media (max-width:880px){.rail{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (max-width:560px){.rail{grid-template-columns:repeat(4,minmax(0,1fr))}.rail .s{display:none}.rail a{padding:12px 8px;align-items:center;text-align:center}.rail .t{font-size:14px}}
+
+/* 장면 머리 */
+.step{display:flex;flex-direction:column;gap:24px;scroll-margin-top:76px}
+.step-head{display:flex;flex-direction:column;gap:8px;max-width:640px}
+.step-no{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;color:var(--t2)}
+.step-no b{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--inner);border:1px solid var(--edge2);color:var(--t1);font-size:13px;font-feature-settings:"tnum" 1}
+.step-head h3{margin:0;font-size:clamp(21px,5vw,28px);font-weight:800;line-height:1.35;letter-spacing:-0.025em}
+.step-head p{margin:0;font-size:16px;line-height:1.65;color:var(--body)}
+
+/* 포스터 */
+.poster{--ac:#A3E635;--glow:rgba(163,230,53,.16);position:relative;overflow:hidden;border-radius:24px;border:1px solid var(--edge);
+  background:radial-gradient(90% 70% at 85% 15%,var(--glow),transparent 65%),radial-gradient(60% 50% at 0% 100%,var(--glow),transparent 70%),var(--card);
+  padding:32px 20px;display:grid;grid-template-columns:minmax(0,1fr);gap:32px;align-items:center}
+.poster.mint{--ac:#3DD6C0;--glow:rgba(61,214,192,.15)}
+.poster.purple{--ac:#B69CFF;--glow:rgba(109,40,217,.26)}
+.poster.blue{--ac:#60A5FA;--glow:rgba(96,165,250,.15)}
+.poster-text{display:flex;flex-direction:column;gap:20px;min-width:0}
+.poster h3{margin:0;font-size:clamp(27px,7.4vw,46px);font-weight:800;line-height:1.25;letter-spacing:-0.04em}
+.poster h3 .ac{color:var(--ac)}
+.poster .say{margin:0;font-size:17px;line-height:1.65;color:var(--body);max-width:30em}
+.legend{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.legend li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.55;color:var(--body)}
+.legend strong{color:var(--t1);font-weight:700}
+.mk{flex:none;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--ac);color:#0A0B0D;font-size:14px;font-weight:800;font-feature-settings:"tnum" 1}
+.poster-art{display:flex;justify-content:center;align-items:flex-start;gap:12px;min-width:0}
+.poster-art .phone{position:relative;max-width:300px;box-shadow:0 24px 48px rgba(0,0,0,.45)}
+.poster-art .phone .mk{position:absolute;transform:translate(-50%,-50%);box-shadow:0 0 0 4px rgba(10,11,13,.55)}
+.poster-art.two .phone{max-width:240px}
+.poster-art.two .phone:last-child{margin-top:48px}
+@media (min-width:880px){
+  .poster{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);padding:56px 48px;gap:48px}
+  .poster.flip .poster-text{order:2}
+}
+@media (max-width:560px){.poster-art.two .phone{max-width:260px}.poster-art.two .phone:last-child{display:none}}
+
+/* 메모장 포스터 */
+.locks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.lock{display:flex;align-items:center;gap:8px;padding:12px;border-radius:var(--r-small);background:rgba(109,40,217,.16);border:1px solid #3B2A63;font-size:15px;font-weight:700;color:var(--t1);line-height:1.3}
+.lock svg{flex:none}
+.small-facts{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px;font-size:14px;color:var(--t2);line-height:1.55}
+.small-facts li::before{content:"· ";color:var(--t3)}
+.memo-stack{position:relative;display:flex;flex-direction:column;align-items:center;gap:16px;width:100%;max-width:340px}
+.memo-card{width:100%;max-width:320px;background:#181A1F;border:2px solid var(--lime);border-radius:20px;padding:16px;box-shadow:0 20px 40px rgba(0,0,0,.5);display:flex;flex-direction:column;gap:4px}
+.memo-card .nm{font-size:17px;font-weight:700}
+.memo-card .no{font-size:34px;font-weight:800;color:var(--lime);letter-spacing:0.12em;font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;line-height:1.25}
+.memo-card .mm{font-size:15px;color:var(--t2)}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--t2)}
+.secure-badge{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);white-space:nowrap;background:rgba(10,11,13,.86);border:1px solid #3B2A63;color:var(--purple-text);font-size:13px;font-weight:700;border-radius:var(--r-pill);padding:4px 12px}
+
+/* 작은 카드 */
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.mini{padding:20px;display:flex;flex-direction:column;gap:12px}
+.mini h4{margin:0;font-size:17px;font-weight:700;line-height:1.4}
+.mini p{margin:0;font-size:15px;line-height:1.6;color:var(--body)}
+.mini img{display:block;width:100%;height:auto;border-radius:var(--r-small);border:1px solid var(--edge)}
+.mini .pic{margin-top:auto}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;align-items:start}
+.stats-grid figure{margin:0;display:flex;flex-direction:column;gap:8px}
+.stats-grid img{display:block;width:100%;height:auto;border-radius:var(--r-small);border:1px solid var(--edge)}
+.stats-grid figcaption{font-size:14px;color:var(--t2);line-height:1.5}
+
+/* 비교표 */
+.cmp{width:100%;max-width:760px;border-collapse:separate;border-spacing:0;border:1px solid var(--edge);border-radius:var(--r-card);overflow:hidden;font-size:16px;line-height:1.5}
+.cmp th,.cmp td{padding:16px;text-align:left;vertical-align:top;border-top:1px solid var(--edge)}
+.cmp thead th{border-top:0;font-size:14px;font-weight:700;color:var(--t2);background:var(--card)}
+.cmp thead th:last-child{color:var(--lime)}
+.cmp td:first-child{color:var(--t2);width:50%}
+.cmp td:last-child{color:var(--t1);font-weight:700;background:rgba(163,230,53,.05)}
+@media (max-width:420px){.cmp{font-size:15px}.cmp th,.cmp td{padding:12px}}
+
+/* 지키는 것 */
+.promise{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px 32px}
+.promise li{display:flex;gap:12px;align-items:flex-start}
+.promise .tick{flex:none;margin-top:3px}
+.promise strong{font-size:17px;line-height:1.45}
+.promise p{margin:4px 0 0;font-size:15px;color:var(--body)}
+.reads{padding:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px 32px}
+.reads h4{margin:0 0 4px;font-size:15px;font-weight:700}
+.reads p{margin:0;font-size:15px;line-height:1.6;color:var(--body)}
+
+/* 요금 */
 .price{padding:24px;display:flex;flex-direction:column;gap:16px;max-width:640px}
 .price-cells{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .price-cell{background:var(--inner);border-radius:var(--r-small);padding:16px}
@@ -54,15 +144,30 @@
 .free div{display:flex;justify-content:space-between;gap:12px}
 .free span:first-child{color:var(--t2)}
 .free span:last-child{white-space:nowrap}
-.promise{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px 32px}
-.promise li{display:flex;gap:12px;align-items:flex-start}
-.promise .tick{flex:none;margin-top:3px}
-.promise strong{font-size:17px}
-.promise p{margin:4px 0 0;font-size:15px;color:var(--body)}
+
+/* 자주 묻는 질문 */
+.faq{display:flex;flex-direction:column;border-top:1px solid var(--edge);max-width:760px}
+.faq details{border-bottom:1px solid var(--edge)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-size:17px;font-weight:700;line-height:1.45}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;font-size:24px;font-weight:400;color:var(--lime);line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq .a{padding:0 32px 20px 0;font-size:15px;line-height:1.7;color:var(--body)}
+.faq .a p{margin:0}.faq .a p+p{margin-top:8px}
+
+/* 만든 사람 · 맺음 */
+.maker{flex-direction:row;flex-wrap:wrap;align-items:center}
+.maker-text{flex:999 1 420px;min-width:0;display:flex;flex-direction:column;gap:16px}
 .cta{background:var(--lime-tint);border-top:1px solid var(--lime-edge)}
 .cta .wrap{padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
-.cta h2{margin:0;font-size:clamp(24px,4vw,34px);font-weight:800}
-@media (max-width:420px){.hero-shots figure{flex-basis:46%}.price-cell .v{font-size:24px}.price{padding:20px 16px}.free div{flex-direction:column;gap:0}.free div+div{margin-top:4px}.free span:first-child{font-size:13px}}
+.cta h2{margin:0;font-size:clamp(24px,6vw,34px);font-weight:800;line-height:1.35}
+
+@media (max-width:420px){
+  .sec{padding-top:48px;padding-bottom:48px}
+  .price-cell .v{font-size:24px}.price{padding:20px 16px}
+  .free div{flex-direction:column;gap:0}.free div+div{margin-top:4px}.free span:first-child{font-size:13px}
+  .locks .lock{font-size:14px;padding:12px 8px}
+}
 </style>
 </head>
 <body>
@@ -70,64 +175,221 @@
 <header class="site-head"><div class="wrap">
 <a href="#top" class="brand"><span class="brand-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"></path><circle cx="12" cy="11" r="2.2"></circle></svg></span>라이더HUD <span class="lime">Auto</span></a>
 <nav class="site-nav" aria-label="주요 메뉴">
-<a href="#features" class="wide-only">기능</a><a href="#price">요금</a><a href="#promise" class="wide-only">지키는 것</a><a href="auto-guide.html">설치 안내</a><a href="guide.html">사용법</a>
+<a href="#day">배달 하루</a><a href="#memo" class="wide-only">메모장 보안</a><a href="#price">요금</a><a href="philosophy.html" class="wide-only">철학</a><a href="guide.html">사용법</a>
 </nav>
 </div></header>
 
 <main>
 <section id="top" class="wrap hero">
 <div class="hero-text">
-<div style="display:flex;flex-wrap:wrap;gap:8px"><span class="chip chip-lime">11월 18일 선공개</span><span class="chip">실시간 배달비서</span></div>
-<h1>켜 두기만 하세요.<span class="sub">기록과 정리는<br>라이더HUD가 알아서 합니다.</span></h1>
-<p class="lead" style="margin:0;max-width:32em">나갈 때 [시작] 한 번이면 끝. 배민 · 쿠팡이츠 콜이 뜨면 시급을 소리로 알려 주고, 수입 · 근무시간 · 달린 길은 따로 누르지 않아도 쌓입니다.</p>
-<div style="display:flex;flex-wrap:wrap;gap:12px">
+<div class="row" style="gap:8px"><span class="chip chip-lime">11월 18일 선공개</span><span class="chip">실시간 배달비서</span></div>
+<h1><span class="ln">플랫폼의 데이터가 아닌,</span><span class="ln"><span class="lime">나의 데이터</span>로 일하는 시대.</span></h1>
+<p class="motto">계산은 <b>HUD</b>가, 판단은 <b>라이더</b>가.</p>
+<p class="lead" style="margin:0;max-width:30em">콜이 뜨면 시급을 소리로 알려 주고, 수입&nbsp;· 근무시간&nbsp;· 달린 길은 누르지 않아도 쌓입니다. 배달을 대신하는 앱이 아니라, 내 일을 나에게 돌려주는 앱입니다.</p>
+<div class="row">
 <a class="btn btn-primary" href="https://open.kakao.com/o/gvZXDbmi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"></path></svg>커뮤니티에서 소식 받기</a>
-<a class="btn btn-line" href="auto-guide.html">설치 안내</a>
+<a class="btn btn-line" href="#day">배달 하루 따라가 보기</a>
 </div>
-<p class="dim" style="margin:0;font-size:14px">안드로이드 · 배민커넥트 · 쿠팡이츠 배달 파트너 앱과 함께 씁니다</p>
+<p class="dim" style="margin:0;font-size:14px">안드로이드&nbsp;· 배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱과 함께 씁니다</p>
 </div>
-<div class="hero-shots">
-<figure><div class="phone"><img src="g/g-call-coupang.webp" width="720" height="1552" alt="쿠팡이츠 콜 제안 화면 위에 뜬 라이더HUD 카드 — 시급 21,309원, 계산 18.8분"></div><figcaption>콜이 뜨면 위에 <strong style="color:var(--t1)">시급</strong></figcaption></figure>
-<figure style="margin-top:48px"><div class="phone"><img src="g/g-pickup.webp" width="720" height="1560" alt="요일과 시간대별로 픽업한 매장이 숫자로 모인 픽업 지도" loading="lazy"></div><figcaption>내가 픽업한 곳을 <strong style="color:var(--t1)">지도로</strong></figcaption></figure>
+<div class="hero-shot"><div class="phone"><img src="g/g-call-coupang.webp" width="720" height="1552" alt="쿠팡이츠 콜 화면 위에 뜬 라이더HUD 카드 — 환산 시급 21,309원, 계산 18.8분"></div></div>
+</section>
+
+<section id="day" class="band"><div class="wrap sec">
+<div class="sec-head"><span class="kicker">배달 하루를 따라가 보세요</span><h2><span class="ln">출근부터 돌아보기까지,</span><span class="ln">일곱 장면</span></h2>
+<p class="lead">라이더의 하루 순서대로 라이더HUD가 하는 일을 보여 드립니다. 사진은 모두 실제 앱 화면입니다.</p></div>
+<ol class="rail">
+<li><a href="#s1"><span class="n">01</span><span class="t">출근</span><span class="s">시작 한 번</span></a></li>
+<li><a href="#s2"><span class="n">02</span><span class="t">기다림</span><span class="s">어디서 기다릴까</span></a></li>
+<li><a href="#s3"><span class="n">03</span><span class="t">콜</span><span class="s">잡을까 말까</span></a></li>
+<li><a href="#s4"><span class="n">04</span><span class="t">도착</span><span class="s">공동현관 앞</span></a></li>
+<li><a href="#s5"><span class="n">05</span><span class="t">완료</span><span class="s">다음 콜로</span></a></li>
+<li><a href="#s6"><span class="n">06</span><span class="t">퇴근</span><span class="s">오늘 얼마</span></a></li>
+<li><a href="#s7"><span class="n">07</span><span class="t">돌아보기</span><span class="s">한 주&nbsp;· 한 달</span></a></li>
+</ol>
+</div></section>
+
+<div class="wrap sec" style="gap:72px">
+
+<!-- 01 출근 -->
+<section id="s1" class="step">
+<div class="step-head"><span class="step-no"><b>01</b>출근</span>
+<h3>[시작] 한 번이면 끝입니다</h3>
+<p>근무를 켜면 배민&nbsp;· 쿠팡 화면을 함께 읽기 시작해요. 근무시간도 이때부터 저절로 셉니다. 따로 적을 것이 없어요.</p></div>
+<div class="minis">
+<article class="card mini"><h4>근무 꺼짐 → 켜짐</h4><p>맨 위 줄 하나에 지금 근무시간&nbsp;· 연결된 앱이 보여요. 쉬는 시간은 [휴식]으로 빼 둡니다.</p>
+<img class="pic" src="g/g-header-on.webp" width="720" height="213" alt="근무 중 머리줄 — 근무시간, 배민 · 쿠팡 연결 표시, 휴식 · 종료 단추" loading="lazy"></article>
+<article class="card mini"><h4>오늘 목표를 정해 두면</h4><p>「몇 시까지 얼마」를 정하면 배달비서가 지금 속도로 몇 시에 닿는지 계속 알려 줘요.</p>
+<img class="pic" src="g/g-home-off.webp" width="720" height="1560" style="aspect-ratio:720/330;object-fit:cover;object-position:0 25%" alt="지도 위 배달비서 카드 — 현재 수입과 완료 건수" loading="lazy"></article>
 </div>
 </section>
 
-<section id="features" class="band"><div class="wrap sec">
-<div class="sec-head"><span class="kicker">무엇을 하나요</span><h2>내 운행을 나만 보는 네 가지</h2></div>
-<div class="grid">
-<article class="card feat"><span class="disc disc-lime"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg></span>
-<h3>나만의 배달비서</h3><p>콜이 뜨는 순간 금액 · 거리 · 묶음을 시급으로 바꿔 소리로 알려 줘요. 「몇 시까지 얼마」를 정해 두면 지금 속도로 몇 시에 닿는지 계속 보여 줍니다.</p></article>
-<article class="card feat"><span class="disc disc-mint"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3DD6C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"></path><path d="M9 4v14M15 6v14"></path></svg></span>
-<h3>나만의 배달지도</h3><p>내가 픽업한 매장을 요일 · 시간대별로 모아 봐요. 저장한 공동현관 · 후면 단속카메라 자리를 지나면 소리로 알려 주고, 하루 운행은 리플레이로 다시 봐요.</p></article>
-<article class="card feat"><span class="disc disc-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg></span>
-<h3>나만의 운행일지</h3><p>근무시간 · 콜 대기 시간 · 배달 걸린 시간이 저절로 쌓여요. 사진 찍을 때 주문번호 끝 4자리를 읽어 줘서 오배송을 막아요.</p></article>
-<article class="card feat"><span class="disc disc-purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B69CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"></path></svg></span>
-<h3>나만의 수입 통계</h3><p>배민 · 쿠팡 수입을 한곳에서 보고, 정산 화면과 맞춰 봐요. 시간대별 시급 · 지출 · 남는 돈까지.</p></article>
+<!-- 02 기다림 · 포스터 -->
+<section id="s2" class="step">
+<div class="step-head"><span class="step-no"><b>02</b>기다림</span></div>
+<div class="poster mint">
+<div class="poster-text">
+<h3><span class="ln">어디서 기다릴까?</span><span class="ln"><span class="ac">내 기록</span>이 답합니다.</span></h3>
+<p class="say">내가 픽업한 매장이 지도에 쌓여요. 요일과 시간대를 고르면 그때 내가 어디서 콜을 잡았는지 숫자로 모여 보입니다. 플랫폼의 추천이 아니라 내가 달린 기록이에요.</p>
+<ol class="legend">
+<li><span class="mk">1</span><span><strong>요일</strong>&nbsp;· 월요일 저녁과 토요일 저녁은 다릅니다</span></li>
+<li><span class="mk">2</span><span><strong>시간대</strong>&nbsp;· 아침부터 새벽까지 일곱 칸</span></li>
+<li><span class="mk">3</span><span><strong>모인 숫자</strong>&nbsp;· 그 근처에서 픽업한 건수</span></li>
+</ol>
 </div>
+<div class="poster-art"><div class="phone"><img src="g/g-pickup.webp" width="720" height="1560" alt="픽업 지도 — 지난 6주 454건, 요일 · 시간대 고르기, 매장 49곳 · 픽업 97건" loading="lazy">
+<span class="mk" style="left:4.5%;top:27.2%">1</span><span class="mk" style="left:4.5%;top:32%">2</span><span class="mk" style="left:67%;top:40.5%">3</span></div></div>
+</div>
+</section>
+
+<!-- 03 콜 · 포스터 -->
+<section id="s3" class="step">
+<div class="step-head"><span class="step-no"><b>03</b>콜</span></div>
+<div class="poster flip">
+<div class="poster-text">
+<h3><span class="ln">콜이 뜨면,</span><span class="ln"><span class="ac">시급</span>이 보인다.</span></h3>
+<p class="say">배달료만 보지 않아요. 거리&nbsp;· 묶음&nbsp;· 걸릴 시간을 함께 계산해서 「이 콜은 시간당 얼마인가」를 배달 앱 위에 띄우고 소리로도 알려 줍니다. 화면을 오래 볼 필요가 없어요.</p>
+<ol class="legend">
+<li><span class="mk">1</span><span><strong>환산 시급</strong>&nbsp;· 이 콜 하나를 시간당으로 바꾼 값</span></li>
+<li><span class="mk">2</span><span><strong>계산 시간</strong>&nbsp;· 픽업부터 전달까지 걸릴 분과 포인트</span></li>
+</ol>
+<p class="dim" style="margin:0;font-size:14px">받을지 말지는 라이더가 정합니다. 대신 누르지 않아요.</p>
+</div>
+<div class="poster-art two">
+<div class="phone"><img src="g/g-call-coupang.webp" width="720" height="1552" alt="쿠팡이츠 콜 위 카드 — 환산 시급 21,309원 · 계산 18.8분 · 10P" loading="lazy">
+<span class="mk" style="left:80%;top:9%">1</span><span class="mk" style="left:26%;top:12.4%">2</span></div>
+<div class="phone"><img src="g/g-call-baemin.webp" width="720" height="1555" alt="배민 콜 위 카드 — 환산 시급 11,330원 · 계산 11.7분 · 거리 범위 · 9P" loading="lazy"></div>
+</div>
+</div>
+</section>
+
+<!-- 04 도착 · 메모장 포스터 -->
+<section id="s4" class="step">
+<div class="step-head"><span class="step-no"><b>04</b>도착</span></div>
+<div id="memo" class="poster purple" style="scroll-margin-top:76px">
+<div class="poster-text">
+<h3><span class="ln"><span class="ac">내가 직접 쓰는</span> 메모장.</span><span class="ln">가까이 가면 읽어 줄 뿐.</span></h3>
+<p class="say">공동현관 번호는 배달 앱에서 읽어 오지 않습니다. 라이더가 직접 적어 둔 메모를, 그 건물 가까이 갔을 때 소리와 카드로 꺼내 줄 뿐이에요. 내 메모는 내 폰 밖으로 나가지 않습니다.</p>
+<div class="locks">
+<span class="lock"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B69CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>암호화 저장</span>
+<span class="lock"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B69CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"></path><path d="M5 19L19 5"></path></svg>캡처 불가</span>
+<span class="lock"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B69CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="2.5"></circle><circle cx="6" cy="12" r="2.5"></circle><circle cx="18" cy="19" r="2.5"></circle><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"></path><path d="M3 21L21 3"></path></svg>공유 불가</span>
+<span class="lock"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B69CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4 4 0 0 1-.6-8A6 6 0 0 1 18 9a4 4 0 0 1 0 9"></path><path d="M3 21L21 3"></path></svg>서버로 안 감</span>
+</div>
+<ul class="small-facts">
+<li>폰 안 금고(안드로이드 키스토어)의 <span class="nw">AES-256</span> 키로 잠가 저장</li>
+<li>핀 목록은 지문&nbsp;· 얼굴&nbsp;· 폰 잠금으로 확인한 뒤 열림</li>
+<li>지도에는 점만, 알림과 잠금 화면에는 번호가 나오지 않음</li>
+<li>기기를 옮길 때만 내가 직접 백업 파일을 만들 수 있고, 「메모 빼고 보내기」도 고를 수 있음</li>
+</ul>
+</div>
+<div class="poster-art"><div class="memo-stack">
+<div class="phone" style="max-width:280px"><img src="g/g-pin-list.webp" width="720" height="1170" alt="핀 목록 — 연습용 글씨로 바꾼 장소 이름과 메모, 가까운 순" loading="lazy"><span class="secure-badge">배포판에서는 캡처되지 않는 화면</span></div>
+<div class="memo-card" aria-label="가까이 가면 배달 앱 위에 뜨는 메모 카드 예시"><span class="nm">연습 아파트</span><span class="no">* 1 2 3 4 #</span><span class="mm">정문 오른쪽&nbsp;· 연습용 예시</span></div>
+<span class="tag">가까이 가면 배달 앱 위에 뜨는 메모 카드</span>
+</div></div>
+</div>
+<div class="minis">
+<article class="card mini"><h4>사진 찍을 때 주문번호 확인</h4><p>배달 완료 사진을 찍을 때 주문번호 끝 4자리를 읽어 줘요. 다른 집 앞에 두는 실수를 막습니다.</p></article>
+<article class="card mini"><h4>내가 저장한 후면 카메라 자리</h4><p>직접 저장한 후면 단속카메라 자리를 지나면 「안내. 후면 카메라」라고만 알려 줍니다.</p></article>
+</div>
+</section>
+
+<!-- 05 완료 -->
+<section id="s5" class="step">
+<div class="step-head"><span class="step-no"><b>05</b>완료</span>
+<h3>누르지 않아도 기록됩니다</h3>
+<p>배달을 마치면 건마다 금액&nbsp;· 거리&nbsp;· 실제 걸린 시간이 쌓여요. 미션과 포인트도 함께 모아 둡니다. 정산 화면을 한 번 열면 그날 금액을 맞춰 봐요.</p></div>
+<div class="minis">
+<article class="card mini"><h4>포인트&nbsp;· 미션</h4><p>배민 포인트가 2주 동안 얼마나 쌓였는지 한 줄로 봐요.</p>
+<img class="pic" src="g/g-stats-points.webp" width="720" height="254" alt="배민 포인트 누적" loading="lazy"></article>
+<article class="card mini"><h4>콜 기다린 시간</h4><p>배달을 마치고 다음 콜까지 기다린 시간도 따로 셉니다.</p>
+<img class="pic" src="g/g-stats-wait.webp" width="720" height="333" alt="콜 대기 시간 통계" loading="lazy"></article>
+</div>
+</section>
+
+<!-- 06 퇴근 · 포스터 -->
+<section id="s6" class="step">
+<div class="step-head"><span class="step-no"><b>06</b>퇴근</span></div>
+<div class="poster blue">
+<div class="poster-text">
+<h3><span class="ln">오늘 얼마 벌었나,</span><span class="ln"><span class="ac">시급</span>까지 한눈에.</span></h3>
+<p class="say">배민과 쿠팡을 합친 오늘 수입, 근무시간, 시급, 달린 거리가 한 장에 모여요. 건마다 실제로 걸린 시간까지 남으니 어떤 콜이 좋았는지 다시 볼 수 있습니다.</p>
+<ol class="legend">
+<li><span class="mk">1</span><span><strong>정산 확인</strong>&nbsp;· 배달 앱 정산 화면과 맞춘 금액</span></li>
+<li><span class="mk">2</span><span><strong>건수&nbsp;· 근무&nbsp;· 시급&nbsp;· 거리</strong>&nbsp;· 오늘 하루 한 줄</span></li>
+<li><span class="mk">3</span><span><strong>실제 걸린 시간</strong>&nbsp;· 콜마다 몇 분 걸렸는지</span></li>
+</ol>
+</div>
+<div class="poster-art"><div class="phone"><img src="g/g-day-top.webp" width="720" height="1462" alt="그날 상세 — 107,400원 정산 확인, 20건 · 근무 7시간 9분 · 시급 14,993원 · 101km, 배민 건별 표" loading="lazy">
+<span class="mk" style="left:72%;top:12.3%">1</span><span class="mk" style="left:91%;top:17.6%">2</span><span class="mk" style="left:92%;top:49.5%">3</span></div></div>
+</div>
+<div class="minis">
+<article class="card mini"><h4>지출을 빼면 실수입</h4><p>기름값&nbsp;· 밥값을 적으면 실수입이 바로 나오고, 시간별 수입 막대로 언제 잘 벌었는지 봐요.</p>
+<img class="pic" src="g/g-money-day.webp" width="720" height="1093" alt="지출 14,349원, 실수입 93,051원, 시간별 수입 막대" loading="lazy"></article>
+<article class="card mini"><h4>오늘을 남기기</h4><p>오늘 수입 카드를 사진으로 저장하거나 보낼 수 있어요. 하루 운행은 리플레이로 다시 봅니다.</p>
+<img class="pic" src="g/g-share.webp" width="720" height="1347" style="aspect-ratio:720/860;object-fit:cover;object-position:top" alt="공유 카드 — 수입, 근무, 시급, 건수, 주행" loading="lazy"></article>
+</div>
+</section>
+
+<!-- 07 돌아보기 -->
+<section id="s7" class="step">
+<div class="step-head"><span class="step-no"><b>07</b>돌아보기</span>
+<h3>한 주, 한 달의 내 일이 보입니다</h3>
+<p>요일별&nbsp;· 시간대별로 언제 잘 벌었는지, 묶음 배달이 정말 이득이었는지 내 기록으로 답해요. 정비&nbsp;· 보험도 함께 챙기고, 내 기록은 파일로 내보낼 수 있습니다.</p></div>
+<div class="stats-grid">
+<figure><img src="g/g-stats-dow.webp" width="720" height="780" alt="요일 · 시간대 시급 비교" loading="lazy"><figcaption>요일 × 시간대&nbsp;· 언제 잘 벌었나</figcaption></figure>
+<figure><img src="g/g-stats-slot.webp" width="720" height="376" alt="이번 달 시간대 시급" loading="lazy"><figcaption>시간대 시급&nbsp;· 평소와 비교</figcaption></figure>
+<figure><img src="g/g-stats-bundle.webp" width="720" height="485" alt="단건과 묶음 시급 비교" loading="lazy"><figcaption>단건 vs 묶음&nbsp;· 정말 이득이었나</figcaption></figure>
+<figure><img src="g/g-stats-maint.webp" width="720" height="625" alt="정비 알림" loading="lazy"><figcaption>정비&nbsp;· 엔진오일&nbsp;· 타이어 주기</figcaption></figure>
+<figure><img src="g/g-stats-insure.webp" width="720" height="580" alt="배달 보험 가입 확인과 시간제 환산" loading="lazy"><figcaption>보험&nbsp;· 배달한 시간을 시간제로 환산</figcaption></figure>
+<figure><img src="g/g-settings-backup.webp" width="720" height="810" alt="전체 백업 내보내기, 근무 기록 내보내기" loading="lazy"><figcaption>백업&nbsp;· 근무 기록 내보내기</figcaption></figure>
+</div>
+</section>
+
+</div>
+
+<section class="band"><div class="wrap sec">
+<div class="sec-head"><span class="kicker">무엇이 달라지나요</span><h2><span class="ln">지나간 배달이</span><span class="ln">내 기록으로 남습니다</span></h2></div>
+<table class="cmp">
+<thead><tr><th scope="col">지금까지의 배달</th><th scope="col">라이더HUD와 함께</th></tr></thead>
+<tbody>
+<tr><td>주는 콜을 받는다</td><td>콜 값을 따져 본다</td></tr>
+<tr><td>오늘 수입만 본다</td><td>시급까지 본다</td></tr>
+<tr><td>감으로 기다린다</td><td>기록으로 고른다</td></tr>
+<tr><td>지난 배달은 잊는다</td><td>건마다 쌓인다</td></tr>
+<tr><td>플랫폼의 데이터</td><td>나의 데이터</td></tr>
+</tbody>
+</table>
 </div></section>
 
-<section class="wrap sec">
-<div class="sec-head"><span class="kicker">왜 쓰나요</span><h2>한 번만 막아도 큰 것들</h2><p class="muted" style="margin:0">라이더라면 이미 아는 손해들이에요. 금액은 예시입니다.</p></div>
-<div class="grid">
-<div class="card loss"><span class="q">손해 보는 콜 하나를 거르면</span><strong class="v lime">약 3~4천 원</strong><span class="n">하루 한 번, 15분쯤 · 시급 1.5만 원 기준</span></div>
-<div class="card loss"><span class="q">오배달 한 건을 막으면</span><strong class="v lime">3만 원 이상</strong><span class="n">음식값 물어 주기 · 다시 가는 시간</span></div>
-<div class="card loss"><span class="q">아는 건물의 공동현관 · 출입 메모</span><strong class="v time">한 곳에 30초씩</strong><span class="n">문 앞에서 찾는 시간</span></div>
-<div class="card loss"><span class="q">후면 단속카메라 한 번을 피하면</span><strong class="v lime">6만 원 이상</strong><span class="n">내가 저장한 카메라 자리 알림</span></div>
+<section id="promise" class="wrap sec">
+<div class="sec-head"><span class="kicker">넘지 않는 선</span><h2>계산은 HUD가, <span class="lime nw">판단은 라이더가.</span></h2>
+<p class="lead">라이더의 판단을 대신하는 순간, 돕는 도구는 부리는 도구가 됩니다. 그래서 이 선을 지킵니다.</p></div>
+<ul class="promise">
+<li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="tick"><path d="M5 12l5 5L20 7"></path></svg><div><strong>자동 수락&nbsp;· 거절 없음</strong><p>콜을 받을지는 언제나 라이더가 정해요.</p></div></li>
+<li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="tick"><path d="M5 12l5 5L20 7"></path></svg><div><strong>대신 누르지 않음</strong><p>배달 앱 화면에 보이는 글자만 읽어요.</p></div></li>
+<li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="tick"><path d="M5 12l5 5L20 7"></path></svg><div><strong>플랫폼 계정을 묻지 않음</strong><p>배민&nbsp;· 쿠팡에 대신 로그인하지 않아요.</p></div></li>
+<li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="tick"><path d="M5 12l5 5L20 7"></path></svg><div><strong>광고 없음</strong><p>배달하는 화면에 광고를 띄우지 않아요.</p></div></li>
+</ul>
+<div class="card reads">
+<div><h4 class="lime">읽는 것</h4><p>콜 화면의 배달료&nbsp;· 거리&nbsp;· 포인트&nbsp;· 조리 상태, 정산 화면의 금액과 건수</p></div>
+<div><h4 style="color:var(--t2)">읽지도 보내지도 않는 것</h4><p>고객 주소&nbsp;· 연락처&nbsp;· 요청사항&nbsp;· 메뉴&nbsp;· 주문 금액</p></div>
 </div>
 </section>
 
 <section id="price" class="band"><div class="wrap sec">
 <div class="sec-head"><span class="kicker">요금</span><h2>탄 만큼 내거나, 한 달에 한 번</h2>
-<p class="lead" style="margin:0;max-width:34em">하루 330원으로 내 기록을 내가 갖고, 더 버는 데 씁니다. 대기배달 하나만 더 잡아도 열 배예요.</p></div>
+<p class="lead">광고 대신 이용료를 받습니다. 건당 요금은 탄 만큼만 내고, 월 정액은 하루 <span class="nw">330원</span>꼴이에요. 대기배달 하나만 더 잡아도 열 배입니다.</p></div>
 <div class="card price">
-<span class="chip chip-lime" style="align-self:flex-start">출시 기념가 · 2027년 12월 31일까지</span>
+<span class="chip chip-lime" style="align-self:flex-start">출시 기념가&nbsp;· 2027년 12월 31일까지</span>
 <div class="price-cells">
 <div class="price-cell"><div class="k">건당</div><div class="v">20<small>원</small></div><div class="n">정산 확인된 건만</div></div>
 <div class="price-cell"><div class="k">월 정액</div><div class="v">10,000<small>원</small></div><div class="n">많이 타는 달에</div></div>
 </div>
 <p class="muted" style="margin:0;font-size:15px">하루 <strong class="cnt">20콜</strong> 이상이면 월 정액이 유리</p>
 <div class="free">
-<div><span>단톡방 선공개</span><span>지금 무료 · 정식 출시 뒤 <strong class="time">한 달</strong> 더</span></div>
+<div><span>단톡방 선공개</span><span>지금 무료&nbsp;· 정식 출시 뒤 <strong class="time">한 달</strong> 더</span></div>
 <div><span>정식 출시 뒤 처음</span><span>처음 쓴 날부터 <strong class="time">4주</strong> 무료</span></div>
 <div><span>친구 소개</span><span>조건을 채우면 둘 다 <strong class="time">한 달</strong> 더</span></div>
 </div>
@@ -135,43 +397,46 @@
 <p class="dim" style="margin:0;font-size:13px">무료 기간 중에는 돈이 나가지 않아요. 결제는 정식 출시 뒤 열려요. <a href="guide.html#요금">요금 자세히 ›</a></p>
 </div></section>
 
-<section id="promise" class="wrap sec">
-<div class="sec-head"><span class="kicker">지키는 것</span><h2>계산은 HUD가, <span class="lime">판단은 라이더가.</span></h2></div>
-<ul class="promise">
-<li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="tick"><path d="M5 12l5 5L20 7"></path></svg><div><strong>자동 수락 · 거절 없음</strong><p>콜을 받을지는 언제나 라이더가 정해요.</p></div></li>
-<li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="tick"><path d="M5 12l5 5L20 7"></path></svg><div><strong>대신 누르지 않음</strong><p>배달 앱 화면에 보이는 글자만 읽어요.</p></div></li>
-<li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="tick"><path d="M5 12l5 5L20 7"></path></svg><div><strong>플랫폼 계정을 묻지 않음</strong><p>배민 · 쿠팡에 대신 로그인하지 않아요.</p></div></li>
-<li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="tick"><path d="M5 12l5 5L20 7"></path></svg><div><strong>운행 기록은 내 폰에만</strong><p>고객 주소 · 연락처 · 요청사항은 적지도 보내지도 않아요.</p></div></li>
-</ul>
+<section id="faq" class="wrap sec">
+<div class="sec-head"><span class="kicker">자주 묻는 질문</span><h2>시작하기 전에</h2></div>
+<div class="faq">
+<details open><summary>어떤 폰, 어떤 배달 앱과 쓰나요?</summary><div class="a"><p>안드로이드 폰에서 배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱과 함께 씁니다. 아이폰은 아직 지원하지 않아요.</p></div></details>
+<details><summary>콜을 대신 받거나 거절하나요?</summary><div class="a"><p>아니요. 화면에 보이는 글자를 읽어 계산만 합니다. 수락&nbsp;· 거절 단추는 라이더만 누릅니다.</p></div></details>
+<details><summary>공동현관 번호는 어디에 저장되나요?</summary><div class="a"><p>내 폰 안에만, 안드로이드 키스토어의 <span class="nw">AES-256</span> 키로 잠가 저장합니다. 서버로 보내지 않고, 공유 단추도 없으며, 핀 목록은 배포판에서 캡처되지 않아요.</p><p>다만 다른 폰으로 화면을 찍는 것까지는 막을 수 없습니다. 목록은 필요할 때만 열어 주세요.</p></div></details>
+<details><summary>서버로는 무엇이 가나요?</summary><div class="a"><p>요금 계산과 부정 이용을 막는 데 필요한 것만 갑니다. 기기 식별값(원래 값이 아닌 변환한 값), 정산 확인된 건수, 앱 버전, 기능 사용 횟수, 오류 기록입니다.</p><p>운행 기록, 위치, 핀 메모, 고객 정보는 보내지 않아요. <a href="privacy.html">개인정보 처리방침 ›</a></p></div></details>
+<details><summary>지금 바로 설치할 수 있나요?</summary><div class="a"><p>11월 18일 커뮤니티 단톡방에서 먼저 공개합니다. 설치 파일과 안내는 단톡방과 <a href="auto-guide.html">설치 안내</a> 페이지에서 드려요.</p></div></details>
+<details><summary>예전 웹앱은 어떻게 되나요?</summary><div class="a"><p>Auto 정식 출시 3개월 뒤 종료합니다. 웹앱에 저장한 핀은 Auto로 옮길 수 있어요. <a href="guide.html">사용법 ›</a></p></div></details>
+</div>
 </section>
 
-<section class="band"><div class="wrap sec" style="flex-direction:row;flex-wrap:wrap;align-items:center">
-<div style="flex:999 1 420px;min-width:0;display:flex;flex-direction:column;gap:12px">
-<span class="kicker">만든 사람</span><h2>직접 배달하면서 만듭니다</h2>
-<p class="lead" style="margin:0">라이더 출신 개발자가 매일 타 보고 고칩니다. 불편한 점은 커뮤니티에 남겨 주세요. 개발자가 직접 답합니다.</p>
+<section class="band"><div class="wrap sec maker">
+<div class="maker-text">
+<span class="kicker">만든 사람</span><h2><span class="ln">기억하지 말고</span><span class="ln">기록하세요.</span></h2>
+<p class="lead" style="margin:0">책상에서 상상한 앱이 아닙니다. 직접 배달하며 느낀 불편에서 시작했고, 지금도 매일 타 보고 고칩니다. 불편한 점은 커뮤니티에 남겨 주세요. 개발자가 직접 답합니다.</p>
+<a href="philosophy.html" style="font-weight:700">개발 배경과 철학 읽기 ›</a>
 </div>
 <figure style="margin:0 auto;flex:0 1 280px;display:flex;flex-direction:column;gap:12px;align-items:center">
 <video src="replay.mp4" poster="replay-poster.webp" controls muted loop playsinline preload="metadata" aria-label="라이더HUD Auto 하루 운행 리플레이 영상" style="display:block;width:100%;height:auto;border-radius:20px;border:1px solid var(--edge);background:var(--card)"></video>
-<figcaption class="muted" style="font-size:14px">하루 운행 리플레이 · 30초</figcaption>
+<figcaption class="muted" style="font-size:14px">하루 운행 리플레이&nbsp;· 30초</figcaption>
 </figure>
 </div></section>
 
 <section class="cta"><div class="wrap">
-<h2>선공개 소식은 커뮤니티에서 먼저</h2>
-<p class="muted" style="margin:0">라이더 커뮤니티 오픈채팅에서 설치 안내와 업데이트를 드립니다.</p>
+<h2><span class="ln">다음 운행부터,</span><span class="ln">내 일이 남습니다</span></h2>
+<p class="muted" style="margin:0">선공개 소식과 설치 안내는 커뮤니티 오픈채팅에서 먼저 드립니다.</p>
 <a class="btn btn-primary" href="https://open.kakao.com/o/gvZXDbmi">커뮤니티 참여하기</a>
 </div></section>
 </main>
 
 <footer class="site-foot"><div class="wrap">
-<div style="display:flex;flex-direction:column;gap:4px"><span>© HUD Labs · Smart Tool Korea</span><a class="old" href="webapp.html">예전 웹앱 (종료 예정) ›</a></div>
+<div style="display:flex;flex-direction:column;gap:4px"><span>© HUD Labs&nbsp;· Smart Tool Korea</span><a class="old" href="webapp.html">예전 웹앱 (종료 예정) ›</a></div>
 <nav aria-label="바닥 메뉴">
-<a href="https://open.kakao.com/o/gvZXDbmi">커뮤니티</a><a href="mailto:smart.tool.kr@gmail.com">문의</a><a href="guide.html">사용법</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보 처리방침</a>
+<a href="https://open.kakao.com/o/gvZXDbmi">커뮤니티</a><a href="philosophy.html">개발 철학</a><a href="mailto:smart.tool.kr@gmail.com">문의</a><a href="guide.html">사용법</a><a href="terms.html">이용약관</a><a href="privacy.html">개인정보 처리방침</a>
 </nav>
 </div></footer>
 
 <script>
-/* GA 클릭 이벤트 — 오픈채팅 · APK 받기 · 웹앱 열기 · 사용법 */
+/* GA 클릭 이벤트 — 오픈채팅&nbsp;· APK 받기&nbsp;· 웹앱 열기&nbsp;· 사용법 */
 document.addEventListener('click',function(e){
   var a=e.target.closest&&e.target.closest('a'); if(!a||typeof gtag!=='function')return;
   var h=a.getAttribute('href')||'', ev=null;
