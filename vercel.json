@@ -23,6 +23,10 @@
     {
       "source": "/terms",
       "destination": "/terms.html"
+    },
+    {
+      "source": "/r/:code",
+      "destination": "/r.html"
     }
   ]
 }
