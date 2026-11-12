@@ -125,6 +125,11 @@
 .hudcard .l2{margin-top:1.4cqw;font-size:4.2cqw;color:#A3A9B3;display:flex;align-items:center;justify-content:center;gap:2cqw}
 .hudcard .pt{font-size:3.8cqw;font-weight:700;color:#F5F6F7;border:1px solid #343942;border-radius:99px;padding:.4cqw 2.2cqw}
 .hero-call{width:100%;max-width:290px}
+.phoneimg{display:block;width:100%;max-width:300px;height:auto;filter:drop-shadow(0 24px 40px rgba(0,0,0,.55))}
+.cp-phones.one{grid-template-columns:minmax(0,1fr);max-width:340px}
+.cp-phones.one figure:last-child{margin-top:0}
+.cp-phones .phoneimg{max-width:320px}
+
 
 .callposter{position:relative;overflow:hidden;border-radius:24px;border:1px solid #2A2340;padding:40px 20px 32px;display:flex;flex-direction:column;gap:28px;align-items:center;text-align:center;
   background:radial-gradient(70% 45% at 50% 0%,rgba(109,40,217,.28),transparent 70%),radial-gradient(60% 40% at 50% 100%,rgba(163,230,53,.10),transparent 70%),#0B0A10}
@@ -157,7 +162,10 @@
   .cp-feats>div+div{border-left:0;border-top:1px solid #2A2D35;padding-top:20px}
 }
 @media (max-width:560px){
-  .callposter{padding:32px 16px 28px;gap:24px}
+  .callposter::before,.callposter::after{width:220px;height:90px}
+  .callposter::before{left:-130px;top:-40px}
+  .callposter::after{right:-130px;bottom:-60px}
+  .callposter{padding:32px 16px 40px;gap:24px}
   .cp-phones{gap:10px}.cp-phones figure:last-child{margin-top:24px}
   .cp-phones .callshot{border-width:5px;border-radius:22px}
   .cp-phones figcaption{font-size:12px;padding:4px 10px;gap:6px}
@@ -255,8 +263,7 @@
 </div>
 <p class="dim" style="margin:0;font-size:14px">안드로이드&nbsp;· 배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱과 함께 씁니다</p>
 </div>
-<div class="hero-shot"><div class="callshot hero-call"><img src="g/h-callbg-coupang.webp" width="720" height="1552" alt="쿠팡이츠 콜 화면 위에 뜬 라이더HUD 카드 — 환산 시급 21,309원, 계산 18.8분 (배경은 흐리게 처리)">
-<div class="hudcard"><div class="l1"><small>환산</small>시급 21,309원</div><div class="l2">계산 18.8분<span class="pt">10P</span></div></div></div></div>
+<div class="hero-shot"><img class="phoneimg" src="g/h-call-coupang.webp" width="615" height="1222" alt="쿠팡이츠 콜 화면 위에 뜬 라이더HUD 카드 — 환산 시급 21,309원, 계산 18.8분 · 10P"></div>
 </section>
 
 <section id="day" class="band"><div class="wrap sec">
@@ -320,19 +327,12 @@
 <h3><span class="ln">콜이 뜨면,</span><span class="ln"><span class="lime">시급</span>이 보인다.</span></h3>
 <p class="cp-sub">배달 앱 위에 실시간으로 환산 시급이 뜹니다.<br>쿠팡이츠&nbsp;· 배달의민족 모두 됩니다.</p>
 </div>
-<div class="cp-phones">
+<div class="cp-phones one">
 <figure>
-<div class="callshot"><img src="g/h-callbg-baemin.webp" width="720" height="1555" alt="" loading="lazy">
-<div class="hudcard"><div class="l1"><small>환산</small>시급 11,330원</div><div class="l2">계산 11.7분&nbsp;· 거리 범위<span class="pt">9P</span></div></div></div>
-<figcaption><span class="dot" style="background:var(--baemin)"></span>배달의민족 콜 화면</figcaption>
-</figure>
-<figure>
-<div class="callshot"><img src="g/h-callbg-coupang.webp" width="720" height="1552" alt="" loading="lazy">
-<div class="hudcard"><div class="l1"><small>환산</small>시급 21,309원</div><div class="l2">계산 18.8분<span class="pt">10P</span></div></div></div>
-<figcaption><span class="dot" style="background:var(--coupang)"></span>쿠팡이츠 콜 화면</figcaption>
+<img class="phoneimg" src="g/h-call-coupang.webp" width="615" height="1222" alt="쿠팡이츠 콜 화면 — 위에 라이더HUD 카드: 환산 시급 21,309원 · 계산 18.8분 · 10P" loading="lazy">
+<figcaption><span class="dot" style="background:var(--coupang)"></span>쿠팡이츠 실제 콜 화면&nbsp;· 배민도 같은 카드</figcaption>
 </figure>
 </div>
-<p class="cp-note">배경의 플랫폼 화면은 가게 이름과 주소가 보이지 않도록 흐리게 처리했어요.</p>
 <div class="cp-feats">
 <div><span class="ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18h2M12 18h2"></path></svg></span><strong>콜 값 계산</strong><span>배달료&nbsp;· 거리&nbsp;· 묶음&nbsp;· 걸릴 시간으로 계산</span></div>
 <div><span class="ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg></span><strong>소리로도 알려 줌</strong><span>보지 않아도 시급과 걸릴 분을 들려줘요</span></div>
