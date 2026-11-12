@@ -37,6 +37,7 @@ strong,b{font-weight:700}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:var(--r-small);
   font-weight:700;font-size:16px;text-decoration:none;letter-spacing:-0.01em;transition:background .15s}
 .btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:var(--purple-hover);color:#fff}
+.btn-kakao{background:#FEE500;color:#191919}.btn-kakao:hover{background:#F5DC00;color:#191919}
 .btn-line{border:1px solid var(--edge2);color:var(--t1)}.btn-line:hover{background:var(--card);color:var(--t1)}
 .chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:var(--r-pill);padding:4px 12px;border:1px solid var(--edge2);color:var(--t2)}
 .chip-lime{border-color:var(--lime);color:var(--lime)}
@@ -67,3 +68,8 @@ strong,b{font-weight:700}
 .site-foot a{color:var(--t2);text-decoration:none;padding:8px 0}.site-foot a:hover{color:var(--t1)}
 .site-foot .old{color:var(--t3);font-size:13px}
 @media (max-width:560px){.site-nav{gap:0 16px;font-size:14px}.site-nav .wide-only{display:none}.brand{font-size:16px}}
+
+/* 버튼 둘 — 같은 너비 (폰: 위아래 · 넓은 화면: 나란히) */
+.btn-pair{display:inline-grid;grid-template-columns:minmax(0,1fr);gap:12px;align-self:flex-start}
+.btn-pair .btn{width:100%}
+@media (min-width:561px){.btn-pair{grid-auto-flow:column;grid-auto-columns:1fr}}

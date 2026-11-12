@@ -183,6 +183,11 @@
 .stats-grid figure.card img{border:0;border-radius:0}
 .stats-grid figure.card figcaption{padding:12px 16px 16px;border-top:1px solid var(--edge)}
 .memo-card .no{white-space:nowrap}
+.waitpic{position:relative;margin:auto -20px -20px;overflow:hidden}
+.waitpic img{display:block;width:100%;height:auto}
+.waitpic .voice{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);white-space:nowrap;display:inline-flex;align-items:center;gap:8px;
+  background:rgba(10,11,13,.86);border:2px solid var(--lime);border-radius:99px;padding:8px 16px;font-size:15px;font-weight:800;color:var(--t1);box-shadow:0 0 18px rgba(163,230,53,.35)}
+
 
 /* 비교표 */
 .cmp{width:100%;max-width:760px;border-collapse:separate;border-spacing:0;border:1px solid var(--edge);border-radius:var(--r-card);overflow:hidden;font-size:16px;line-height:1.5}
@@ -257,8 +262,8 @@
 <h1><span class="ln">플랫폼의 데이터가 아닌,</span><span class="ln"><span class="lime">나의 데이터</span>로 일하는 시대.</span></h1>
 <p class="motto">계산은 <b>HUD</b>가, 판단은 <b>라이더</b>가.</p>
 <p class="lead" style="margin:0;max-width:30em">콜이 뜨면 시급을 소리로 알려 주고, 수입&nbsp;· 근무시간&nbsp;· 달린 길은 누르지 않아도 쌓입니다. 배달을 대신하는 앱이 아니라, 내가 한 일을 나에게 다시 볼 수 있도록 돌려주는 앱입니다.</p>
-<div class="row">
-<a class="btn btn-primary" href="https://open.kakao.com/o/gvZXDbmi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"></path></svg>커뮤니티에서 소식 받기</a>
+<div class="btn-pair">
+<a class="btn btn-kakao" href="https://open.kakao.com/o/gvZXDbmi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"></path></svg>커뮤니티에서 소식 받기</a>
 <a class="btn btn-line" href="#day">배달 하루 따라가 보기</a>
 </div>
 <p class="dim" style="margin:0;font-size:14px">안드로이드&nbsp;· 배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱과 함께 씁니다</p>
@@ -312,7 +317,9 @@
 <span class="mk" style="left:4.5%;top:27.2%">1</span><span class="mk" style="left:4.5%;top:32%">2</span><span class="mk" style="left:67%;top:40.5%">3</span></div></div>
 </div>
 <div class="minis three">
-<article class="card mini"><span class="disc disc-mint"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3DD6C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg></span><h4>배민 대기배달 알림</h4><p>배민 화면에 대기배달이 뜨면 「똑똑」 소리와 함께 「배민 대기배달이 있습니다」라고 알려 줘요. 콜 음성을 꺼 둬도 따로 켤 수 있어요.</p></article>
+<article class="card mini"><h4>배민 대기배달 알림</h4><p>배민 화면에 대기배달 표시(N)가 뜨면 「똑똑」 소리와 함께 알려 줘요. 콜 음성을 꺼 둬도 이 알림은 따로 켤 수 있어요.</p>
+<div class="waitpic pic"><img src="g/h-wait-baemin.webp" width="600" height="616" alt="배민커넥트 화면 오른쪽 위 메뉴에 대기배달 N 표시" loading="lazy">
+<span class="voice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg>「배민 대기배달이 있습니다」</span></div></article>
 <article class="card mini"><span class="disc disc-blue"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 8v4l3 2"></path></svg></span><h4>콜이 안 올 때</h4><p>마지막 배달 뒤 콜 없이 기다린 시간을 「평소 이 시간」과 나란히 보여 줘요. 오래 비면 이 시간 픽업 지도로 바로 넘어갑니다.</p></article>
 <article class="card mini"><span class="disc disc-purple"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B69CFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0"></path><path d="M3 3l18 18"></path></svg></span><h4>데이터가 끊기면</h4><p>근무 중 데이터 연결이 30초 넘게 끊기면 음성으로 한 번 알려 줘요. 콜 가뭄인 줄 알고 기다리는 일을 막습니다.</p></article>
 </div>
@@ -393,7 +400,7 @@
 <div class="step-head"><span class="step-no"><b>06</b>퇴근</span></div>
 <div class="poster blue">
 <div class="poster-text">
-<h3><span class="ln">오늘 얼마 벌었나,</span><span class="ln"><span class="ac">계산은 앱이</span> 끝내 둡니다.</span></h3>
+<h3><span class="ln">오늘 얼마 벌었나,</span><span class="ln">플랫폼이 여러 개라도</span><span class="ln">앱이 <span class="ac">자동으로</span> 계산해 드립니다.</span></h3>
 <p class="say">쿠팡이츠&nbsp;· 배민커넥트 수입과 미션 보너스를 따로 더하고 나눌 필요가 없어요. 정산 화면을 한 번 열면 앱이 읽어서 플랫폼별로 나누고, 배달료와 미션 보너스를 구분해 저장합니다.</p>
 <ol class="legend">
 <li><span class="mk">1</span><span><strong>정산 확인</strong>&nbsp;· 배민 정산&nbsp;· 쿠팡 내 수입 화면과 맞춘 금액</span></li>
@@ -509,7 +516,7 @@
 <section class="cta"><div class="wrap">
 <h2><span class="ln">다음 운행부터,</span><span class="ln">내가 한 일이 데이터로 남습니다</span></h2>
 <p class="muted" style="margin:0">선공개 소식과 설치 안내는 커뮤니티 오픈채팅에서 먼저 드립니다.</p>
-<a class="btn btn-primary" href="https://open.kakao.com/o/gvZXDbmi">커뮤니티 참여하기</a>
+<a class="btn btn-kakao" href="https://open.kakao.com/o/gvZXDbmi">커뮤니티 참여하기</a>
 </div></section>
 </main>
 
