@@ -33,6 +33,7 @@ body{margin:0;background:var(--bg)}
 a{color:#A3E635}a:hover{color:#D9F99D}
 a:focus-visible,summary:focus-visible{outline:2px solid #A3E635;outline-offset:3px;border-radius:6px}
 h1,h2{text-wrap:balance}
+[hidden]{display:none !important}
 </style>
 </head>
 <body>
@@ -111,6 +112,8 @@ h1,h2{text-wrap:balance}
 <li style="border: 1px solid #26302A; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
 <div style="display: flex; gap: 12px; align-items: baseline"><span style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #A3E635; color: #0E1110; font-weight: 900; font-size: 15px; display: flex; align-items: center; justify-content: center">1</span><strong style="font-size: 16px">APK 받기</strong></div>
 <p style="margin: 0; font-size: 14px; color: #C8D0C9">단톡방에 올라오는 링크를 눌러 파일을 받고, 다 받으면 「열기」를 눌러요.</p>
+<!-- ★ 11-12 밤 배포 준비 (A안) — 11/17 리허설 때 hidden 을 빼고 href 를 그날 판 파일로 바꾼다 (riderhud.com/app/riderhud-auto-0.9.x.apk) · data-apk → GA apk_download -->
+<a id="apk-btn" hidden data-apk href="/app/riderhud-auto-0.9.0.apk" style="display: flex; align-items: center; justify-content: center; min-height: 56px; border-radius: 14px; background: #A3E635; color: #0E1110; font-weight: 900; font-size: 17px; text-decoration: none">APK 받기</a>
 </li>
 
 <li style="border: 1px solid #26302A; border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px">
