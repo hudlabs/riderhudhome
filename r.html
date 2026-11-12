@@ -6,7 +6,7 @@
 <title>라이더HUD Auto 친구 소개 코드</title>
 <meta name="description" content="친구가 보낸 라이더HUD Auto 소개 코드 — 앱을 설치하고 이 코드를 넣은 뒤 7일 안에 배달 20건을 타면 두 사람 모두 한 달 더 무료.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0E1110">
+<meta name="theme-color" content="#0A0B0D">
 <meta property="og:title" content="라이더HUD Auto — 친구가 소개 코드를 보냈어요">
 <meta property="og:description" content="코드를 넣고 7일 안에 배달 20건을 타면 두 사람 모두 한 달 더 무료">
 <meta property="og:image" content="https://riderhud.com/og-auto.jpg">
@@ -21,61 +21,57 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js',new Date()); gtag('config','G-4JGP9B1M98');
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
 <style>
 /* ★ 11-12 묶음 ③ — 친구 소개 코드 페이지 (riderhud.com/r/RH-7K2Q) · 앱 [카톡 보내기] 링크 · QR 이 여는 곳
    코드는 주소에서만 읽는다 (서버에 묻지 않음 · 쿠키 · 저장 없음). 맞는 모양이 아니면 「코드를 찾지 못했어요」. */
-:root{color-scheme:dark;--bg:#0E1110}
+:root{color-scheme:dark;--bg:#0A0B0D}
 [hidden]{display:none !important}  /* 칸마다 style="display:flex" 가 있어 hidden 이 안 먹던 것 (11-12 20:11 대표 사진) */
 body{margin:0;background:var(--bg)}
 .wrap{padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 56px}
 a{color:#A3E635}a:hover{color:#D9F99D}
 a:focus-visible,button:focus-visible{outline:2px solid #A3E635;outline-offset:3px;border-radius:6px}
-.btn{display:flex;align-items:center;justify-content:center;min-height:56px;border-radius:14px;font:700 17px 'Noto Sans KR',system-ui,sans-serif;text-decoration:none;border:0;cursor:pointer;width:100%}
-.btn-main{background:#A3E635;color:#0E1110}
-.btn-line{background:transparent;color:#F2F5EF;border:1px solid #4A544B}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;border-radius:14px;font:700 17px var(--font);text-decoration:none;border:0;cursor:pointer;width:100%}
+.btn-main{background:#6D28D9;color:#FFFFFF}
+.btn-line{background:transparent;color:#F5F6F7;border:1px solid #343942}
 ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
 </style>
 </head>
 <body>
-<div style="background: #0E1110; color: #F2F5EF; font-family: 'Noto Sans KR', system-ui, sans-serif; line-height: 1.65; word-break: keep-all; min-height: 100vh">
+<div style="background: #0A0B0D; color: #F5F6F7; font-family: var(--font); line-height: 1.65; word-break: keep-all; min-height: 100vh">
 <div class="wrap" style="max-width: 560px; margin: 0 auto; display: flex; flex-direction: column; gap: 32px">
 
 <header style="padding-top: 20px">
-<a href="https://riderhud.com/" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: #F2F5EF; font-weight: 900; font-size: 17px">
-<span style="width: 28px; height: 28px; border-radius: 7px; background: #65A30D; display: flex; align-items: center; justify-content: center">
-<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="#FFFFFF" fill-rule="evenodd" d="M12,2c-3.87,0 -7,3.13 -7,7c0,5.25 7,13 7,13s7,-7.75 7,-13c0,-3.87 -3.13,-7 -7,-7z M12,6.4a2.6,2.6 0,1 1,0 5.2a2.6,2.6 0,1 1,0 -5.2z"/></svg>
-</span>
+<a href="https://riderhud.com/" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: #F5F6F7; font-weight: 800; font-size: 17px; letter-spacing: -0.02em">
+<span class="brand-mark"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"></path><circle cx="12" cy="11" r="2.2"></circle></svg></span>
 라이더HUD <span style="color: #A3E635">Auto</span></a>
 </header>
 
 <section id="ok" hidden style="display: flex; flex-direction: column; gap: 16px">
-<span style="align-self: flex-start; font-size: 13px; font-weight: 700; color: #0E1110; background: #A3E635; border-radius: 999px; padding: 3px 12px">친구 소개</span>
-<h1 style="margin: 0; font-size: 26px; line-height: 1.35; font-weight: 900">친구가 소개 코드를 보냈어요</h1>
-<div style="background: #161B17; border: 1px solid #2C352D; border-radius: 16px; padding: 24px 16px; display: flex; flex-direction: column; align-items: center; gap: 16px">
-<div id="code" style="font-size: 40px; font-weight: 900; letter-spacing: 2px; font-variant-numeric: tabular-nums; color: #F2F5EF">RH-····</div>
+<span style="align-self: flex-start; font-size: 13px; font-weight: 700; color: #0A0B0D; background: #A3E635; border-radius: 999px; padding: 3px 12px">친구 소개</span>
+<h1 style="margin: 0; font-size: 26px; line-height: 1.35; font-weight: 800">친구가 소개 코드를 보냈어요</h1>
+<div style="background: #181A1F; border: 1px solid #262A30; border-radius: 16px; padding: 24px 16px; display: flex; flex-direction: column; align-items: center; gap: 16px">
+<div id="code" style="font-size: 40px; font-weight: 800; letter-spacing: 2px; font-variant-numeric: tabular-nums; color: #F5F6F7">RH-····</div>
 <button id="copy" class="btn btn-main" type="button">코드 복사</button>
 <div id="copied" role="status" aria-live="polite" style="font-size: 14px; color: #A3E635; min-height: 1.4em"></div>
 </div>
-<p style="margin: 0; font-size: 16px; color: #C8D0C9">이 코드를 넣고 <strong style="color: #F2F5EF">7일 안에 배달 20건</strong>을 타면 <strong style="color: #F2F5EF">두 사람 모두 한 달 더 무료</strong>예요.</p>
+<p style="margin: 0; font-size: 16px; color: #C9CED6">이 코드를 넣고 <strong style="color: #F5F6F7">7일 안에 배달 20건</strong>을 타면 <strong style="color: #F5F6F7">두 사람 모두 한 달 더 무료</strong>예요.</p>
 </section>
 
 <section id="bad" hidden style="display: flex; flex-direction: column; gap: 12px">
-<h1 style="margin: 0; font-size: 24px; line-height: 1.35; font-weight: 900">코드를 찾지 못했어요</h1>
-<p style="margin: 0; font-size: 16px; color: #C8D0C9">링크가 잘렸을 수 있어요. 친구에게 코드(RH- 뒤 4글자)를 다시 받아 앱에 직접 넣어 주세요.</p>
+<h1 style="margin: 0; font-size: 24px; line-height: 1.35; font-weight: 800">코드를 찾지 못했어요</h1>
+<p style="margin: 0; font-size: 16px; color: #C9CED6">링크가 잘렸을 수 있어요. 친구에게 코드(RH- 뒤 4글자)를 다시 받아 앱에 직접 넣어 주세요.</p>
 </section>
 
 <section aria-label="코드 넣는 법" style="display: flex; flex-direction: column; gap: 12px">
-<h2 style="margin: 0; font-size: 19px; font-weight: 900">코드 넣는 법</h2>
-<ol style="font-size: 16px; color: #C8D0C9">
+<h2 style="margin: 0; font-size: 19px; font-weight: 800">코드 넣는 법</h2>
+<ol style="font-size: 16px; color: #C9CED6">
 <li>라이더HUD Auto를 설치하고 처음 설정을 마칩니다.</li>
-<li>지도 화면 위쪽 <strong style="color: #F2F5EF">👤 → 마이페이지</strong>를 엽니다.</li>
-<li>친구 소개 칸에서 <strong style="color: #F2F5EF">카카오 로그인</strong>을 합니다.</li>
-<li><strong style="color: #F2F5EF">친구 코드 넣기</strong>를 누르면 복사한 코드가 미리 채워져 있어요. <strong style="color: #F2F5EF">넣기</strong>를 누릅니다.</li>
+<li>지도 화면 위쪽 <strong style="color: #F5F6F7">👤 → 마이페이지</strong>를 엽니다.</li>
+<li>친구 소개 칸에서 <strong style="color: #F5F6F7">카카오 로그인</strong>을 합니다.</li>
+<li><strong style="color: #F5F6F7">친구 코드 넣기</strong>를 누르면 복사한 코드가 미리 채워져 있어요. <strong style="color: #F5F6F7">넣기</strong>를 누릅니다.</li>
 </ol>
-<p style="margin: 0; font-size: 14px; color: #A9B3AA">코드는 앱을 처음 쓴 날부터 4주 안에 한 번만 넣을 수 있어요. 정산 화면(배민 정산 · 쿠팡 내 수입)에서 확인된 완료 건만 셉니다.</p>
+<p style="margin: 0; font-size: 14px; color: #A3A9B3">코드는 앱을 처음 쓴 날부터 4주 안에 한 번만 넣을 수 있어요. 정산 화면(배민 정산 · 쿠팡 내 수입)에서 확인된 완료 건만 셉니다.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 12px">

@@ -1,0 +1,69 @@
+/* 라이더HUD Auto 홈페이지 공통 — 앱 색 규칙 그대로 (2026-11-13 대표 「홈페이지는 우리 앱의 얼굴」)
+   바탕 #0A0B0D · 카드 #181A1F · 안쪽 판 #1E2228 · 선 #262A30
+   글 T1 #F5F6F7 · 본문 #C9CED6 · T2 #A3A9B3 · T3 #808792
+   돈 · 강조 = 라임 #A3E635 · 누르는 것 = 보라 #6D28D9 (구역에 하나) · 건수 = 보라 글 #B69CFF
+   시간 = 파랑 #60A5FA · 배민 = 민트 #3DD6C0 · 쿠팡 = 하늘 #4FB3E8 · 주의 = #FBBF24 · 빨강 없음
+   여백 4 · 8 · 12 · 16 · 24 · 32 · 48 · 64 */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css");
+:root{
+  color-scheme:dark;
+  --bg:#0A0B0D;--bg2:#111317;--card:#181A1F;--inner:#1E2228;--edge:#262A30;--edge2:#343942;
+  --t1:#F5F6F7;--body:#C9CED6;--t2:#A3A9B3;--t3:#808792;
+  --lime:#A3E635;--lime-face:#65A30D;--lime-tint:#18200F;--lime-edge:#3A4D25;
+  --purple:#6D28D9;--purple-hover:#7C3AED;--purple-text:#B69CFF;--purple-tint:#1D1730;
+  --blue:#60A5FA;--baemin:#3DD6C0;--coupang:#4FB3E8;--attn:#FBBF24;
+  --r-card:16px;--r-small:12px;--r-pill:999px;
+  --font:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg) !important;color:var(--t1);font-family:var(--font) !important;
+  font-size:16px;line-height:1.65;letter-spacing:-0.01em;word-break:keep-all;overflow-wrap:break-word;
+  -webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+h1,h2,h3{text-wrap:balance;letter-spacing:-0.025em;line-height:1.3;font-family:var(--font)}
+p,li,figcaption,summary{text-wrap:pretty}
+a{color:var(--lime);text-underline-offset:3px}a:hover{color:#D9F99D}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:2px solid var(--lime);outline-offset:3px;border-radius:8px}
+img,video{max-width:100%}
+strong,b{font-weight:700}
+
+/* 공통 부품 */
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.narrow{max-width:720px}
+.kicker{display:block;font-size:13px;font-weight:700;letter-spacing:0.02em;color:var(--lime)}
+.lead{font-size:17px;line-height:1.7;color:var(--body)}
+.muted{color:var(--t2)}.dim{color:var(--t3)}
+.lime{color:var(--lime)}.cnt{color:var(--purple-text)}.time{color:var(--blue)}.bm{color:var(--baemin)}.cp{color:var(--coupang)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 24px;border-radius:var(--r-small);
+  font-weight:700;font-size:16px;text-decoration:none;letter-spacing:-0.01em;transition:background .15s}
+.btn-primary{background:var(--purple);color:#fff}.btn-primary:hover{background:var(--purple-hover);color:#fff}
+.btn-line{border:1px solid var(--edge2);color:var(--t1)}.btn-line:hover{background:var(--card);color:var(--t1)}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:var(--r-pill);padding:4px 12px;border:1px solid var(--edge2);color:var(--t2)}
+.chip-lime{border-color:var(--lime);color:var(--lime)}
+.card{background:var(--card);border:1px solid var(--edge);border-radius:var(--r-card)}
+.disc{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none}
+.disc-lime{background:var(--lime-tint)}.disc-purple{background:var(--purple-tint)}.disc-blue{background:#152235}.disc-mint{background:#10302B}
+
+/* 사진 */
+.shot{margin:8px 0 0;display:flex;flex-direction:column;align-items:center;gap:8px;flex:1 1 0;min-width:0}
+.shot img{display:block;width:100%;max-width:300px;height:auto;border-radius:var(--r-small);border:1px solid var(--edge);background:var(--bg)}
+.shot.wide img{max-width:440px}
+.shot figcaption{font-size:13px;line-height:1.5;color:var(--t2);text-align:center}
+.pair{display:flex;gap:12px;justify-content:center;align-items:flex-start}
+.pair .shot img{max-width:260px}
+.phone{width:100%;border-radius:32px;border:8px solid #1C1F25;background:var(--card);overflow:hidden}
+.phone img{display:block;width:100%;height:auto}
+
+/* 머리 · 바닥 */
+.site-head{border-bottom:1px solid var(--edge);background:rgba(10,11,13,.92);position:sticky;top:0;z-index:20;backdrop-filter:saturate(1.2) blur(8px);-webkit-backdrop-filter:saturate(1.2) blur(8px)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px}
+.brand{display:flex;white-space:nowrap;align-items:center;gap:8px;text-decoration:none;color:var(--t1);font-weight:800;font-size:17px;letter-spacing:-0.02em}
+.brand-mark{width:30px;height:30px;border-radius:50%;background:var(--lime-face);display:flex;align-items:center;justify-content:center}
+.site-nav{display:flex;flex-wrap:nowrap;white-space:nowrap;gap:0 20px;font-size:15px}
+.site-nav a{color:var(--t2);text-decoration:none;padding:12px 0}.site-nav a:hover{color:var(--t1)}
+.site-foot{border-top:1px solid var(--edge);color:var(--t3);font-size:14px}
+.site-foot .wrap{padding-top:32px;padding-bottom:48px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.site-foot nav{display:flex;flex-wrap:wrap;gap:0 20px}
+.site-foot a{color:var(--t2);text-decoration:none;padding:8px 0}.site-foot a:hover{color:var(--t1)}
+.site-foot .old{color:var(--t3);font-size:13px}
+@media (max-width:560px){.site-nav{gap:0 16px;font-size:14px}.site-nav .wide-only{display:none}.brand{font-size:16px}}

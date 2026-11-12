@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta name="robots" content="noindex, follow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>라이더HUD 웹앱 — 무료 · 설치 없이 브라우저에서</title>
 <meta name="description" content="오늘 몇 시에 나가야 할까? 어디로 이동해야 콜을 더 받을까? 라이더 HUD가 데이터로 답합니다.">
@@ -280,6 +281,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:32px 24p
 </style>
 </head>
 <body>
+<div style="position:relative;z-index:9999;background:#18200F;border-bottom:1px solid #3A4D25;color:#F5F6F7;font:500 14px/1.6 'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;letter-spacing:-0.01em;word-break:keep-all;padding:10px 16px;text-align:center">라이더HUD 웹앱은 <strong>Auto 정식 출시 3개월 뒤 종료</strong>돼요. 안드로이드라면 <a href="/" style="color:#A3E635;font-weight:700">라이더HUD Auto 보기 ›</a> · <a href="/guide#웹앱-핀" style="color:#A3E635">핀 옮기는 법 ›</a></div>
+
 
 <!-- NAV -->
 <nav id="navbar">
@@ -789,5 +792,9 @@ document.addEventListener('click',function(e){
   if(ev) gtag('event',ev,{link_url:h,page_path:location.pathname,link_text:(a.textContent||'').trim().slice(0,40)});
 },true);
 </script>
+<section style="max-width:720px;margin:0 auto;padding:24px 20px;font-family:'Pretendard Variable',Pretendard,'Noto Sans KR',system-ui,sans-serif;color:#C9CED6;word-break:keep-all">
+<p style="margin:0 0 8px;font-size:13px;color:#808792">예전 웹앱 소개 페이지</p>
+<p style="margin:0;font-size:14px;line-height:1.9"><a href="hud.html" style="color:#A3A9B3">HUD</a> · <a href="manual.html" style="color:#A3A9B3">매뉴얼</a> · <a href="heatmap.html" style="color:#A3A9B3">히트맵</a> · <a href="safety.html" style="color:#A3A9B3">안전</a> · <a href="philosophy.html" style="color:#A3A9B3">철학</a> · <a href="roadmap.html" style="color:#A3A9B3">로드맵</a> · <a href="manager.html" style="color:#A3A9B3">매니저+</a> · <a href="install.html" style="color:#A3A9B3">웹앱 설치</a></p>
+</section>
 </body>
 </html>
