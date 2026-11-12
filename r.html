@@ -71,19 +71,19 @@ ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
 <li>친구 소개 칸에서 <strong style="color: #F5F6F7">카카오 로그인</strong>을 합니다.</li>
 <li><strong style="color: #F5F6F7">친구 코드 넣기</strong>를 누르면 복사한 코드가 미리 채워져 있어요. <strong style="color: #F5F6F7">넣기</strong>를 누릅니다.</li>
 </ol>
-<p style="margin: 0; font-size: 14px; color: #A3A9B3">코드는 앱을 처음 쓴 날부터 4주 안에 한 번만 넣을 수 있어요. 정산 화면(배민 정산 · 쿠팡 내 수입)에서 확인된 완료 건만 셉니다.</p>
+<p style="margin: 0; font-size: 14px; color: #A3A9B3">코드는 무료 기간이 끝나기 전에 한 번만 넣을 수 있어요. 지금 설치하면 2027년 1월 31일까지 무료, 그 뒤 한 달 더 무료예요. 정산 화면(배민 정산&nbsp;· 쿠팡 내 수입)에서 확인된 완료 건만 셉니다.</p>
 </section>
 
 <section style="display: flex; flex-direction: column; gap: 12px">
 <a class="btn btn-line" href="/auto-guide.html" data-ga="r_install_click">앱 설치 안내 보기</a>
-<a href="/guide#요금" style="font-size: 14px; text-align: center">요금 · 친구 소개 자세히 ›</a>
+<a href="/guide#요금" style="font-size: 14px; text-align: center">요금&nbsp;· 친구 소개 자세히 ›</a>
 </section>
 
 </div>
 </div>
 <script>
 (function () {
-  // 「/r/RH-7K2Q」 · 「/r/rh-7k2q」 · 「/r.html?c=RH-7K2Q」 — 0 · O · 1 · I 는 쓰지 않는 글자 (앱 · 서버와 같은 규칙)
+  // 「/r/RH-7K2Q」&nbsp;· 「/r/rh-7k2q」&nbsp;· 「/r.html?c=RH-7K2Q」 — 0&nbsp;· O&nbsp;· 1&nbsp;· I 는 쓰지 않는 글자 (앱&nbsp;· 서버와 같은 규칙)
   var ABC = '23456789ABCDEFGHJKLMNPQRSTUVWXYZ';
   var raw = decodeURIComponent(location.pathname.split('/').pop() || '');
   if (!raw || raw === 'r' || raw === 'r.html') raw = new URLSearchParams(location.search).get('c') || '';
@@ -96,7 +96,7 @@ ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
   document.title = '라이더HUD Auto 친구 소개 코드 ' + code;
   var msg = document.getElementById('copied');
   document.getElementById('copy').addEventListener('click', function () {
-    function done() { msg.textContent = '복사했어요 · 앱 마이페이지에서 붙여 넣으세요'; }
+    function done() { msg.textContent = '복사했어요&nbsp;· 앱 마이페이지에서 붙여 넣으세요'; }
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done, fallback); else fallback();
     function fallback() {
       var t = document.createElement('textarea'); t.value = code; document.body.appendChild(t); t.select();
