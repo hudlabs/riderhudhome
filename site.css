@@ -68,6 +68,7 @@ strong,b{font-weight:700}
 .site-foot a{color:var(--t2);text-decoration:none;padding:8px 0}.site-foot a:hover{color:var(--t1)}
 .site-foot .old{color:var(--t3);font-size:13px}
 @media (max-width:560px){.site-nav{gap:0 16px;font-size:14px}.site-nav .wide-only{display:none}.brand{font-size:16px}}
+@media (max-width:400px){.site-nav{gap:0 12px;font-size:13px}.brand{font-size:15px}}
 
 /* 버튼 둘 — 같은 너비 (폰: 위아래 · 넓은 화면: 나란히) */
 .btn-pair{display:inline-grid;grid-template-columns:minmax(0,1fr);gap:12px;align-self:flex-start}
