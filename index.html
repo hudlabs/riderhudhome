@@ -39,7 +39,7 @@
 .hero h1{margin:0;font-size:clamp(26px,7.2vw,46px);font-weight:800;line-height:1.25;letter-spacing:-0.035em}
 .hero .motto{margin:0;font-size:clamp(19px,4.6vw,24px);font-weight:700;line-height:1.4;color:var(--t2);letter-spacing:-0.02em}
 .hero .motto b{color:var(--t1)}
-.hero-shot{flex:1 1 400px;display:flex;justify-content:center}
+.hero-shot{flex:1 1 400px;display:flex;flex-direction:column;align-items:center;gap:20px}
 .hero-shot .phone{max-width:280px}
 .ridecard{margin:0;width:100%;max-width:520px;display:flex;flex-direction:column;gap:12px;align-items:center}
 .ridecard img{display:block;width:100%;height:auto;border-radius:24px;border:1px solid var(--edge);box-shadow:0 24px 48px rgba(0,0,0,.5)}
@@ -204,7 +204,8 @@
 
 
 /* v3 */
-.why-sign{margin:0;font-size:15px;color:var(--t3)}
+.why-sign{margin:8px 0 0;font-size:clamp(19px,5vw,22px);font-weight:800;color:var(--lime);letter-spacing:-0.02em}
+.why-title{margin:0;font-size:clamp(24px,6.4vw,34px);line-height:1.3;letter-spacing:-0.03em}
 .core-item{scroll-margin-top:76px}
 .flow-step{display:flex;flex-direction:column;gap:24px}
 .step-head p b{color:var(--t1)}
@@ -306,25 +307,26 @@
 <div class="row" style="gap:8px"><span class="chip">11월 18일 선공개</span><span class="chip chip-lime">2월 28일까지 무료</span></div>
 <h1><span class="ln">플랫폼의 데이터가 아닌,</span><span class="ln"><span class="lime">나의 데이터</span>로 일하는 시대.</span></h1>
 <p class="motto">계산은 <b>HUD</b>가, 판단은 <b>라이더</b>가.</p>
-<p class="lead" style="margin:0;max-width:30em">콜이 뜨면 시급을 소리로 알려 주고, 수입&nbsp;· 근무시간&nbsp;· 달린 길은 누르지 않아도 쌓입니다. 배달을 대신하는 앱이 아니라, 내가 한 일을 다시 볼 수 있게 돌려주는 앱입니다.</p>
+<p class="lead" style="margin:0;max-width:30em">콜이 뜨면 시급을 소리로 알려 주고, 수입&nbsp;· 근무시간&nbsp;· 달린 길은 누르지 않아도 쌓입니다. <span class="nw">배달 앱을</span> 대신하는 것이 아니라, 내가 한 일을 다시 볼 수 있게 돌려주는 앱입니다.</p>
+<p class="dim" style="margin:0;font-size:14px">배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱에 특화된 <span class="nw">안드로이드 전용 앱입니다.</span></p>
+</div>
+<div class="hero-shot"><figure class="ridecard"><img src="g/h-hero-ride.webp" width="882" height="904" alt="오토바이 거치대에 꽂은 폰으로 라이더HUD를 보며 달리는 라이더 — 화면에 오늘 수입 107,400원 · 20건"></figure>
 <div class="btn-pair">
 <a class="btn btn-kakao" href="https://open.kakao.com/o/gvZXDbmi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.6A8 8 0 1 1 21 12z"></path></svg>커뮤니티에서 소식 받기</a>
 </div>
-<p class="dim" style="margin:0;font-size:14px">안드로이드&nbsp;· 배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱과 함께 씁니다</p>
 </div>
-<div class="hero-shot"><figure class="ridecard"><img src="g/h-hero-ride.webp" width="882" height="904" alt="오토바이 거치대에 꽂은 폰으로 라이더HUD를 보며 달리는 라이더 — 화면에 오늘 수입 107,400원 · 20건"><figcaption>달리면서 보는 라이더HUD</figcaption></figure></div>
 </section>
 
 <section id="why" class="wrap why">
-<span class="kicker">왜 만들었나</span>
-<p class="why-text"><span class="ln">알고리즘은 보이지 않고,</span><span class="ln">정보는 플랫폼만 쥐고 있습니다.</span><span class="ln">내가 한 일인데,</span><span class="ln">그 기록을 나는 <span class="nw">볼 수 없었습니다.</span></span></p>
+<h2 class="why-title">라이더HUD 개발 배경</h2>
+<p class="why-text"><span class="ln">알고리즘은 불투명하고,</span><span class="ln">정보는 플랫폼만 쥐고 있습니다.</span><span class="ln">내가 한 일인데,</span><span class="ln">그 기록을 나는 <span class="nw">볼 수 없었습니다.</span></span></p>
 <p class="why-end"><span class="ln">플랫폼이 주지 않으니</span><span class="ln lime">스스로 만들어야 했습니다.</span><span class="ln">라이더HUD는 그렇게 시작됐습니다.</span></p>
 <p class="why-sign">기억하지 말고 기록하세요.</p>
 <a href="philosophy.html" class="why-link">개발 배경과 철학 읽기 ›</a>
 </section>
 
 <section id="core" class="band"><div class="wrap sec" style="gap:48px">
-<div class="sec-head"><span class="kicker">라이더HUD가 하는 일</span><h2><span class="ln">콜을 고를 때, 문 앞에서,</span><span class="ln">하루를 마칠 때</span></h2>
+<div class="sec-head"><span class="kicker">라이더HUD가 하는 일</span><h2><span class="ln">근무를 시작할 때부터</span><span class="ln">하루를 마칠 때까지</span><span class="ln">라이더HUD가 함께합니다</span></h2>
 <p class="lead">가장 많이 쓰는 세 가지예요. 사진은 실제 앱 화면입니다.</p></div>
 
 <section id="call" class="core-item">
@@ -341,8 +343,8 @@
 </figure>
 </div>
 <div class="cp-feats">
-<div><span class="ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18h2M12 18h2"></path></svg></span><strong>콜 값 계산</strong><span>묶음&nbsp;· 조리완료&nbsp;· 포인트까지 함께</span></div>
-<div><span class="ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg></span><strong>소리로도 알려 줌</strong><span>보지 않아도 시급과 걸릴 분을 들려줘요</span></div>
+<div><span class="ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 7h8M8 11h2M12 11h2M16 11h0M8 15h2M12 15h2M8 18h2M12 18h2"></path></svg></span><strong>콜 가치 분석</strong><span>묶음&nbsp;· 조리완료&nbsp;· 포인트까지 함께</span></div>
+<div><span class="ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg></span><strong>음성 안내</strong><span>보지 않아도 시급과 걸릴 분을 들려줘요</span></div>
 <div><span class="ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span><strong>판단은 라이더가</strong><span>받을지 말지는 내가 정합니다</span></div>
 </div>
 </div>
@@ -388,7 +390,7 @@
 </div></section>
 
 <section id="flow" class="wrap sec" style="gap:56px">
-<div class="sec-head"><span class="kicker">배달 하루</span><h2><span class="ln">출근부터 퇴근 뒤까지,</span><span class="ln">나머지는 앱이 챙깁니다</span></h2></div>
+<div class="sec-head"><span class="kicker">배달 하루</span><h2><span class="ln">출근부터 퇴근까지,</span><span class="ln">내가 한 일을 라이더HUD가</span><span class="ln">자동 기록합니다</span></h2></div>
 
 <div class="flow-step">
 <div class="step-head"><span class="step-no"><b>1</b>출근</span><h3>[시작]만 누르면 나머지는 앱이 합니다</h3>
@@ -396,7 +398,7 @@
 <div class="minis">
 <article class="card mini"><h4>배달비서</h4><p>「몇 시까지 얼마」를 정해 두면 지금 속도로 몇 시에 닿는지 알려 줘요.</p>
 <img class="pic bleed" src="g/h-assist.webp" width="714" height="964" alt="배달비서 카드 — 현재 수입 31,711원, 6건, 누적 시급 17,496원, 주행 22.8km, 배민 · 쿠팡 오늘 포인트, 오늘 목표" loading="lazy"></article>
-<article class="card mini"><h4>콜 기다린 시간</h4><p>배달을 마치고 다음 콜까지 기다린 시간을 시간대별로 세고, 가장 오래 기다린 때도 알려 줘요. 오래 비면 픽업 지도로 이어집니다.</p>
+<article class="card mini"><h4>콜 기다린 시간</h4><p>배달을 마치고 다음 콜까지 기다린 시간을 시간대별로 세고, 가장 오래 기다린 때도 알려 줘요. 오래 기다리면 픽업 지도로 이어집니다.</p>
 <img class="pic bleed" src="g/h-stats-wait.webp" width="652" height="327" alt="콜 대기 시간 — 시간대별 평균" loading="lazy"></article>
 </div>
 </div>
@@ -421,10 +423,10 @@
 <div class="flow-step">
 <div class="step-head"><span class="step-no"><b>3</b>달리는 동안</span><h3>화면을 보지 않아도, 소리로 알려 줘요</h3></div>
 <div class="minis">
-<article class="card mini"><h4>배민 대기배달</h4><p>배민 화면에 대기배달 표시(N)가 뜨면 「똑똑」 소리와 함께 알려 줘요.</p>
+<article class="card mini"><h4>배민 대기배달</h4><p>배민 화면에 대기배달 표시(N)가 뜨면 「똑똑」 소리와 함께 음성으로 알려 줘요.</p>
 <div class="waitpic pic"><img src="g/h-wait-baemin.webp" width="600" height="616" alt="배민커넥트 화면 오른쪽 위 메뉴에 대기배달 N 표시" loading="lazy">
 <span class="voice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg>「배민 대기배달이 있습니다」</span></div></article>
-<article class="card mini"><h4>내가 저장한 후면 카메라 자리</h4><p>직접 저장한 후면 단속카메라 자리를 지나면 음성으로 안내합니다.</p>
+<article class="card mini"><h4>내가 저장한 후면 카메라 자리</h4><p>내가 원 터치로 직접 저장한 후면 단속카메라 자리를 지나면 음성으로 안내합니다.</p>
 <div class="waitpic pic"><img src="g/h-rear-scene.webp" width="720" height="309" alt="도로 위 후면 단속 카메라와 「후면단속중」 표지" loading="lazy">
 <span class="voice"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z"></path><path d="M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12"></path></svg>「안내. 후면 카메라」</span></div></article>
 </div>
@@ -442,11 +444,11 @@
 <article class="card mini"><h4>지출을 빼면 실수입</h4><p>기름값&nbsp;· 밥값을 적으면 실수입이 바로 나와요.</p>
 <img class="pic bleed top" src="g/h-money-exp.webp" width="650" height="397" alt="지출 14,349원, 실수입 93,051원" loading="lazy">
 </article>
-<article class="card mini"><h4>평소와 견주기</h4><p>오늘 시급과 시간당 건수를 평소와 나란히 보여 줘요.</p>
+<article class="card mini"><h4>평소와 비교하기</h4><p>오늘 시급과 시간당 건수를 평소와 나란히 보여 줘요.</p>
 <img class="pic bleed" src="g/h-stats-rate.webp" width="650" height="711" alt="시급 1.5만 원 · 평소 1.3만, 시간당 2.8건 · 평소 2.9건, 근무 7시간 9분 · 101km" loading="lazy"></article>
 </div>
 <div class="card replay"><video src="replay.mp4" poster="replay-poster.webp" controls muted loop playsinline preload="metadata" aria-label="하루 운행 리플레이 영상"></video>
-<div><h4>하루 운행 리플레이</h4><p>오늘 달린 길과 픽업&nbsp;· 배달 지점을 30초 영상으로 다시 봐요.</p></div></div>
+<div><h4>하루 운행 리플레이</h4><p>오늘 달린 길과 픽업&nbsp;· 배달 지점을 30초 또는 60초 영상으로 다시 봐요.</p></div></div>
 </div>
 
 <div class="flow-step">
@@ -468,7 +470,7 @@
 
 <section id="promise" class="band"><div class="wrap sec">
 <div class="sec-head"><span class="kicker">넘지 않는 선</span><h2>이 선은 넘지 않습니다</h2>
-<p class="lead">라이더의 판단을 대신하는 순간, 돕는 도구는 부리는 도구가 됩니다. 그래서 이 선을 지킵니다.</p></div>
+<p class="lead">라이더HUD는 데이터를 정보로 바꿔 보여 줄 뿐, 라이더의 판단을 대신하지 않습니다.</p></div>
 <ul class="promise">
 <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="tick"><path d="M5 12l5 5L20 7"></path></svg><div><strong>자동 수락&nbsp;· 거절 없음</strong><p>콜을 받을지는 언제나 라이더가 정해요.</p></div></li>
 <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#A3E635" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="tick"><path d="M5 12l5 5L20 7"></path></svg><div><strong>대신 누르지 않음</strong><p>배달 앱 화면에 보이는 글자만 읽어요.</p></div></li>
@@ -487,8 +489,8 @@
 <p class="lead">지금 설치하면 결제 없이 모든 기능을 씁니다. 카드 등록도 필요 없어요.</p></div>
 <ul class="free-list card">
 <li><span class="ok">✓</span><span><b>출시 기념 행사</b><em>2027년 1월 31일까지 누구나 무료</em></span></li>
-<li><span class="ok">✓</span><span><b>그 뒤 한 달 더</b><em>2월 28일까지</em></span></li>
-<li><span class="ok">✓</span><span><b>친구 소개</b><em>1명당 한 달 더&nbsp;· 1년 최대 6개월</em></span></li>
+<li><span class="ok">✓</span><span><b>그 뒤 한 달 더</b><em>1월 31일 전에 시작하면 2월 28일까지</em></span></li>
+<li><span class="ok">✓</span><span><b>친구 소개</b><em>1명당 한 달 무료&nbsp;· 1년 최대 6개월 무료</em></span></li>
 <li><span class="ok">✓</span><span><b>기능 제한 없음</b><em>무료 동안 모든 기능</em></span></li>
 </ul>
 <details class="after card"><summary>무료가 끝난 뒤에는</summary>
