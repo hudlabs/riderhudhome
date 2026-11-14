@@ -221,6 +221,9 @@
 @media (max-width:880px){.stats-grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:560px){.stats-grid.three{grid-template-columns:minmax(0,1fr)}}
 #price .sec-head h2.free-big{font-size:clamp(30px,8.4vw,52px);line-height:1.2;letter-spacing:-0.04em}
+.hero-free{display:flex;flex-direction:column;gap:6px;padding:16px 18px;border:1px solid var(--edge);border-left:3px solid var(--lime);border-radius:12px;max-width:30em}
+.hero-free p{margin:0}.hf-big{font-size:19px;font-weight:800;line-height:1.45}.hf-sub{font-size:17px;font-weight:700;line-height:1.45}.hf-note{font-size:13px;color:var(--t2)}
+.feat .a ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
 .free-list{margin:0;padding:8px 20px;list-style:none;max-width:640px;width:100%}
 .free-list li{display:flex;gap:12px;align-items:flex-start;padding:16px 0}
 .free-list li+li{border-top:1px solid var(--edge)}
@@ -306,11 +309,12 @@
 <main>
 <section id="top" class="wrap hero">
 <div class="hero-text">
-<div class="row" style="gap:8px"><span class="chip">11월 18일 선공개</span><span class="chip chip-lime">2월 28일까지 무료</span></div>
+<div class="row" style="gap:8px"><span class="chip">11월 18일 선공개</span><span class="chip chip-lime">광고 0개</span><span class="chip chip-lime">기능 제한 없음</span></div>
 <h1><span class="ln">플랫폼의 데이터가 아닌,</span><span class="ln"><span class="lime">나의 데이터</span>로 일하는 시대.</span></h1>
 <p class="motto">계산은 <b>HUD</b>가, 판단은 <b>라이더</b>가.</p>
 <p class="lead" style="margin:0;max-width:30em">콜이 뜨면 시급을 소리로 알려 주고, 수입&nbsp;· 근무시간&nbsp;· 달린 길은 누르지 않아도 쌓입니다. <span class="nw">배달 앱을</span> 대신하는 것이 아니라, 내가 한 일을 다시 볼 수 있게 돌려주는 앱입니다.</p>
 <p class="dim" style="margin:0;font-size:14px">배민커넥트&nbsp;· 쿠팡이츠 배달 파트너 앱에 특화된 <span class="nw">안드로이드 전용 앱입니다.</span></p>
+<div class="hero-free"><p class="hf-big"><span class="nw">2027년 2월 28일까지</span> <span class="nw">누구나 무료.</span></p><p class="hf-sub"><span class="nw">그 뒤에도 친구 1명당 한 달씩,</span> <span class="nw lime">제한 없이 무료.</span></p><p class="hf-note">친구가 코드를 넣고 7일 안에 20건 배달하면 <span class="nw">둘 다 한 달씩 더해져요.</span></p></div>
 </div>
 <div class="hero-shot"><figure class="ridecard"><img src="g/h-hero-ride.webp" width="882" height="904" alt="오토바이 거치대에 꽂은 폰으로 라이더HUD를 보며 달리는 라이더 — 화면에 오늘 수입 107,400원 · 20건"></figure>
 <div class="btn-pair">
@@ -476,6 +480,19 @@
 </div>
 </section>
 
+<section id="features" class="wrap sec">
+<div class="sec-head"><span class="kicker">전체 기능</span><h2>배달부터 수입&nbsp;· 통계&nbsp;· 안전까지</h2>
+<p class="lead">궁금한 부분만 펼쳐 보세요. 모든 기능을 누구나 똑같이 씁니다.</p></div>
+<div class="faq feat">
+<details><summary>배달할 때</summary><div class="a"><ul><li>배민커넥트&nbsp;· 쿠팡이츠 콜 화면 읽기</li><li>콜마다 예상 시급&nbsp;· 걸리는 시간 계산</li><li>음성으로 알려 주기</li><li>미션&nbsp;· 추가 보상 기록</li><li>지금 배달 단계 표시(가게로 이동&nbsp;· 배달 중)</li></ul></div></details>
+<details><summary>근무와 목표</summary><div class="a"><ul><li>근무 시작&nbsp;· 휴식&nbsp;· 마치기</li><li>휴식을 뺀 실제 근무시간</li><li>오늘 수입&nbsp;· 완료 건수&nbsp;· 시급</li><li>하루 목표와 마칠 시각 예상</li><li>근무에서 뺄 구간 고르기</li></ul></div></details>
+<details><summary>수입과 정산</summary><div class="a"><ul><li>배민&nbsp;· 쿠팡 건별 기록과 할증</li><li>정산 화면 확인&nbsp;· 입금일</li><li>주간&nbsp;· 월간 비교</li><li>지출&nbsp;· 고정비(보험&nbsp;· 할부&nbsp;· 통신비)</li><li>엑셀(CSV) 장부 내보내기</li><li>백업과 복원</li></ul></div></details>
+<details><summary>통계</summary><div class="a"><ul><li>요일&nbsp;· 시간대별 시급</li><li>거리별&nbsp;· 단건/묶음 시급</li><li>콜 대기시간&nbsp;· 주행거리</li><li>달린 길 다시 보기</li><li>근무 결과 공유 카드&nbsp;· 9:16 영상</li></ul></div></details>
+<details><summary>개인 배달 지도</summary><div class="a"><ul><li>픽업한 가게 위치가 저절로 쌓임</li><li>평일/주말&nbsp;· 시간대로 걸러 보기</li><li>가게별 픽업 횟수</li><li>가게 위치 직접 고치기</li><li>내 위치 핀과 메모</li></ul></div></details>
+<details><summary>안전과 운행</summary><div class="a"><ul><li>후면 단속카메라 위치 등록</li><li>다가가는 방향에 맞춘 음성 안내</li><li>위치 핀 안내</li><li>운행 음성 설정</li></ul></div></details>
+</div>
+</section>
+
 <section id="promise" class="band"><div class="wrap sec">
 <div class="sec-head"><span class="kicker">넘지 않는 선</span><h2>이 선은 넘지 않습니다</h2>
 <p class="lead">라이더HUD는 데이터를 정보로 바꿔 보여 줄 뿐, 라이더의 판단을 대신하지 않습니다.</p></div>
@@ -494,15 +511,16 @@
 <section id="price" class="wrap sec">
 <div class="sec-head"><span class="kicker">요금</span>
 <h2 class="free-big"><span class="ln">2027년 2월 28일까지</span><span class="ln lime">무료</span></h2>
-<p class="lead">지금 설치하면 결제 없이 모든 기능을 씁니다. 카드 등록도 필요 없어요.</p></div>
+<p class="lead">지금 설치하면 결제 없이 모든 기능을 씁니다. 카드 등록도 필요 없어요. <span class="nw">그 뒤에도 친구 1명당 한 달씩,</span> <span class="nw">제한 없이 무료예요.</span></p></div>
 <ul class="free-list card">
 <li><span class="ok">✓</span><span><b>출시 기념 행사</b><em>2027년 1월 31일까지 누구나 무료</em></span></li>
 <li><span class="ok">✓</span><span><b>그 뒤 한 달 더</b><em>1월 31일 전에 시작하면 2월 28일까지</em></span></li>
-<li><span class="ok">✓</span><span><b>친구 소개</b><em>1명당 한 달 무료&nbsp;· 1년 최대 6개월 무료</em></span></li>
-<li><span class="ok">✓</span><span><b>기능 제한 없음</b><em>무료 동안 모든 기능</em></span></li>
+<li><span class="ok">✓</span><span><b>친구 소개</b><em>1명당 둘 다 한 달 무료&nbsp;· 제한 없이 쌓이고, <span class="nw">해가 바뀌어도 그대로</span></em></span></li>
+<li><span class="ok">✓</span><span><b>기능 제한 없음</b><em>무료든 유료든 모든 기능을 똑같이</em></span></li>
 </ul>
 <details class="after card"><summary>무료가 끝난 뒤에는</summary>
-<div class="a"><p>건당 <b>20원</b> 또는 월 <b class="nw">10,000원</b> 중 내가 고릅니다. 하루 20콜 이상이면 월 정액이 유리해요.</p>
+<div class="a"><p>친구 소개는 코드를 넣은 친구가 7일 안에 20건(정산 화면에서 확인된 완료 건) 배달하면 인정돼요.</p>
+<p>쌓인 무료가 끝나면 건당 <b>20원</b> 또는 월 <b class="nw">10,000원</b> 중 내가 고릅니다. 하루 20콜 이상이면 월 정액이 유리해요.</p>
 <p><span class="chip chip-lime">출시 기념가&nbsp;· 2027년 12월 31일까지</span></p>
 <p>미리 충전한 만큼만 쓰고, 자동 결제는 없어요. 건당은 정산 화면에서 확인된 배달만 셉니다. <a href="guide.html#요금">요금 자세히 ›</a></p></div></details>
 </section>
