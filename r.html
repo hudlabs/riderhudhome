@@ -96,7 +96,7 @@ ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:8px}
   document.title = '라이더HUD Auto 친구 소개 코드 ' + code;
   var msg = document.getElementById('copied');
   document.getElementById('copy').addEventListener('click', function () {
-    function done() { msg.textContent = '복사했어요&nbsp;· 앱 마이페이지에서 붙여 넣으세요'; }
+    function done() { msg.textContent = '복사했어요\u00a0· 앱 마이페이지에서 붙여 넣으세요'; }
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code).then(done, fallback); else fallback();
     function fallback() {
       var t = document.createElement('textarea'); t.value = code; document.body.appendChild(t); t.select();
