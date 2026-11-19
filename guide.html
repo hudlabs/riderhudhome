@@ -74,7 +74,7 @@ details p{margin-top:8px;font-size:14px;color:#C9CED6}
 
 <section class="part">
 <h1>라이더HUD Auto<br><span class="lime">사용법</span></h1>
-<p class="lead">앱 화면의 <strong style="color:#F5F6F7">ⓘ</strong>를 누르면 이 페이지의 그 부분으로 바로 옵니다. 설치는 단톡방 공지의 설치 안내를 먼저 보세요.</p>
+<p class="lead">앱 화면의 <strong style="color:#F5F6F7">ⓘ</strong>를 누르면 이 페이지의 그 부분으로 바로 옵니다. 설치는 구글 플레이에서 해요(지금은 비공개 테스트 중).</p>
 </section>
 
 <nav class="toc" aria-label="목차">
@@ -118,10 +118,10 @@ details p{margin-top:8px;font-size:14px;color:#C9CED6}
 <h3>처음 한 번 — 권한</h3>
 <p>앱을 처음 열면 필요한 권한을 하나씩 안내해요. 순서대로 허용하면 됩니다.</p>
 <ul>
-<li><strong>화면 읽기</strong> — 배민&nbsp;· 쿠팡 앱 화면의 글자를 읽어요. 이게 꺼져 있으면 콜 시급&nbsp;· 자동 기록이 안 돼요.</li>
-<li><strong>위치 「항상 허용」</strong> — 화면이 꺼져도 핀&nbsp;· 카메라 음성이 나오게.</li>
+<li><strong>화면 읽기</strong>(접근성 서비스) — 안내를 읽고 동의하면 배민&nbsp;· 쿠팡 앱 화면의 글자를 읽어요. 읽기만 하고 대신 누르지 않아요. 이게 꺼져 있으면 콜 시급&nbsp;· 자동 기록이 안 돼요.</li>
+<li><strong>위치 「앱 사용 중에만 허용」</strong>&nbsp;· 정확한 위치 켜기 — 근무 중에는 화면이 꺼져도 핀&nbsp;· 카메라 음성이 나와요. 위치는 폰에만 저장돼요.</li>
 <li><strong>알림</strong> — 근무 중 표시&nbsp;· 근무 시작 묻기.</li>
-<li><strong>배터리 「제한 없음」</strong> — 폰이 앱을 재우지 않게.</li>
+<li><strong>배터리 「제한 없음」</strong> — 앱 정보 › 배터리에서 골라요. 폰이 앱을 재우지 않게.</li>
 </ul>
 <p class="note">빠뜨린 게 있으면 설정 › <strong>폰 설정 점검</strong>에서 한 번에 확인할 수 있어요. 안내를 다시 보려면 설정 › <strong>처음 안내 다시 보기</strong>.</p>
 <p class="note">이 사용법은 앱에서도 열 수 있어요 — 오른쪽 위 사람 모양(마이페이지) › 무료 기간 바로 아래 <strong>사용법 ›</strong>.</p>
@@ -187,14 +187,14 @@ details p{margin-top:8px;font-size:14px;color:#C9CED6}
 <h2>핀 메모&nbsp;· 후면 단속카메라</h2>
 <div class="card" id="핀">
 <ul>
-<li>지도 아래 단추 줄 — 왼쪽부터 <strong>후면카메라 저장</strong>&nbsp;· <strong>지금 자리에 핀 저장</strong>(공동현관&nbsp;· 출입 메모)&nbsp;· 🔥 픽업 지도&nbsp;· <strong>핀 목록</strong>&nbsp;· 내 위치.</li>
-<li>저장한 자리에 가까워지면 메모를 소리로 읽어 줘요. 「우리 집, 1234#」처럼 이름과 비밀번호 사이는 앱이 알아서 쉬어 읽어요.</li>
+<li>지도 아래 단추 줄 — 왼쪽부터 <strong>후면카메라 저장</strong>&nbsp;· <strong>지금 자리에 핀 저장</strong>(장소&nbsp;· 메모)&nbsp;· 🔥 픽업 지도&nbsp;· <strong>핀 목록</strong>&nbsp;· 내 위치.</li>
+<li>저장한 자리에 가까워지면 메모를 소리로 읽어 줘요. 「OO 상가, 뒷문 주차」처럼 이름과 메모 사이는 앱이 알아서 쉬어 읽어요.</li>
 <li>후면카메라는 지나간 방향까지 함께 저장돼서 더 정확하게 알려 줘요.</li>
 <li><strong>핀 목록</strong>(☰) — 저장한 핀을 모아 봐요. 목록에서 이름 고치기&nbsp;· 지도에서 보기&nbsp;· 지우기를 할 수 있어요.</li>
-<li>핀 목록을 열 때는 <strong>폰 잠금(지문&nbsp;· 비밀번호)</strong>으로 한 번 확인해요. 남이 내 폰을 봐도 비밀번호 메모를 못 보게.</li>
+<li>핀 목록을 열 때는 <strong>폰 잠금(지문&nbsp;· 얼굴&nbsp;· 화면 잠금)</strong>으로 한 번 확인해요. 남이 내 폰을 봐도 메모를 못 보게.</li>
 </ul>
 <figure class="shot"><img src="g/g-pin-card.webp" width="720" height="1560" alt="지도 아래에 뜬 핀 메모 카드, 연습 핀 이름과 거리" loading="lazy" decoding="async"><figcaption>핀에 가까워지면 아래에 메모 카드&nbsp;· [다시듣기]</figcaption></figure>
-<p class="note">사진은 연습용 핀이에요. 진짜 공동현관 비밀번호가 보이는 화면은 남에게 보내지 마세요.</p>
+<p class="note">사진은 연습용 핀이에요. 메모가 보이는 화면은 남에게 보내지 마세요.</p>
 <!-- 사진: 핀 목록 (연습 핀 캡처 대기) -->
 </div>
 </section>
@@ -322,7 +322,7 @@ details p{margin-top:8px;font-size:14px;color:#C9CED6}
 <ul>
 <li>설정 › <strong>전체 백업 내보내기</strong> — 핀&nbsp;· 수입&nbsp;· 통계를 파일 하나로. 폰을 바꾸기 전에 꼭 해 두세요.</li>
 <li>새 폰에서 설정 › <strong>백업 가져오기&nbsp;· 합치기</strong>. 두 폰 기록을 합칠 때도 같은 메뉴예요.</li>
-<li>백업 파일에는 핀 메모(비밀번호 포함)가 들어 있어요. <strong>남에게 보내지 마세요.</strong></li>
+<li>백업 파일에는 핀 메모가 그대로 들어 있어요. <strong>남에게 보내지 마세요.</strong></li>
 <li>운행 기록과 핀은 폰에만 있어서, <strong>앱을 지우면 함께 사라져요.</strong> 지우기 전에 꼭 백업을 내보내세요.</li>
 </ul>
 <figure class="shot wide"><img src="g/g-settings-backup.webp" width="720" height="810" alt="설정의 이 폰과 기록 · 백업 칸" loading="lazy" decoding="async"><figcaption>설정 › 이 폰&nbsp;· 기록&nbsp;· 백업</figcaption></figure>
@@ -343,7 +343,7 @@ details p{margin-top:8px;font-size:14px;color:#C9CED6}
 <ul>
 <li>같은 파일을 두 번 넣어도 한 번만 들어가요.</li>
 <li>후면카메라는 옮기지 않아요. Auto에서 지나가며 다시 저장해 주세요(방향까지 저장돼서 더 정확해요).</li>
-<li>핀 파일에는 공동현관 비밀번호가 들어 있어요. <strong>남에게 보내지 마세요.</strong> 옮긴 뒤엔 지워도 돼요.</li>
+<li>핀 파일에는 핀 메모가 그대로 들어 있어요. <strong>남에게 보내지 마세요.</strong> 옮긴 뒤엔 지워도 돼요.</li>
 <li>아이폰은 웹앱 설정 › <strong>엑셀로 내보내기</strong>의 「장소목록」으로 핀을 받아 둘 수 있어요.</li>
 <li>웹앱은 Auto 정식 출시 3개월 뒤 종료돼요. 날짜는 정식 출시 때 알려 드려요.</li>
 </ul>
@@ -356,14 +356,12 @@ details p{margin-top:8px;font-size:14px;color:#C9CED6}
 <h2>요금&nbsp;· 무료 기간&nbsp;· 친구 소개</h2>
 <div class="card" id="요금">
 <ul>
-<li>탄 만큼 내는 <strong>건당</strong>과 <strong>월 정액</strong> 중에서 골라요. <strong class="lime">출시 기념가</strong>(2027년 12월 31일까지) — 건당 <strong class="lime">20원</strong>&nbsp;· 월 정액 <strong class="lime">10,000원</strong>.</li>
-<li>하루 <strong style="color:#B69CFF">20콜</strong> 이상 타면 월 정액이 유리해요.</li>
 <li><strong class="lime">출시 기념 행사</strong> — 2027년 1월 31일까지 누구나 무료예요.</li>
 <li>행사가 끝나도 <strong>설치 후 첫 달</strong>은 무료예요. 1월 31일 전에 설치했다면 <strong class="lime">2월 28일까지</strong>, 그 뒤에 설치하면 처음 쓴 날부터 한 달(28일)이에요.</li>
-<li>무료 기간 중에는 돈이 나가지 않아요. 무료가 끝나는 날은 앱 <strong>마이페이지</strong>(위 👤)에 날짜로 나오고, 끝나면 출시 기념가로 이어져요.</li>
-<li>건당 요금은 <strong>정산 화면에서 확인된 배달</strong>만 세요. 그래서 정산 화면을 일주일에 한 번은 열어 주세요.</li>
+<li>무료 기간 중에는 돈이 나가지 않아요. 무료가 끝나는 날은 앱 <strong>마이페이지</strong>(위 👤)에 날짜로 나와요.</li>
+<li>이후 요금은 <strong>시작 한 달 전에</strong> 앱 공지와 홈페이지로 알려 드려요. 알리기 전에는 요금을 받지 않아요.</li>
 </ul>
-<figure class="shot wide"><img src="g/g-mypage-price.webp" width="720" height="425" alt="마이페이지 요금 — 출시 기념가 건당 20원, 월 정액 10,000원" loading="lazy" decoding="async"><figcaption>마이페이지 › 요금</figcaption></figure>
+<!-- ★ 11-17 요금 캡처(g-mypage-price.webp)는 금액이 보여 뺐다 — q판 마이페이지로 다시 찍으면 넣기 -->
 </div>
 <div class="card" id="친구-소개">
 <h3>친구 소개</h3>
@@ -405,7 +403,7 @@ details p{margin-top:8px;font-size:14px;color:#C9CED6}
 </details>
 <details>
 <summary>업데이트는 어떻게 하나요?</summary>
-<p>새 버전이 나오면 위 🔔 <strong>종이 라임색</strong>으로 바뀌어요(꼭 받아야 하는 판은 주의색). 🔔 › <strong>받아서 설치</strong>를 누르면 돼요. 처음 한 번은 「이 출처의 앱 설치」를 허용해 달라고 물어요 — 허용해 주세요. 앱을 지우지 말고 덮어 설치하세요.</p>
+<p>새 버전이 나오면 위 🔔 <strong>종이 라임색</strong>으로 바뀌어요(꼭 받아야 하는 판은 주의색). 🔔 › <strong>플레이 스토어에서 업데이트</strong>를 누르면 구글 플레이가 열려요. 앱을 지우지 말고 업데이트하세요. 기록은 그대로 남아요.</p>
 </details>
 <details>
 <summary>배민&nbsp;· 쿠팡 고객센터 번호가 어디 있어요?</summary>
@@ -429,9 +427,10 @@ details p{margin-top:8px;font-size:14px;color:#C9CED6}
 </section>
 
 <footer style="font-size: 13px; color: #A3A9B3; display: flex; flex-wrap: wrap; gap: 4px 16px; justify-content: center">
-<span>© HUD Labs&nbsp;· Smart Tool Korea</span>
+<span>© HUD Labs</span>
 <a href="terms.html" style="color: #C9CED6; text-decoration: none">이용약관</a>
 <a href="privacy.html" style="color: #C9CED6; text-decoration: none">개인정보 처리방침</a>
+<a href="delete.html" style="color: #C9CED6; text-decoration: none">삭제 요청</a>
 </footer>
 
 </div>
